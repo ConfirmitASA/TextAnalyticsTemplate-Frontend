@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#_isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#toggleCollapsedClass">toggleCollapsedClass</a></li><li data-type='method'><a href="HierarchyTable.html#toggleCollapsing">toggleCollapsing</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li><li><a href="global.html#poll">poll</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
 </nav>
 
 <div id="main">
@@ -37,7 +37,9 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>
+export class Common{
+/**
  * Polling function to wait for the node to appear
  * @param {Boolean} fn - function that returns a Boolean for existing node
  * @param {Function} callback - function to execute when node is found
@@ -45,7 +47,7 @@
  * @param {Number} timeout
  * @param {Number} interval - polling interval to check for `fn` to be true
  */
-var poll = (fn, callback, errback, timeout, interval) => {
+  poll (fn, callback, errback, timeout, interval) {
   var endTime = Number(new Date()) + (timeout || 2000);
   interval = interval || 100;
 
@@ -64,9 +66,7 @@ var poll = (fn, callback, errback, timeout, interval) => {
     }
   })();
 };
-
-
-export default poll;
+}
 </code></pre>
         </article>
     </section>
@@ -79,7 +79,7 @@ export default poll;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 20 2016 15:47:49 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 21 2016 14:36:32 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

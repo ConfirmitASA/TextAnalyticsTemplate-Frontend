@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#_isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#toggleCollapsedClass">toggleCollapsedClass</a></li><li data-type='method'><a href="HierarchyTable.html#toggleCollapsing">toggleCollapsing</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li><li><a href="global.html#poll">poll</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
 </nav>
 
 <div id="main">
@@ -51,7 +51,7 @@
    * @param {Number} [hierColumn=0] - index of column in the table that contains hierarchy (increments from `0`)
    * @param {Boolean} [flat=false] - Should hierarchy be rendered flatly(`true`), or in a tree-fashion (`false`).
    * */
-  constructor({source,hierarchy,rowheaders,hierColumn = 0,flat = false} = {}){
+  constructor({source,hierarchy,rowheaders,hierColumn = 0,flat = false,search={}} = {}){
     this.source = source;
     this.hierarchy = hierarchy;
     this.rowheaders = rowheaders;
@@ -62,7 +62,56 @@
     this._flatEvent = this.constructor.newEvent('reportal-table-hierarchy-flat-view');
     this._treeEvent = this.constructor.newEvent('reportal-table-hierarchy-tree-view');
     this.flat = flat;
+
+    this.search = this.setupSearch(search);
+    /*this.search = {
+      timeout: search.timeout || 300, // minimal time after last keystroke when searching takes place
+      enabled: search.enabled || false,
+      immediate: search.immediate || false,
+      _searching: false,
+      get searching(){return this._searching},
+      set searching(val){
+        if(this.searching!=val){
+          this._searching=val;
+          source.classList.toggle('reportal-hierarchy-searching');
+        }
+      }
+    };*/
+
     this.init();
+  }
+
+  /**
+   * This function initializes a prototype for search functionality for hierarchical column
+   * @param {Boolean} enabled=false - flag to be set when enabling the search
+   * @param {Boolean} immediate=false - flag to be set for serach to happen after each stroke rather than by `timeout`
+   * @param {Number} timeout=300 - minimal time after last keystroke when searching takes place
+   * @param {Boolean} [searching=false] - this property is mostly for internal use and is set when searching is in progress, which adds a class to the table hiding all rows not matching search
+   * @param {String} [query=''] - search string
+   * @param {HTMLInputElement} target - the input element that triggered the search.
+   * */
+  setupSearch({enabled = false, immediate = false, timeout=300, searching=false, query='', target}={}){
+    var _searching = searching,
+      source = this.source,
+      _query = query;
+    return {
+      timeout,
+      enabled,
+      immediate,
+      target,
+      get query(){return _query},
+      set query(val){
+        _query = val;
+      },
+
+      get searching(){return _searching},
+      set searching(val){
+        if(this.searching!=val){
+          _searching=val;
+          source.classList.toggle('reportal-hierarchy-searching');
+        }
+      }
+    }
   }
 
   /**
@@ -147,26 +196,78 @@
       }
       //we need to push to the array before we add arrows/circles to labels so that we have clean labels in array and may sort them as strings
       resultArray.push([].slice.call(row.children).map((td)=>{
-          return td.children.length==0?this._isNumber(td.textContent.trim()):td.innerHTML
+          return td.children.length==0?this.constructor._isNumber(td.textContent.trim()):td.innerHTML
         }));
+      let currentRowArray = resultArray[resultArray.length-1],
+        self = this;//define it for complex closures
+      //build a prototype for a row
+    currentRowArray.meta= this.setupMeta({
+      row:row,
+      id:item.id,
+      flatName: item.name,
+      name: item.name.split('/').reverse()[0].trim(),
+      parent:item.parent,
+      level:level,
+      hidden:true,
+      collapsed:item.children.length>0?true:undefined,
+      hasChildren:item.children.length>0
+    });
 
-      resultArray[resultArray.length-1].meta={
-        row:row,
-        id:item.id,
-        flatName: item.name,
-        name: item.name.split('/').reverse()[0].trim(),
-        parent:item.parent,
-        level:level,
-        collapsed:item.children.length>0?true:undefined,
-        hasChildren:item.children.length>0
-      };
       // adds a toggle button
-      this.addCollapseButton(row);
+      this.addCollapseButton(currentRowArray.meta);
       // initializes row headers according to `this.flat`
-      this.updateCategoryLabel(resultArray[resultArray.length-1]);
+      this.updateCategoryLabel(currentRowArray);
+
       level &lt; 2 ? resultArray = this.parseHierarchy(item.children, level + 1,resultArray) : null;
       return resultArray
     },array);
+  }
+
+  /**
+   * This function builds a prototype for each row
+   * @param {HTMLTableRowElement} row - reference to the `&lt;tr>` element
+   * @param {String} id - internal Reportal id for the row
+   * @param {String} flatName - default string name ('/'-delimited) for hierarchy
+   * @param {String} name - a trimmed version of `flatName` containing label for this item without parent suffices
+   * @param {String} parent - internal Reportal id of parent row
+   * @param {Number} level - level of hierarchy, increments form `0`
+   * @param {Boolean} hidden=true - flag set to hidden rows (meaning their parent is in collapsed state)
+   * @param {Boolean} collapsed=undefined - flag only set to rows which have children (`hasChildren=true`)
+   * @param {Boolean} [matches=false] - flag set to those rows which match `search.query`
+   * @param {Boolean} hasChildren=false - flag set to rows which contain children
+   * */
+  setupMeta({row,id,flatName,name,parent,level,hidden=true,collapsed,matches=false,hasChildren=false}={}){
+    let _hidden = hidden, _collapsed = collapsed, self=this;
+    return {
+      row,
+      id,
+      flatName,
+      name,
+      parent,
+      level,
+      hasChildren,
+      get hidden(){return _hidden},
+      set hidden(val){
+        _hidden=true;
+        val?this.row.classList.add("reportal-hidden-row"):this.row.classList.remove("reportal-hidden-row");
+      },
+      get collapsed(){return _collapsed},
+      set collapsed(val){
+        if(typeof val != undefined){
+          _collapsed=val;
+          if(val){
+            this.row.classList.add("reportal-collapsed-row");
+            this.row.classList.remove("reportal-uncollapsed-row");
+            this.row.dispatchEvent(self._collapseEvent);
+          } else {
+            this.row.classList.add("reportal-uncollapsed-row");
+            this.row.classList.remove("reportal-collapsed-row");
+            this.row.dispatchEvent(self._uncollapseEvent);
+          }
+        }
+      }
+    };
+
   }
 
   /**
@@ -174,7 +275,7 @@
    * @param {String} str - value of the cell if not HTML contents
    * @return {Number|null|String}
    * */
-  _isNumber(str){
+  static _isNumber(str){
     if(!isNaN(parseFloat(str)) &amp;&amp; parseFloat(str).toString().length ==str.length){
       return parseFloat(str)
     } else if(str.length==0){return null} else {return str}
@@ -193,27 +294,18 @@
 
   /**
    * function to add button to the left of the rowheader
-   * @param {HTMLTableRowElement} row - row element in the table
+   * @param {Object} meta - meta for the row element in the table
    */
-  addCollapseButton(row){
+  addCollapseButton(meta){
     var collapseButton = document.createElement("div");
     collapseButton.classList.add("reportal-collapse-button");
-    collapseButton.addEventListener('click', () => this.toggleCollapsing(row));
-    row.children[this.column].insertBefore(collapseButton,row.children[this.column].firstChild);
-    row.children[this.column].classList.add('reportal-hierarchical-cell');
+    collapseButton.addEventListener('click', () => {
+      meta.collapsed = !meta.collapsed; //toggle collapsed state
+      this.toggleHiddenRows(meta);
+    });
+    meta.row.children[this.column].insertBefore(collapseButton,meta.row.children[this.column].firstChild);
+    meta.row.children[this.column].classList.add('reportal-hierarchical-cell');
   }
-
-
-  /**
-   * function to collapse and expand rows on button click
-   * @param {HTMLTableRowElement} row - row element in the table
-   */
-  toggleCollapsing(row){
-    this.toggleCollapsedClass(row);
-    this.toggleHiddenRows(row);
-    this.data[row.rowIndex-1].meta.collapsed?row.dispatchEvent(this._collapseEvent):row.dispatchEvent(this._uncollapseEvent);
-  }
-
 
   static newEvent(name){
     //TODO: refactor this code when event library is added
@@ -224,37 +316,53 @@
   }
 
   /**
-   * function to set class to the row itself and reflect collapsed state in `meta.collapsed`
-   * @param {HTMLTableRowElement} row - row element in the table
+   * function to hide or show child rows
+   * @param {Object} meta - meta for the row element in the table
    */
-  toggleCollapsedClass(row){
-    if(row.classList.contains("reportal-collapsed-row") || row.classList.contains("reportal-uncollapsed-row")){
-      row.classList.toggle("reportal-collapsed-row");
-      row.classList.toggle("reportal-uncollapsed-row");
-      this.data[row.rowIndex-1].meta.collapsed = !this.data[row.rowIndex-1].meta.collapsed;
+  toggleHiddenRows(meta){
+    if(meta.hasChildren){
+      let children = this.data.filter((row)=>{return row.meta.parent==meta.id});
+      children.forEach((childRow)=>{
+        console.log(meta.collapsed);
+        if(meta.collapsed){                                           // if parent (`meta.row`) is collapsed
+          childRow.meta.hidden=true;                                  // hide all its children and
+          if(childRow.meta.hasChildren &amp;&amp; !childRow.meta.collapsed){  // if a child can be collapsed
+            childRow.meta.collapsed=true;                             // collapse it and
+            this.toggleHiddenRows(row.meta);                          // repeat for its children
+          }
+        } else {                                                      // otherwise make sure we show all children of an expanded row
+          childRow.meta.hidden=false;
+        }
+      });
     }
   }
 
-  /**
-   * function to hide or show child rows
-   * @param {HTMLTableRowElement} row - row element in the table
-   */
-  toggleHiddenRows(row){
-    var id = row.getAttribute("self-id");
+  searchRowheaders(str){
+    let regexp = new RegExp(str,'gi'),
+      matched = this.data.filter((row)=>{return this.flat?row.meta.flatName.match(regexp):row.meta.name.match(regexp)});
+      //console.log(matched);
+      matched.forEach((row) => {
+        row.meta.row.classList.add('matched-search');
+        this.uncollapseParents(row.meta);
+        this.displayChildren(row.meta);
+      });
+    //return matched;
+  }
 
-    Array.prototype.slice.call(this.source.querySelectorAll("[parent="+id+"]")).forEach((item,index)=>{
-      if(row.classList.contains("reportal-collapsed-row")){
-        item.classList.add("reportal-hidden-row");
-        if(item.classList.contains("reportal-uncollapsed-row")){
-          this.toggleCollapsedClass(item);
-        }
-        this.toggleHiddenRows(item);
-      } else{
-        if(row.classList.contains("reportal-uncollapsed-row")){
-          item.classList.remove("reportal-hidden-row");
-        }
+  uncollapseParents(meta){
+  if(meta.parent.length>0){ // if `parent` String is not empty - then it's not top level parent.
+    let parent = this.data.find(row => row.meta.id==meta.parent);
+    console.log(parent);
+    if(parent.meta.collapsed){parent.meta.collapsed=false};
+    parent.meta.row.classList.add('matched-search');
+    this.uncollapseParents(parent.meta);
+  }
+  }
+
+  displayChildren(meta){
+      if (meta.hasChildren) {
+        let children = this.data.filter(row => row.meta.parent == meta.id ).forEach(child => {child.meta.row.classList.add('matched-search');this.displayChildren(child.meta)});
       }
-    });
   }
 
 }
@@ -276,7 +384,7 @@ export default HierarchyTable;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 20 2016 15:47:49 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 21 2016 14:36:32 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
