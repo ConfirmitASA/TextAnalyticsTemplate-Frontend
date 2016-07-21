@@ -53,7 +53,7 @@
 
     
 
-    <h4 class="name" id="HierarchyTable"><span class="type-signature"></span>new HierarchyTable<span class="signature">(source, hierarchy, rowheaders, hierColumn<span class="signature-attributes">opt</span>, flat<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="HierarchyTable"><span class="type-signature"></span>new HierarchyTable<span class="signature">(source, hierarchy, rowheaders, hierColumn<span class="signature-attributes">opt</span>, flat<span class="signature-attributes">opt</span>, search, data<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -65,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line15">line 15</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -215,7 +215,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
                 </td>
             
 
-            <td class="description last"><p>array of hierarchy objects from reportal</p></td>
+            <td class="description last"><p>array of hierarchy objects from Reportal</p></td>
         </tr>
 
     
@@ -332,6 +332,334 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>search</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>config for searching functionality. See <a href="HierarchyTable.html#setupSearch"><code>HierarchyTable#setupSearch</code></a></p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag to be set when enabling the search</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>immediate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag to be set for serach to happen after each stroke rather than by <code>timeout</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>300</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>minimal time(in milliseconds) after last keystroke when searching takes place</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>searching</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>this property is mostly for internal use and is set when searching is in progress, which adds a class to the table hiding all rows not matching search</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>''</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>search string</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLInputElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the input element that triggered the search.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>array with data if it's passed from outside, rather than acquired from the <code>source</code> (HTML table)</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -379,7 +707,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line94">line 94</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -442,7 +770,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line108">line 108</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line186">line 186</a>
     </li></ul></dd>
     
 
@@ -515,7 +843,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line239">line 239</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -672,7 +1000,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line260">line 260</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line304">line 304</a>
     </li></ul></dd>
     
 
@@ -805,7 +1133,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line249">line 249</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line293">line 293</a>
     </li></ul></dd>
     
 
@@ -938,7 +1266,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line81">line 81</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -1022,7 +1350,7 @@ When a row is switched to tree-view, a <code>reportal-table-hierarchy-tree-view<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line145">line 145</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line227">line 227</a>
     </li></ul></dd>
     
 
@@ -1218,7 +1546,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
 
     
 
-    <h4 class="name" id="setupMeta"><span class="type-signature"></span>setupMeta<span class="signature">(row, id, flatName, name, parent, level, hidden, collapsed, matches<span class="signature-attributes">opt</span>, hasChildren)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setupMeta"><span class="type-signature"></span>setupMeta<span class="signature">(row, id, flatName, name, parent, level, hidden<span class="signature-attributes">opt</span>, collapsed<span class="signature-attributes">opt</span>, matches<span class="signature-attributes">opt</span>, hasChildren<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -1230,7 +1558,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line200">line 200</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -1537,6 +1865,8 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -1573,6 +1903,8 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -1648,6 +1980,8 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -1702,7 +2036,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line54">line 54</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -1888,7 +2222,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
                 </td>
             
 
-            <td class="description last"><p>minimal time after last keystroke when searching takes place</p></td>
+            <td class="description last"><p>minimal time(in milliseconds) after last keystroke when searching takes place</p></td>
         </tr>
 
     
@@ -2040,7 +2374,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line283">line 283</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line326">line 326</a>
     </li></ul></dd>
     
 
@@ -2173,7 +2507,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line116">line 116</a>
+        <a href="aggregatedTable_hierarchyTable.js.html">aggregatedTable/hierarchyTable.js</a>, <a href="aggregatedTable_hierarchyTable.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -2307,7 +2641,7 @@ Each item in the array has a <code>meta {Object}</code> property that has the fo
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 21 2016 14:36:32 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 21 2016 18:08:23 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
