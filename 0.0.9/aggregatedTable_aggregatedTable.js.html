@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addSearchBox">addSearchBox</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li><li data-type='method'><a href="AggregatedTable.html#search">search</a></li><li data-type='method'><a href="AggregatedTable.html#updateSearchTarget">updateSearchTarget</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#displayChildren">displayChildren</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#searchRowheaders">searchRowheaders</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#uncollapseParents">uncollapseParents</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
 </nav>
 
 <div id="main">
@@ -117,6 +117,10 @@ class AggregatedTable{
     host.appendChild(buttonContainer);
   }
 
+  /**
+   * Adds a search icon and a search box to the header of the hierarchy column (`host`)
+   * @param {HTMLTableCellElement} host - header of the hierarchy column
+   * */
   addSearchBox(host){
     let button = document.createElement('span'),
         buttonContainer = document.createElement('span'),
@@ -127,12 +131,12 @@ class AggregatedTable{
     buttonContainer.classList.add('btn');
     buttonContainer.title='Search categories';
 
+    let efficientSearch = this.search();
     searchfield.addEventListener('keyup',e=>{
       this.updateSearchTarget(e); //update search parameters
-      efficientSearch(); // debounce search
+      efficientSearch();          // call search less frequently
     });
 
-    var efficientSearch = this.search();
 
     buttonContainer.appendChild(button);
     buttonContainer.appendChild(searchfield);
@@ -140,13 +144,21 @@ class AggregatedTable{
 
   }
 
+  /**
+   * Updates `search.target` &amp;&amp; `search.query` in `hierarchy.search` to know which input triggered the search and update the `search.query` in the other
+   * @param {Event} e - a debounced event triggered by input field when a person enters text
+   * */
   updateSearchTarget(e){
     this.hierarchy.search.target = e.target;
     this.hierarchy.search.query = e.target.value;
   }
 
+  /**
+   * Wrapping function that debounces search, sets `search.searching` [(click for info)]{@link HierarchyTable#setupSearch} and calls `hierarchy.searchRowheaders` [(click for info)]{@link HierarchyTable#searchRowheaders}
+   * @return {Function}
+   * */
   search(){
-    let hierarchy =this.hierarchy,
+    let hierarchy = this.hierarchy,
         settings = hierarchy.search;
     return this.constructor.debounce(function(){
       let value = settings.query;
@@ -165,6 +177,7 @@ class AggregatedTable{
    * @param {Function} func - the function that needs to be executed at a lesser rate
    * @param {Number} [wait=300] - timeout after which the `func`tion executes
    * @param {Boolean} [immediate=false] - flag to be set when function needs to be executed immediately (overrides `wait` timeout)
+   * @return {Function}
    * */
   static debounce (func, wait=300, immediate=false){
     var timeout;
@@ -197,7 +210,7 @@ export default AggregatedTable;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 21 2016 18:08:23 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Jul 22 2016 12:41:00 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

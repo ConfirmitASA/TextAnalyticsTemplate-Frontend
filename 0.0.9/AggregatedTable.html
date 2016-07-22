@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addSearchBox">addSearchBox</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li><li data-type='method'><a href="AggregatedTable.html#search">search</a></li><li data-type='method'><a href="AggregatedTable.html#updateSearchTarget">updateSearchTarget</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#displayChildren">displayChildren</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#searchRowheaders">searchRowheaders</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#uncollapseParents">uncollapseParents</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
 </nav>
 
 <div id="main">
@@ -250,7 +250,7 @@
 
     
 
-    <h4 class="name" id=".debounce"><span class="type-signature">(static) </span>debounce<span class="signature">(func, wait<span class="signature-attributes">opt</span>, immediate<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".debounce"><span class="type-signature">(static) </span>debounce<span class="signature">(func, wait<span class="signature-attributes">opt</span>, immediate<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
 
     
 
@@ -262,7 +262,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="aggregatedTable_aggregatedTable.js.html">aggregatedTable/aggregatedTable.js</a>, <a href="aggregatedTable_aggregatedTable.js.html#line130">line 130</a>
+        <a href="aggregatedTable_aggregatedTable.js.html">aggregatedTable/aggregatedTable.js</a>, <a href="aggregatedTable_aggregatedTable.js.html#line143">line 143</a>
     </li></ul></dd>
     
 
@@ -451,6 +451,157 @@
             
 
             <td class="description last"><p>flag to be set when function needs to be executed immediately (overrides <code>wait</code> timeout)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="addSearchBox"><span class="type-signature"></span>addSearchBox<span class="signature">(host)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_aggregatedTable.js.html">aggregatedTable/aggregatedTable.js</a>, <a href="aggregatedTable_aggregatedTable.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Adds a search icon and a search box to the header of the hierarchy column (<code>host</code>)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>host</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLTableCellElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>header of the hierarchy column</p></td>
         </tr>
 
     
@@ -796,6 +947,241 @@ This function is executed for both the original table and the cloned header.</p>
 
 
         
+            
+
+    
+
+    <h4 class="name" id="search"><span class="type-signature"></span>search<span class="signature">()</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_aggregatedTable.js.html">aggregatedTable/aggregatedTable.js</a>, <a href="aggregatedTable_aggregatedTable.js.html#line121">line 121</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Wrapping function that debounces search, sets <code>search.searching</code> <a href="HierarchyTable.html#setupSearch"><code>(click for info)</code></a> and calls <code>hierarchy.searchRowheaders</code> <a href="HierarchyTable.html#searchRowheaders"><code>(click for info)</code></a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="updateSearchTarget"><span class="type-signature"></span>updateSearchTarget<span class="signature">(e)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_aggregatedTable.js.html">aggregatedTable/aggregatedTable.js</a>, <a href="aggregatedTable_aggregatedTable.js.html#line112">line 112</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Updates <code>search.target</code> &amp;&amp; <code>search.query</code> in <code>hierarchy.search</code> to know which input triggered the search and update the <code>search.query</code> in the other</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>e</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>a debounced event triggered by input field when a person enters text</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -813,7 +1199,7 @@ This function is executed for both the original table and the cloned header.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 21 2016 18:08:23 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Jul 22 2016 12:41:00 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
