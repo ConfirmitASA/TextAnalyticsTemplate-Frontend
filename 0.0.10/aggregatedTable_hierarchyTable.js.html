@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addSearchBox">addSearchBox</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li><li data-type='method'><a href="AggregatedTable.html#search">search</a></li><li data-type='method'><a href="AggregatedTable.html#updateSearchTarget">updateSearchTarget</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#searchRowheaders">searchRowheaders</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#uncollapseParents">uncollapseParents</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#addSearchBox">addSearchBox</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#init">init</a></li><li data-type='method'><a href="AggregatedTable.html#search">search</a></li><li data-type='method'><a href="AggregatedTable.html#updateSearchTarget">updateSearchTarget</a></li></ul></li><li><a href="ConfirmitBase.html">ConfirmitBase</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="HierarchyTable.html">HierarchyTable</a><ul class='methods'><li data-type='method'><a href="HierarchyTable.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="HierarchyTable.html#addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="HierarchyTable.html#clearLink">clearLink</a></li><li data-type='method'><a href="HierarchyTable.html#init">init</a></li><li data-type='method'><a href="HierarchyTable.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="HierarchyTable.html#searchRowheaders">searchRowheaders</a></li><li data-type='method'><a href="HierarchyTable.html#setupMeta">setupMeta</a></li><li data-type='method'><a href="HierarchyTable.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="HierarchyTable.html#toggleHiddenRows">toggleHiddenRows</a></li><li data-type='method'><a href="HierarchyTable.html#uncollapseParents">uncollapseParents</a></li><li data-type='method'><a href="HierarchyTable.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li><li><a href="Highlight.html">Highlight</a><ul class='methods'><li data-type='method'><a href="Highlight.html#apply">apply</a></li><li data-type='method'><a href="Highlight.html#getRegex">getRegex</a></li><li data-type='method'><a href="Highlight.html#remove">remove</a></li><li data-type='method'><a href="Highlight.html#setRegex">setRegex</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
 </nav>
 
 <div id="main">
@@ -37,7 +37,9 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>class HierarchyTable{
+            <pre class="prettyprint source linenums"><code>import Highlight from '../lib/Highlight.js';
+
+class HierarchyTable{
   /**
    * Converts flat view rowheaders into a tree-view rowheaders with ability to switch between views.
    * After hierarchy is initialized, `HierarchyTable.data` array will reflect the rows of the table in their visible order and contain `meta` for each row in the array.
@@ -98,29 +100,32 @@
    * @param {Boolean} [searching=false] - this property is mostly for internal use and is set when searching is in progress, which adds a class to the table hiding all rows not matching search
    * @param {String} [query=''] - search string
    * @param {HTMLInputElement} target - the input element that triggered the search.
+   * @param {Boolean} [visible=false] - search box is visible
+   * @param {Boolean} [highlight=true] - search matches will be highlighted
    * */
-  setupSearch({enabled = false, immediate = false, timeout=300, searching=false, query='', target, visible=false}={}){
+  setupSearch({enabled = false, immediate = false, timeout=300, searching=false, query='', target, visible=false,highlight = true}={}){
     var _searching = searching,
       self = this,
       _query = query,
-      _visible=visible;
+      _visible=visible,
+      _highlight = highlight? new Highlight({element:[].slice.call(this.source.querySelectorAll(`tbody>tr>td:nth-child(${this.column+1})`)),type:'open'}):null;
+
     return {
       timeout,
       enabled,
       immediate,
       target,
-
+      highlight:_highlight,
       get query(){return _query},
       set query(val){
         _query = val;
+        if(val.length==0 &amp;&amp; this.highlight){this.highlight.remove();} // clear highlighting when query length is 0
       },
 
       get visible(){return _visible},
       set visible(val){
         _visible = val;
-        //console.log(self.source.parentNode, self.source.parentNode.querySelector('.hierarchy-search'),val);
         [].slice.call(self.source.parentNode.querySelectorAll('.hierarchy-search')).forEach(button=>{
-          console.log(button,val);
         val?button.classList.add('visible'):button.classList.remove('visible');});
       },
 
@@ -167,12 +172,10 @@
       get hidden(){return _hidden},
       set hidden(val){
         _hidden=val;
-        if(!val){console.log('hidden released')}
         val?this.row.classList.add("reportal-hidden-row"):this.row.classList.remove("reportal-hidden-row");
       },
       get collapsed(){return _collapsed},
       set collapsed(val){
-        //console.log('will set collapsed');
         if(typeof val != undefined &amp;&amp; this.hasChildren){
           _collapsed=val;
           if(val){
@@ -190,7 +193,6 @@
       get matches(){return _matches},
       set matches(val){
         _matches=val;
-        console.log(this.name,val);
         if(val){
           this.row.classList.add("matched-search");
         } else {
@@ -211,6 +213,7 @@
     this._flat=flat;
     flat?this.source.classList.add('reportal-heirarchy-flat-view'):this.source.classList.remove('reportal-heirarchy-flat-view');
     // we want to update labels to match the selected view
+    if(this.search &amp;&amp; this.search.searching &amp;&amp; this.search.highlight){this.search.highlight.remove();} //clear highlighting
     if(this.data){
       this.data.forEach((row)=> {
         this.updateCategoryLabel(row);
@@ -218,7 +221,6 @@
     }
     //if the search is in progress, we need to model hierarchical/flat search which is basically redoing the search.
     if(this.search &amp;&amp; this.search.searching){
-      console.log('search in progress');
       this.search.searching = false; // clears search
       this.search.searching = true; //reinit search
       this.searchRowheaders(this.search.query); //pass the same query
@@ -395,7 +397,7 @@
    * //TODO: add higlighting to the matched query in strings
    * */
   searchRowheaders(str){
-    let regexp = new RegExp(str,'i');
+    let regexp = new RegExp('('+str+')','i');
     this.data.forEach((row)=>{
       if(this.flat){
         row.meta.matches = regexp.test(row.meta.flatName);
@@ -422,6 +424,7 @@
           }
       }
     });
+    this.search.highlight.apply(str);
   }
 
   /*
@@ -468,7 +471,7 @@ export default HierarchyTable;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Jul 25 2016 10:12:06 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Jul 25 2016 12:31:26 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
