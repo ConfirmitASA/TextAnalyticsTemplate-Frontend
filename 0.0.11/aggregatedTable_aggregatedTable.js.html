@@ -55,24 +55,26 @@ class AggregatedTable{
    * */
   constructor({table, hierarchy, fixedHeader,sorting}={}){
     this.hierarchy=this.sorting=null;
+    this.source=table;
     if(hierarchy &amp;&amp; typeof hierarchy == 'object'){
       // initialize hierarchy column to be parsed and presented as tree
       hierarchy.source = hierarchy.source||table;
       this.hierarchy = new HierarchyTable(hierarchy);
       this.data = this.hierarchy.data;
       //initialize buttons that will toggle between flat and tree view
-      let buttonHost = this.hierarchy.source.querySelector(`thead>tr>td:nth-child(${this.hierarchy.column+1})`);
+      let buttonHost = this.hierarchy.source.querySelector('.reportal-hierarchical-header');
       this.addToggleButton(buttonHost,'hierarchy-tree',false,'Tree View');
       this.addToggleButton(buttonHost,'hierarchy-flat',true,'Flat View');
       if(this.hierarchy.search.enabled){
         this.addSearchBox(buttonHost);
       }
     }
+
     if(fixedHeader &amp;&amp; typeof fixedHeader == 'object'){
       fixedHeader.source = fixedHeader.source||table;
       this.fixedHeader = new FixedHeader(fixedHeader);
       //initialize buttons that will toggle between flat and tree view in the original table
-      let buttonHost = this.fixedHeader.clonedHeader.querySelector(`thead>tr>td:nth-child(${this.hierarchy.column+1})`);
+      let buttonHost = this.fixedHeader.clonedHeader.querySelector('.reportal-hierarchical-header');
       [].slice.call(buttonHost.children).forEach((item)=>{item.parentNode.removeChild(item)}); //clears hierarchy toggle buttons cloned from original header
       this.addToggleButton(buttonHost,'hierarchy-tree',false,'Tree View');
       this.addToggleButton(buttonHost,'hierarchy-flat',true,'Flat View');
@@ -81,7 +83,8 @@ class AggregatedTable{
         this.addSearchBox(buttonHost);
       }
     }
-    if(sorting){
+    /*if(sorting){
+      this.source.addEventListener('reportal-table-sort',()=>{this.onSort(this.data)});
       this.sorting = new SortTable({
         enabled:sorting.enabled,
         defaultHeaderRow:sorting.defaultHeaderRow,
@@ -89,14 +92,11 @@ class AggregatedTable{
         excludedColumns:sorting.excludedColumns,
         defaultSorting:sorting.defaultSorting,
         source:table,
-        data:this.data
+        data:this.data,
+        auxHeader: this.fixedHeader.clonedHeader // fixed header //TODO: add resize event when sorting happens, can be done after row reordering
       });
-      this.data = this.sorting.data; // we want to update this.data according to the initially sorted data.
-    }
-    console.log(this.sorting);
-    this.source=table;
+    }*/
     this.init();
-
   }
 
   /**
@@ -122,7 +122,7 @@ class AggregatedTable{
    * */
   focusFollows(){
     if(this.fixedHeader){
-      var inputs = [].slice.call(this.source.parentNode.querySelectorAll(`table>thead>tr>td:nth-child(${this.hierarchy.column+1}) input`));
+      var inputs = [].slice.call(this.source.parentNode.querySelectorAll('.reportal-hierarchical-header input'));
       ['visible','hidden'].forEach(eventChunk=>{
         this.source.addEventListener(`reportal-fixed-header-${eventChunk}`,(e)=>{
           if(this.hierarchy.search.searching &amp;&amp; document.activeElement &amp;&amp; inputs.indexOf(document.activeElement)!=-1){
@@ -140,6 +140,13 @@ class AggregatedTable{
     }
   }
 
+  onSort(data,level){
+    if(!this.flat){
+      level = level || 0;
+        let filtered = data.filter((row)=>{return row.meta.level == level});
+    }
+  }
+
   /**
    * This function adds toggle buttons for hierarchy (to toggle the [flat-view/tree-view]{@link HierarchyTable#flat} mode) to the hierarchy column (here available as `this.hierarchy.column`).
    * This function is executed for both the original table and the cloned header.
@@ -150,7 +157,7 @@ class AggregatedTable{
    * */
   addToggleButton(host,buttonClassChunk,flat,title){
     let button = document.createElement('span'),
-      buttonContainer = document.createElement('span');
+        buttonContainer = document.createElement('span');
     button.classList.add(`icon-${buttonClassChunk}`);
     buttonContainer.classList.add('btn', buttonClassChunk);
     buttonContainer.title=title;
@@ -159,13 +166,12 @@ class AggregatedTable{
       if(flat==this.hierarchy.flat){return;} else {
         this.hierarchy.flat = flat;
         // we want to get all hier. toggle buttons in both cloned header and the table itself
-        let hierColumnButtons = this.hierarchy.source.parentNode.querySelectorAll(`table>thead>tr>td:nth-child(${this.hierarchy.column+1})>.btn`);
+        let hierColumnButtons = this.hierarchy.source.parentNode.querySelectorAll('.reportal-hierarchical-header>.btn:not(.hierarchy-search)');
         if(hierColumnButtons){[].slice.call(hierColumnButtons).forEach((item)=>{
           //By default one button is already `.active`, we need just to swap the `.active` class on them
           !item.classList.contains('active')?item.classList.add('active'):item.classList.remove('active');
         })}
       }
-      //this.scrollToElement(e.target);
     });
     buttonContainer.appendChild(button);
     host.appendChild(buttonContainer);
@@ -229,7 +235,7 @@ class AggregatedTable{
     this.hierarchy.search.query='';
     this.hierarchy.search.visible=false;
     this.hierarchy.search.searching=false;
-    var inputs = this.hierarchy.source.parentNode.querySelectorAll(`table>thead>tr>td:nth-child(${this.hierarchy.column+1}) input`);
+    var inputs = this.hierarchy.source.parentNode.querySelectorAll('.reportal-hierarchical-header input');
     if(inputs &amp;&amp; inputs.length>1){inputs.forEach(input=>{input.value = '';})}
   }
 
@@ -240,7 +246,7 @@ class AggregatedTable{
   updateSearchTarget(e){
     this.hierarchy.search.target = e.target;
     this.hierarchy.search.query = e.target.value;
-    var inputs = this.hierarchy.source.parentNode.querySelectorAll(`table>thead>tr>td:nth-child(${this.hierarchy.column+1}) input`);
+    var inputs = this.hierarchy.source.parentNode.querySelectorAll('.reportal-hierarchical-header input');
     if(inputs &amp;&amp; inputs.length>1){inputs.forEach(input=>{if(input!=e.target){input.value = e.target.value;return;}})}
   }
 
@@ -350,7 +356,7 @@ export default AggregatedTable;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jul 26 2016 14:10:43 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Jul 29 2016 16:06:32 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
