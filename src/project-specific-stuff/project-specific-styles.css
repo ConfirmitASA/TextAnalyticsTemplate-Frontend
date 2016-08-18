@@ -1,6 +1,0 @@
-.detailed-analysis-table{
-  & td[class*=_chc]:not(:last-child) {
-    width: 10%;
-  }
-  & td[class*=_chc]:last-child{width:200px}
-}
