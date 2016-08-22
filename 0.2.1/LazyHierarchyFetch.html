@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LazyHierarchyFetch - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AggregatedTable.html">AggregatedTable</a><ul class='methods'><li data-type='method'><a href="AggregatedTable.html#.debounce">debounce</a></li><li data-type='method'><a href="AggregatedTable.html#.spliceLevel">spliceLevel</a></li><li data-type='method'><a href="AggregatedTable.html#addSearchBox">addSearchBox</a></li><li data-type='method'><a href="AggregatedTable.html#addToggleButton">addToggleButton</a></li><li data-type='method'><a href="AggregatedTable.html#clearSearch">clearSearch</a></li><li data-type='method'><a href="AggregatedTable.html#focusFollows">focusFollows</a></li><li data-type='method'><a href="AggregatedTable.html#onSort">onSort</a></li><li data-type='method'><a href="AggregatedTable.html#reorderSorted">reorderSorted</a></li><li data-type='method'><a href="AggregatedTable.html#scrollTo">scrollTo</a></li><li data-type='method'><a href="AggregatedTable.html#scrollToElement">scrollToElement</a></li><li data-type='method'><a href="AggregatedTable.html#search">search</a></li><li data-type='method'><a href="AggregatedTable.html#updateSearchTarget">updateSearchTarget</a></li></ul></li><li><a href="AggregatedTableRowMeta.html">AggregatedTableRowMeta</a></li><li><a href="FixedHeader.html">FixedHeader</a><ul class='methods'><li data-type='method'><a href="FixedHeader.html#cloneHeader">cloneHeader</a></li><li data-type='method'><a href="FixedHeader.html#init">init</a></li><li data-type='method'><a href="FixedHeader.html#resizeFixed">resizeFixed</a></li><li data-type='method'><a href="FixedHeader.html#resizeThrottler">resizeThrottler</a></li><li data-type='method'><a href="FixedHeader.html#scrollFixed">scrollFixed</a></li><li data-type='method'><a href="FixedHeader.html#wrapTable">wrapTable</a></li></ul></li><li><a href="Hierarchy.HierarchyBase.html">HierarchyBase</a><ul class='methods'><li data-type='method'><a href="Hierarchy.HierarchyBase.html#.addCollapseButton">addCollapseButton</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#.clearLink">clearLink</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#composeFlatParentName">composeFlatParentName</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#reorderRows">reorderRows</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#searchRowheaders">searchRowheaders</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#setUpBlocks">setUpBlocks</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#setupSearch">setupSearch</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#stripRowData">stripRowData</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#uncollapseParents">uncollapseParents</a></li><li data-type='method'><a href="Hierarchy.HierarchyBase.html#updateCategoryLabel">updateCategoryLabel</a></li></ul></li><li><a href="Hierarchy.HierarchyRowMeta.html">HierarchyRowMeta</a><ul class='methods'><li data-type='method'><a href="Hierarchy.HierarchyRowMeta.html#toggleHiddenRows">toggleHiddenRows</a></li></ul></li><li><a href="Highlight.html">Highlight</a><ul class='methods'><li data-type='method'><a href="Highlight.html#apply">apply</a></li><li data-type='method'><a href="Highlight.html#getRegex">getRegex</a></li><li data-type='method'><a href="Highlight.html#remove">remove</a></li><li data-type='method'><a href="Highlight.html#setMatchType">setMatchType</a></li><li data-type='method'><a href="Highlight.html#setRegex">setRegex</a></li></ul></li><li><a href="LazyHierarchyFetch.html">LazyHierarchyFetch</a><ul class='methods'><li data-type='method'><a href="LazyHierarchyFetch.html#.rowIsLoading">rowIsLoading</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#.stripRowsFromResponseTable">stripRowsFromResponseTable</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#fetchChildHierarchy">fetchChildHierarchy</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#fetchChildRows">fetchChildRows</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#fixDrilldownLink">fixDrilldownLink</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#parseHierarchy">parseHierarchy</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#parseHierarchyRow">parseHierarchyRow</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#setUpExpandListener">setUpExpandListener</a></li><li data-type='method'><a href="LazyHierarchyFetch.html#triggerDrilldown">triggerDrilldown</a></li></ul></li><li><a href="ReportalBase.html">ReportalBase</a><ul class='methods'><li data-type='method'><a href="ReportalBase.html#._isNumber">_isNumber</a></li><li data-type='method'><a href="ReportalBase.html#.getQueryVariable">getQueryVariable</a></li><li data-type='method'><a href="ReportalBase.html#.newEvent">newEvent</a></li><li data-type='method'><a href="ReportalBase.html#promiseRequest">promiseRequest</a></li></ul></li><li><a href="SortTable.html">SortTable</a><ul class='methods'><li data-type='method'><a href="SortTable.html#.sorter">sorter</a></li><li data-type='method'><a href="SortTable.html#setupColumns">setupColumns</a></li><li data-type='method'><a href="SortTable.html#setupSortOrder">setupSortOrder</a></li><li data-type='method'><a href="SortTable.html#sort">sort</a></li><li data-type='method'><a href="SortTable.html#updateSorting">updateSorting</a></li></ul></li><li><a href="TAHierarchyTable.html">TAHierarchyTable</a><ul class='methods'><li data-type='method'><a href="TAHierarchyTable.html#init">init</a></li><li data-type='method'><a href="TAHierarchyTable.html#parseHierarchy">parseHierarchy</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="HierarchyBase.html#event:reportal-table-hierarchy-flat-view">reportal-table-hierarchy-flat-view</a></li><li><a href="HierarchyBase.html#event:reportal-table-hierarchy-tree-view">reportal-table-hierarchy-tree-view</a></li><li><a href="HierarchyRowMeta.html#event:reportal-table-hierarchy-collapsed">reportal-table-hierarchy-collapsed</a></li><li><a href="HierarchyRowMeta.html#event:event:reportal-table-hierarchy-uncollapsed">event:reportal-table-hierarchy-uncollapsed</a></li></ul><h3>Namespaces</h3><ul><li><a href="AggregatedTable.Hierarchy.html">Hierarchy</a></li></ul><h3>Global</h3><ul><li><a href="global.html#mixin">mixin</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">LazyHierarchyFetch</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        LazyHierarchyFetch
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="LazyHierarchyFetch"><span class="type-signature"></span>new LazyHierarchyFetch<span class="signature">(source<span class="signature-attributes">non-null</span>, rowheaders<span class="signature-attributes">non-null</span>, hierarchyID<span class="signature-attributes">non-null</span>, hierarchyControlID<span class="signature-attributes">non-null</span>, languageCode<span class="signature-attributes">opt</span>, column<span class="signature-attributes">opt</span>, excludedRows<span class="signature-attributes">opt</span>, pageStateID<span class="signature-attributes">opt</span>, flat<span class="signature-attributes">opt</span>, search, data<span class="signature-attributes">opt</span>, blocks<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLTableElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>aggregated table with drilldown</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowheaders</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>array of rowheader IDs in the order of rows in the <code>source</code> table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hierarchyID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>id of Hierarchy in Table Designer</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hierarchyControlID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>id of the Reportal Hierarchy Component instance on the page</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>languageCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>9</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Language code (according to Confirmit table of language codes) of the language the hierarchy is going to be streamed in at the page load</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Index of the column containing the hierarchy (0-based)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>excludedRows</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>[]</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>array of row-indices (0-based) to exclude from importing into the table for child levels (mostly related to totals or calculated rows necessary for viewing only at this level and would repeat themselves in hierarchical presentation, because parent row contains same information)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pageStateID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>flat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Should hierarchy be rendered flatly(<code>true</code>), or in a tree-fashion (<code>false</code>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>search</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>config for searching functionality. See <code>HierarchyTable#setupSearch</code></p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag to be set when enabling the search</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>immediate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag to be set for serach to happen after each stroke rather than by <code>timeout</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>300</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>minimal time(in milliseconds) after last keystroke when searching takes place</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>searching</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>this property is mostly for internal use and is set when searching is in progress, which adds a class to the table hiding all rows not matching search</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>''</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>search string</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLInputElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the input element that triggered the search.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>[]</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>array with data if it's passed from outside, rather than acquired from the <code>source</code> (HTML table)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blocks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>[]</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>array with block ids that split hierarchies</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rowIsLoading"><span class="type-signature">(static) </span>rowIsLoading<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line205">line 205</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>decorator function adding a kind of spinner to the rows that are still fetching data</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".stripRowsFromResponseTable"><span class="type-signature">(static) </span>stripRowsFromResponseTable<span class="signature">(response)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line270">line 270</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Strips rows from the table received</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>response</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>string representation of Aggregated table</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns an array of rows {HTMLTableRowElement}</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fetchChildHierarchy"><span class="type-signature"></span>fetchChildHierarchy<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line212">line 212</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Queries if each row might contain child rows by quering hierarchy for next level</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fetchChildRows"><span class="type-signature"></span>fetchChildRows<span class="signature">(id<span class="signature-attributes">non-null</span>, parentID<span class="signature-attributes">nullable</span>, tableID<span class="signature-attributes">non-null</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line242">line 242</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Gets row nodes that are child to the parent row#<code>id</code></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>rowheader id for current row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parentID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>rowheader id for parent row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tableID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Reportal Aggregated Table Component id</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns a thenable promise which result is an array of <code>HTMLTableRowElement</code>s child to the row#<code>id</code></p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fixDrilldownLink"><span class="type-signature"></span>fixDrilldownLink<span class="signature">(meta)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line286">line 286</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Disables native drilldown and simulated hierarchy component selection, since that would be the behavior of a drilldown on a component</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>meta</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>meta object on the row.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="parseHierarchy"><span class="type-signature"></span>parseHierarchy<span class="signature">(hierarchy, level, block, array<span class="signature-attributes">non-null</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Recursive function taking rows from each <code>block</code> and adding information to that row, retrieving data from the row, and adding this array to <code>this.data[block]</code>
+Each item in the array has a <code>meta {Object}</code> (See <code>HierarchyTable#setupMeta</code>) property that has the following structure:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+   collapsed: Boolean, // if true, the row is collapsed, defined if `hasChildren`
+   hasChildren: Boolean, // if true, it has children
+   flatName: String, // label for flat view ('/'-separated)
+   name: String, // label for the current level (single-label without parent prefixes)
+   nameCell: HTMLTableCellElement, // reference to the `&lt;td>` element that contains the rowheader hierarchical label/name,
+   block: String, // id of the block the row belongs to
+   firstInBlock: Boolean, // whether the row is the first in this block, which meatns it has an extra cell at the beginning
+   id: String, // item id from Reportal table
+   level: Number, // hierarchy level
+   parent: String, // parent id of the nested level
+   row: HTMLTableRowElement // reference to the `tr` element in the table
+}</code></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hierarchy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>this.hierarchy</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>array of hierarchy objects from Reportal</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>level</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>depth of the function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>block</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>an item from <code>blocks</code> array</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>changed table for children levels</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="parseHierarchyRow"><span class="type-signature"></span>parseHierarchyRow<span class="signature">(row, id, data, array, level, block<span class="signature-attributes">nullable</span>, parent<span class="signature-attributes">nullable</span>, getChildren<span class="signature-attributes">opt</span>, isSecondFetch<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line104">line 104</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Parses a row in the hierarchy, sets up its meta and fetches childrent of the row if necessary</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLTableRowElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>table row to be parsed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>id of the row</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>row data</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>array of row datas within a block</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>level</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>level in hierarchy</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>block</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>block in which the row is contained if any</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>parent row of the row in question</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>getChildren</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag to fetch children of a row in question</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isSecondFetch</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag denoting that it's the second time this function is run on the row and there's no need to construct meta for it</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setUpExpandListener"><span class="type-signature"></span>setUpExpandListener<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line191">line 191</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Listens for a row to be expanded on table and when it's expanded executes <code>parseHierarchyRow</code> on the row to fetch its children</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="triggerDrilldown"><span class="type-signature"></span>triggerDrilldown<span class="signature">(id)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="aggregatedTable_LazyHierarchyFetch.js.html">aggregatedTable/LazyHierarchyFetch.js</a>, <a href="aggregatedTable_LazyHierarchyFetch.js.html#line296">line 296</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>triggers drilldown on a link click for hierarchy level with id = <code>id</code></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>id in hierarchy</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Aug 22 2016 14:10:01 GMT+0300 (Russia TZ 2 Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
