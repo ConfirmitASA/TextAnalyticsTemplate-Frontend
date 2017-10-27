@@ -217,7 +217,7 @@
 }
 
 /* fixed header table*/
-.reportal-table.fixed{
+.fixed.reportal-table{
   position:absolute;
   top:0;
   width:auto;
