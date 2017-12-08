@@ -245,20 +245,30 @@ class Hitlist {
     cell.appendChild(comment)
   }
 
-  addCategoriesToComment(cell, index){
+  addCategoriesToComment(cell, index) {
     let separator = this.separator;
     let categories = this.source.querySelectorAll(".yui3-datatable-cell.reportal-hitlist-categories")[index].innerText.split(", ");
     let main = [];
     let currentCategory = this.currentCategory;
-    let findCategory = category => category === currentCategory;
+    // let findCategory = category => category === currentCategory;
 
     categories
-      .filter(category => currentCategory ? category.startsWith(currentCategory) : true)
+      .filter(category =>
+        currentCategory ?
+          (separator ?
+            category.startsWith(currentCategory) :
+            categories.every(item =>
+              (item === currentCategory && category.startsWith(item)) ||
+              (item !== currentCategory && (item.length <= currentCategory.length || item.length > currentCategory.length && !category.startsWith(item)))
+            )
+          ) :
+          true
+      )
       .map(fullNameCategory => ({
         fullNameCategory,
         categories: (() => {
           let categoryEnd;
-          if(currentCategory) {
+          if (currentCategory && separator) {
             const updatedFullNameCategory = fullNameCategory.substr(currentCategory.length);
             const firstIndexOfSeparator = updatedFullNameCategory.indexOf(separator);
             categoryEnd = updatedFullNameCategory.substr(firstIndexOfSeparator + separator.length);
@@ -268,7 +278,7 @@ class Hitlist {
 
           const categoriesArray = (separator ? categoryEnd.split(separator) : [categoryEnd]);
 
-          if (currentCategory) {
+          if (currentCategory && categoriesArray[0] !== currentCategory) {
             categoriesArray.unshift(currentCategory);
           }
 
@@ -305,7 +315,7 @@ class Hitlist {
         this.pushCategory(parent[0].children, categoryObject)
       } else {
         main.push({
-          name: [currentCategory, ...categoryObject.categories].join(this.separator === ' ' ? ' ' : ` ${this.separator.trim()} `),
+          name: [currentCategory, ...categoryObject.categories].join(this.separator.trim() === ' ' ? ' ' : ` ${this.separator.trim()} `),
           fullName: categoryObject.fullNameCategory,
           children: []
         });

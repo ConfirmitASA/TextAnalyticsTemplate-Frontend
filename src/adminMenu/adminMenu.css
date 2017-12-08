@@ -10,7 +10,6 @@
 .report-settings-options {
   position: absolute;
   width: 152px;
-  height: 162px;
   overflow: hidden;
   right: 4px;
   display: flex;
@@ -72,4 +71,8 @@
 
 .icon-report-settings {
   background-image: var(--icon-report-settings);
+}
+
+.icon-preferences {
+  background-image: var(--icon-preferences);
 }

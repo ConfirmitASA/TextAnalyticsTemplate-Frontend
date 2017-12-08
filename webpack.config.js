@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
 
     new ReportalPostcssExtractor(),
-    new ExtractTextPlugin('styles-v0.4.0.css')
+    new ExtractTextPlugin('rs-components.css')
 
     /*new webpack.optimize.UglifyJsPlugin({
       compress: {

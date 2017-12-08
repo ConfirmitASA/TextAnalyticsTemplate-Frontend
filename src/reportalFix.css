@@ -1,4 +1,4 @@
-
+/*
 *{
   box-sizing:border-box;
   outline-color: var(--button-hover-color);
@@ -11,10 +11,10 @@ body, body.reportal-viewmode {
   background-color: var(--background-color);
   font-family: var(--font-family);
   min-width:initial;
-}
+}*/
 
 /** Page Title styles. Page Title must have a `.page-title` class configured in its properties */
-.page-title{
+/*.page-title{
   @apply --container;
 
   background-color: #fff;
@@ -22,10 +22,10 @@ body, body.reportal-viewmode {
   line-height: 60px;
   font-size: 22px;
   font-weight: 500;
-}
+}*/
 
 /** PageArea Title styles. Page Title must have a `.page-title` class configured in its properties */
-.pagearea-title {
+/*.pagearea-title {
   padding: 0;
   margin: 0 auto;
   background-color: #fff;
@@ -51,7 +51,7 @@ a, .link{
   &:hover{
     color: var(--button-hover-color);
   }
-}
+}*/
 
 [class^=icon-] {
   fill: var(--primary-text-color);
@@ -71,7 +71,7 @@ a, .link{
 }
 
 /* styles for buttons and elements with class `.btn` */
-.btn, button {
+/*.btn, button {
   @apply --reportal-button;
   &.active, &:active{
     box-shadow: none;
@@ -89,7 +89,7 @@ a, .link{
          background-color: var(--button-hover-color);
       }
    }
-}
+}*/
 
 .icon-hierarchy-tree,.icon-hierarchy-flat,.icon-search{
   margin:0;
@@ -142,7 +142,7 @@ a, .link{
 }
 
 /* styles for filter-bar which includes a filter button and filter summary + clear button */
-.filter-bar{
+/*.filter-bar{
   @apply --layout-horizontal;
   @apply --layout-wrap;
 
@@ -194,7 +194,7 @@ a, .link{
       pointer-events: painted;
     }
 
-}
+}*/
 
 
 .cf_positive {
@@ -243,7 +243,7 @@ a, .link{
   }
 }
 
-.reportal-branding-panel{
+/*.reportal-branding-panel{
   background: var(--header-background-color, #ffffff);
 
   & .page-title{
@@ -255,7 +255,7 @@ a, .link{
   & .customer-logo{
     float: right
   }
-}
+}*/
 
 /* drilldown fix */
 .tbl-dd .yui3-menu {

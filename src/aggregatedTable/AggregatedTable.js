@@ -317,11 +317,15 @@ class AggregatedTable{
   search(){
     let hierarchy = this.hierarchy,
         settings = hierarchy.search;
+
+    let aggTable = this;
+
     return this.constructor.debounce(function(){
       let value = settings.query;
       if(value.length>0){
         if(!settings.searching){settings.searching=true;}
         hierarchy.searchRowheaders(value);
+        aggTable.fixedHeader.resizeFixed();
       } else {
         settings.searching=false;
       }

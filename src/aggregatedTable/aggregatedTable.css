@@ -80,14 +80,7 @@
       }
     }
   }
-/*
-  &.reportal-categories>thead>tr>td.reportal-hierarchical-header{position:relative;}
-  &.reportal-categories>thead>tr>td.reportal-hierarchical-header:before,
-  &.reportal-categories:not(.reportal-hierarchy-table)>thead>tr>td[class*="_cc"]:before{
 
-      content:"Categories";
-  }
-*/
    &>tbody>tr>td.cf_positive,
    &>tbody>tr>td.cf_negative,
    &>tbody>tr>td.cf_neutral{

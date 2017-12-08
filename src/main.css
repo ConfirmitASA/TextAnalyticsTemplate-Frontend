@@ -33,16 +33,16 @@ The following imports of classes files are available:
 @import "loading-animation/loading-animation.css";
 
 /*Viewer presentation styles fixes*/
-@import "viewerPresentation/viewerPresentation.css";
+/*@import "viewerPresentation/viewerPresentation.css";*/
 
 /** styles for Reportal Navigator configured to show as `tabs` with style set to `None` */
-@import "reportalNavigator-DA/style.css";
+/*@import "reportalNavigator-DA/style.css";*/
 
 /** styles for Reportal List selects. A select needs to be wrapped with an element with `reportal-select` or `reportal-select multiple` class and may have a preceding <label>  */
-@import "reportal-inputs/reportal-select.css";
+/*@import "reportal-inputs/reportal-select.css";*/
 
 @import "reportal-inputs/reportal-checkbox-radio.css";
-@import "reportal-inputs/reportal-radio-toggle.css";
+/*@import "reportal-inputs/reportal-radio-toggle.css";*/
 
 /** Styles for kpi-tiles */
 @import "kpi-tile/kpi-tile.css";
@@ -51,13 +51,13 @@ The following imports of classes files are available:
 
 @import "hitlist/hitlist.css";
 
-@import "reportal-filterpanel/reportal-filterpanel.css";
+/*@import "reportal-filterpanel/reportal-filterpanel.css";*/
 
-@import "hierarchy-component/hierarchy-component.css";
+/*@import "hierarchy-component/hierarchy-component.css";*/
 
-@import "datepicker/datepicker.css";
+/*@import "datepicker/datepicker.css";*/
 
-@import "adminMenu/adminMenu.css";
+/*@import "adminMenu/adminMenu.css";*/
 
 /** Styles that are project specific to override generic styles and to be able to transfer them easily into any cloned report */
 @import "project-specific-stuff/project-specific-styles.css";
