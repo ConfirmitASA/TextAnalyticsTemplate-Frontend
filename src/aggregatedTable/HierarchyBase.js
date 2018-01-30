@@ -260,7 +260,18 @@ class HierarchyBase extends ReportalBase {
     var arr = [];
     let rows = [].slice.call(this.source.parentNode.querySelectorAll(`table#${this.source.id}>tbody>tr`));
     if(blocks && blocks.length>0){
-      var tdBlocks = this.source.parentNode.querySelectorAll(`table#${this.source.id}>tbody>tr>td:nth-child(${this.column})[rowspan]`);
+      //var tdBlocks = this.source.parentNode.querySelectorAll(`table#${this.source.id}>tbody>tr>td:nth-child(${this.column})[rowspan]`);
+      //var tdClassName = 't4_rhc';
+
+      var tdMatches = this.source.id.match(/(\d+)$/);
+      var tdClassName = `t${tdMatches ? tdMatches[0] : 0}_rhc`;
+
+      var tdBlocks = [].filter.call(
+        this.source.parentNode.querySelectorAll(`table#${this.source.id}>tbody>tr>td.${tdClassName}:nth-child(${this.column})`),
+        function(item) {
+          return item.nextElementSibling.classList.contains(tdClassName);
+        }
+      );
       if(tdBlocks.length>0){
         for(let i=0;i<tdBlocks.length;i++){
           let block = blocks[i];

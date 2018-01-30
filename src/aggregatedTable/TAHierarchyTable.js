@@ -101,6 +101,11 @@ class TAHierarchyTable extends HierarchyBase{
             parent.meta.children.push(currentRowArray);
           }
 
+          const hasChildren = item.subcells.reduce((resultFlag, subcell) => {
+            let subcellId = block!==null? `${subcell.id}_${blockName}` : subcell.id;
+            return resultFlag || !!this.rowheaders[subcellId];
+          }, false);
+
           //build a prototype for a row
           //let flatName = item.name.split(this.flatNameDelimiter).reverse()[0].trim();
           currentRowArray.meta = new this.setupMeta({
@@ -113,7 +118,7 @@ class TAHierarchyTable extends HierarchyBase{
             parent: parent,
             level,
             collapsed: item.subcells.length > 0,
-            hasChildren: item.subcells.length > 0,
+            hasChildren: hasChildren,
             hidden: level > 0
           });
 
