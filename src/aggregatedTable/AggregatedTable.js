@@ -22,10 +22,13 @@ class AggregatedTable{
       this.data = this.hierarchy.data;
       //initialize buttons that will toggle between flat and tree view
       let buttonHost = this.hierarchy.source.querySelector('.reportal-hierarchical-header');
-      this.addToggleButton(buttonHost,'hierarchy-tree',false,'Tree View');
-      this.addToggleButton(buttonHost,'hierarchy-flat',true,'Flat View');
+      let buttonWrapper = document.createElement('div');
+      buttonWrapper.style.display = 'inline-block';
+      buttonHost.appendChild(buttonWrapper);
+      this.addToggleButton(buttonWrapper,'hierarchy-tree',false,'Tree View');
+      this.addToggleButton(buttonWrapper,'hierarchy-flat',true,'Flat View');
       if(this.hierarchy.search.enabled){
-        this.addSearchBox(buttonHost);
+        this.addSearchBox(buttonWrapper);
       }
     }
 
