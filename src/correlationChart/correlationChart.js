@@ -175,6 +175,8 @@ export default class CorrelationChart {
       }],
 
       exporting: {
+        filename: 'correlation-chart',
+        printMaxWidth: 10000,
         buttons: {
           contextButton: {
             y: -5
@@ -244,7 +246,7 @@ export default class CorrelationChart {
     const name = GetCurrentRowCellValue(0);
     const x = +GetCurrentRowCellValue(1);
     const y = +GetCurrentRowCellValue(2);
-    const z = +(GetCurrentRowCellValue(3).replace(/,/g, ""));
+    const z = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));
     const color = this.palette.chartColors[paletteColorIndex];
     const click = () => {
       this.CellClick(row)
