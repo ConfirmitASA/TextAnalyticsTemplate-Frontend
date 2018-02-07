@@ -8,6 +8,8 @@
   & select {
     -webkit-appearance: none;
     -moz-appearance: none;
+    width: 100%;
+
     @apply --reportal-input;
 
     @media screen and (min-width:0\0) {padding: 5px;}
