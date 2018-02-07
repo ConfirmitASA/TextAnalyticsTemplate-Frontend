@@ -7,3 +7,12 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.select2-container--default .select2-selection--multiple {
+  border: 1px solid var(--divider-color) !important;
+  border-radius: 3px !important;
+}
+
+.select2-container .select2-selection--multiple {
+  min-height: 34px !important;
+}
