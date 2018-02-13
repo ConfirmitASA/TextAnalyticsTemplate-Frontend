@@ -3,7 +3,7 @@ var dateformat = require('dateformat');
 
 class Hitlist {
 
-  constructor({currentCategory = '', separator = ' ',hitlist, headers, hitlistData, dateTimeFormat, sentimentConfig =
+  constructor({currentCategory = '', separator = ' ',hitlist, headers, hitlistData, dateTimeFormat, selectedWord, sentimentConfig =
     [
       {
         sentiment: "positive",
@@ -72,6 +72,7 @@ class Hitlist {
     this.separator = separator;
     this.currentCategory = currentCategory;
     this.dateTimeFormat = dateTimeFormat;
+    this.selectedWord = selectedWord;
     this.init();
   }
 
@@ -219,9 +220,16 @@ class Hitlist {
     var mainCells = this.source.querySelectorAll(".yui3-datatable-cell.reportal-hitlist-main");
     [].slice.call(mainCells).forEach((cell, index)=>{
       this.wrapComment(cell);
+
+      //if(this.selectedWord) {
+      if(false) {
+        this.highlightSelectedWord(cell, index);
+      }
+
       //this.addDateToComment(cell, index);
-      if(this.headers["categories"])
-        this.addCategoriesToComment(cell,index);
+      if(this.headers["categories"]) {
+        this.addCategoriesToComment(cell, index);
+      }
     });
   }
 
@@ -243,6 +251,11 @@ class Hitlist {
     comment.innerText = cell.innerText;
     cell.innerHTML = "";
     cell.appendChild(comment)
+  }
+
+  highlightSelectedWord(cell, index) {
+    cell.children[0].innerHTML = cell.children[0].innerText.replace(new RegExp('(' + this.selectedWord + ')', 'ig'), '<span class="wc-word-highlight">$1</span>');
+
   }
 
   addCategoriesToComment(cell, index) {
