@@ -45,6 +45,7 @@ export default class CorrelationChart {
         plotBorderWidth: 1,
         zoomType: 'xy',
         events: {
+          load: (a) => setupChartAreas(a.target),
           redraw: (a) => setupChartAreas(a.target)
         }
       },
@@ -186,7 +187,7 @@ export default class CorrelationChart {
 
     };
 
-    Highcharts.chart(this.container, chartConfig, setupChartAreas);
+    this.highchart = Highcharts.chart(this.container, chartConfig);
   }
 
   SetupChartAreasWithTranslationsAndPalette(translations, palette) {
@@ -225,6 +226,12 @@ export default class CorrelationChart {
           x: textX,
           y: textY
         });
+
+        chart.update({
+          exporting: {
+            sourceWidth: chart.chartWidth
+          }
+        }, false);
       })
     };
 
