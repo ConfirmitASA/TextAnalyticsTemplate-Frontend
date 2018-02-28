@@ -1,0 +1,50 @@
+.cj-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cj-card {
+  margin: 16px;
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  box-shadow: 1px 1px 4px 1px rgba(219,219,219,1);
+  border-radius: 2px;
+  width: 220px;
+  margin-bottom: auto;
+}
+
+.cj-card__title {
+  font-size: 22px;
+  line-height: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 16px;
+}
+
+.cj-card__card-row {
+  display: flex;
+}
+
+.cj-card__card-row--key {
+  font-weight: bold;
+}
+
+.cj-card__gauge {
+  margin-bottom: 8px;
+  margin: 0 auto;
+}
+
+.cj-card__metric-name {
+  width: 50%;
+  line-height: 32px;
+}
+
+.cj-card__metric-value {
+  width: 50%;
+  line-height: 32px;
+  text-align: right;
+}
+
+.cj-card__card-row:not(:last-child) {
+  border-bottom: 1px solid #f1f1f1;
+}
