@@ -25,6 +25,7 @@ import DefaultConfig from './hitlist/hitlist.js';
 import Hitlist from './hitlist/hitlist.js';
 import CorrelationView from './correlationChart/correlationview.js';
 import WordCloud from './wordCloud/cloud.js';
+import TrendChart from './trendChart/trendChart.js';
 
 window.Reportal = window.Reportal || {};
 
@@ -35,5 +36,6 @@ ReportalBase.mixin(window.Reportal,{
   TAHierarchyTable,
   SortModule,
   CorrelationView,
-  WordCloud
+  WordCloud,
+  TrendChart
 });
