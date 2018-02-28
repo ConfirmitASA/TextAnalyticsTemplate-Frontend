@@ -20,7 +20,7 @@ export default class CustomerJourneyCards {
 
   getDataFromTable() {
     this.CJ_objectToProcess = [].reduce.call(document.getElementById('confirmit_agg_table').tBodies[0].children, (result, current) => {
-      if(current.querySelector('td.t0_hc_line.active')) {
+      if (current.querySelector('td.t0_hc_line.active')) {
         result[result.length] = Object.assign({}, CJ_options[result.length]);
         result[result.length - 1].rows = [];
       } else {
@@ -52,7 +52,7 @@ export default class CustomerJourneyCards {
       const metricName = cj_table_firstRow.children[metricId + 1].innerText;
       const metricValue = row.children[metricId + 1].innerText;
 
-      if(obj.KeyMetricId === metricId ) {
+      if (obj.KeyMetricId === metricId) {
         const cardGauge = this.createGauge(obj, metricName, metricValue);
         card.insertBefore(cardGauge, cardTitle.nextElementSibling);
       } else {
@@ -74,7 +74,7 @@ export default class CustomerJourneyCards {
   createGauge(obj, metricName, metricValue) {
     const cardGauge = document.createElement('div');
     cardGauge.classList.add('cj-card__gauge');
-    cardGauge.style.width = this.cj_circleRadius*2 + 'px';
+    cardGauge.style.width = this.cj_circleRadius * 2 + 'px';
 
     const svg = this.createGaugeSVG(obj, metricName, metricValue);
     cardGauge.appendChild(svg);
@@ -85,37 +85,47 @@ export default class CustomerJourneyCards {
   createGaugeSVG(obj, metricName, metricValue) {
     const metricValueNumber = parseFloat(metricValue);
 
-    const svg = document.createElementNS(this.cj_namespace,"svg");
+    const svg = document.createElementNS(this.cj_namespace, "svg");
     svg.setAttribute('xmlns', this.cj_namespace);
-    svg.setAttribute('width', this.cj_circleRadius*2);
-    svg.setAttribute('height', this.cj_circleRadius*2);
-    svg.setAttribute('heiviewBoxght', '0 0 ' + this.cj_circleRadius*2 + ' ' + this.cj_circleRadius*2);
+    svg.setAttribute('width', this.cj_circleRadius * 2);
+    svg.setAttribute('height', this.cj_circleRadius * 2);
+    svg.setAttribute('heiviewBoxght', '0 0 ' + this.cj_circleRadius * 2 + ' ' + this.cj_circleRadius * 2);
 
     const allLimits = Object.keys(obj.colors).reduce((result, color) => {
       return [...result, ...obj.colors[color]];
-    }, []).sort((a,b) => a - b);
+    }, []).sort((a, b) => a - b);
 
     const minValue = allLimits[0];
     const maxValue = allLimits[allLimits.length - 1];
-    let angle = (metricValueNumber - minValue)* 270 / (maxValue - minValue);
-    angle  = isNaN(angle) ? 0 : angle  ;
+    let angle = (metricValueNumber - minValue) * 270 / (maxValue - minValue);
+    angle = isNaN(angle) ? 0 : angle;
     const grayColor = '#dedede';
     let metricColor = grayColor;
 
-    for(let color in obj.colors) {
-      if(metricValueNumber >= obj.colors[color][0] && metricValueNumber <= obj.colors[color][1]) {
+    for (let color in obj.colors) {
+      if (metricValueNumber >= obj.colors[color][0] && metricValueNumber <= obj.colors[color][1]) {
         metricColor = color;
         break;
       }
     }
 
-    const pathGray = this.createSector(-135 , 135, grayColor);
-    const pathColored = this.createSector(225, 225 + angle , metricColor);
+    const pathGray = this.createSector(-135, 135, grayColor);
+    const pathColored = this.createSector(225, 225 + angle, metricColor);
     const circle = this.createCircle();
-    const textV = this.createText(metricValue, {x: this.cj_circleRadius, y: this.cj_circleRadius, fontSize:  '24px'});
-    const textN = this.createText(metricName, {x: this.cj_circleRadius, y: this.cj_circleRadius + 20, fontSize:  '9px'});
-    const textMin = this.createText(minValue, {x: this.cj_circleRadius - this.cj_circleRadius/2, y: this.cj_circleRadius*2 - 9, fontSize:  '9px', color: '#DEDEDE'});
-    const textMax = this.createText(maxValue, {x: this.cj_circleRadius + this.cj_circleRadius/2, y: this.cj_circleRadius*2 - 9, fontSize:  '9px', color: '#DEDEDE'});
+    const textV = this.createText(metricValue, {x: this.cj_circleRadius, y: this.cj_circleRadius, fontSize: '24px'});
+    const textN = this.createText(metricName, {x: this.cj_circleRadius, y: this.cj_circleRadius + 20, fontSize: '9px'});
+    const textMin = this.createText(minValue, {
+      x: this.cj_circleRadius - this.cj_circleRadius / 2,
+      y: this.cj_circleRadius * 2 - 9,
+      fontSize: '9px',
+      color: '#DEDEDE'
+    });
+    const textMax = this.createText(maxValue, {
+      x: this.cj_circleRadius + this.cj_circleRadius / 2,
+      y: this.cj_circleRadius * 2 - 9,
+      fontSize: '9px',
+      color: '#DEDEDE'
+    });
 
     svg.appendChild(pathGray);
     svg.appendChild(pathColored);
@@ -128,7 +138,7 @@ export default class CustomerJourneyCards {
   }
 
   createCircle() {
-    const circle = document.createElementNS(this.cj_namespace,"circle");
+    const circle = document.createElementNS(this.cj_namespace, "circle");
     circle.setAttribute("cx", this.cj_circleRadius);
     circle.setAttribute("cy", this.cj_circleRadius);
     circle.setAttribute("r", this.cj_circleRadius - this.cj_thickness);
@@ -154,8 +164,8 @@ export default class CustomerJourneyCards {
     return cardRow;
   }
 
-  createText(content, {x, y, fontSize, color = '#6E6E6E' }) {
-    const text = document.createElementNS(this.cj_namespace,"text");
+  createText(content, {x, y, fontSize, color = '#6E6E6E'}) {
+    const text = document.createElementNS(this.cj_namespace, "text");
     text.setAttribute("x", x);
     text.setAttribute("y", y);
     text.setAttribute("alignment-baseline", 'middle');
@@ -168,12 +178,12 @@ export default class CustomerJourneyCards {
     return text;
   }
 
-  createSector(start_angle, end_angle,color) {
-    const path = document.createElementNS(this.cj_namespace,"path");
+  createSector(start_angle, end_angle, color) {
+    const path = document.createElementNS(this.cj_namespace, "path");
     path.setAttribute('fill', color);
     path.setAttribute('stroke', 'none');
     path.setAttribute('fill-rule', 'evenodd');
-    path.setAttribute('d',this.getSectorDAttribute(start_angle, end_angle));
+    path.setAttribute('d', this.getSectorDAttribute(start_angle, end_angle));
 
     return path;
   }
