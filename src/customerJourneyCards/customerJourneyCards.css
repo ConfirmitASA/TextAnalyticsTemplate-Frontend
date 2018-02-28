@@ -56,9 +56,5 @@
 }
 
 .cj-card__text-name {
-  cursor: pointer;
-}
-
-.cj-card__text-background {
-  cursor: pointer;
+  cursor: default;
 }
