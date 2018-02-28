@@ -36,6 +36,41 @@ export default class CustomerJourneyCards {
       obj.rows.forEach(row => {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
+        const svg = card.querySelector('svg');
+        const textN = svg.querySelector('.cj-card__text-name');
+        const SVGRect = textN.getBBox();
+        const rect = document.createElementNS(this.cj_namespace, "rect");
+        rect.classList.add('cj-card__text-background');
+        const textPadding = 2;
+        rect.setAttribute("x", SVGRect.x - textPadding);
+        rect.setAttribute("y", SVGRect.y - textPadding);
+        rect.setAttribute("width", SVGRect.width + 2*textPadding);
+        rect.setAttribute("height", SVGRect.height + 2*textPadding);
+        rect.setAttribute("fill", "white");
+        rect.style.display = 'none';
+        svg.insertBefore(rect, textN);
+
+        let addEllipsis = false;
+        let oldText = textN.textContent;
+
+        while (textN.getComputedTextLength() >= this.cj_circleRadius * 2 - 20) {
+          addEllipsis = true;
+          textN.textContent = textN.textContent.substr(0, textN.textContent.length - 1);
+        }
+
+        if (addEllipsis) {
+          textN.textContent += '...';
+          let newText = textN.textContent;
+          textN.onmouseover = () => {
+            rect.style.display = '';
+            textN.textContent = oldText;
+
+          };
+          textN.onmouseout = () => {
+            rect.style.display = 'none';
+            textN.textContent = newText
+          };
+        }
       });
     });
   }
@@ -89,7 +124,7 @@ export default class CustomerJourneyCards {
     svg.setAttribute('xmlns', this.cj_namespace);
     svg.setAttribute('width', this.cj_circleRadius * 2);
     svg.setAttribute('height', this.cj_circleRadius * 2);
-    svg.setAttribute('heiviewBoxght', '0 0 ' + this.cj_circleRadius * 2 + ' ' + this.cj_circleRadius * 2);
+    svg.setAttribute('viewBox', '0 0 ' + this.cj_circleRadius * 2 + ' ' + this.cj_circleRadius * 2);
 
     const allLimits = Object.keys(obj.colors).reduce((result, color) => {
       return [...result, ...obj.colors[color]];
@@ -112,8 +147,14 @@ export default class CustomerJourneyCards {
     const pathGray = this.createSector(-135, 135, grayColor);
     const pathColored = this.createSector(225, 225 + angle, metricColor);
     const circle = this.createCircle();
-    const textV = this.createText(metricValue, {x: this.cj_circleRadius, y: this.cj_circleRadius, fontSize: '24px'});
+    const textV = this.createText(isNaN(metricValueNumber) ? '–' : metricValue, {
+      x: this.cj_circleRadius,
+      y: this.cj_circleRadius,
+      fontSize: '24px'
+    });
     const textN = this.createText(metricName, {x: this.cj_circleRadius, y: this.cj_circleRadius + 20, fontSize: '9px'});
+    textN.setAttribute('class', 'cj-card__text-name');
+
     const textMin = this.createText(minValue, {
       x: this.cj_circleRadius - this.cj_circleRadius / 2,
       y: this.cj_circleRadius * 2 - 9,
@@ -153,7 +194,7 @@ export default class CustomerJourneyCards {
     metricNameDiv.classList.add('cj-card__metric-name');
 
     const metricValueDiv = document.createElement('div');
-    metricValueDiv.innerText = metricValue;
+    metricValueDiv.innerText = isNaN(parseFloat(metricValue)) ? '–' : metricValue;
     metricValueDiv.classList.add('cj-card__metric-value');
 
     const cardRow = document.createElement('div');

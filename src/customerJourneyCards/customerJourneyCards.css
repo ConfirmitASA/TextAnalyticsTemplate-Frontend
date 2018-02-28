@@ -34,19 +34,31 @@
   margin: 0 auto;
 }
 
+.cj-card__gauge svg {
+  overflow: visible;
+}
+
 .cj-card__metric-name {
-  width: 50%;
-  line-height: 20px;
+  line-height: 24px;
   font-size: 12px;
+  margin-right: 4px;
 }
 
 .cj-card__metric-value {
-  width: 50%;
   text-align: right;
-  line-height: 20px;
+  line-height: 24px;
   font-size: 12px;
+  margin-left: 4px;
 }
 
 .cj-card__card-row:not(:last-child) {
   border-bottom: 1px solid #f1f1f1;
+}
+
+.cj-card__text-name {
+  cursor: pointer;
+}
+
+.cj-card__text-background {
+  cursor: pointer;
 }
