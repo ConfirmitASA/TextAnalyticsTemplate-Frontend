@@ -19,12 +19,24 @@ export default class CustomerJourneyCards {
   }
 
   getDataFromTable() {
-    this.CJ_objectToProcess = [].reduce.call(document.getElementById('confirmit_agg_table').tBodies[0].children, (result, current) => {
-      if (current.querySelector('td.t0_hc_line.active')) {
-        result[result.length] = Object.assign({}, CJ_options[result.length]);
+    //let title;
+    let options = this.CJ_options[0];
+
+    this.CJ_objectToProcess = [].reduce.call(this.cj_table.tBodies[0].children, (result, current) => {
+      if (current.children[0].innerText.trim().indexOf(options.linebreakSegment) >= 0) {
+        options = this.CJ_options[result.length];
+        result[result.length] = Object.assign({}, options);
         result[result.length - 1].rows = [];
       } else {
-        result[result.length - 1].rows.push(current);
+        if(options.isCollapsed) {
+          if(current.children[0].innerText.trim().indexOf(options.questionSegment) >= 0) {
+            let title = current.previousElementSibling.previousElementSibling.children[0].innerText.trim();
+            current.children[0].innerText = title;
+            result[result.length - 1].rows.push(current);
+          }
+        } else {
+          result[result.length - 1].rows.push(current);
+        }
       }
 
       return result;
@@ -44,8 +56,8 @@ export default class CustomerJourneyCards {
         const textPadding = 2;
         rect.setAttribute("x", SVGRect.x - textPadding);
         rect.setAttribute("y", SVGRect.y - textPadding);
-        rect.setAttribute("width", SVGRect.width + 2*textPadding);
-        rect.setAttribute("height", SVGRect.height + 2*textPadding);
+        rect.setAttribute("width", SVGRect.width + 2 * textPadding);
+        rect.setAttribute("height", SVGRect.height + 2 * textPadding);
         rect.setAttribute("fill", "white");
         rect.style.display = 'none';
         svg.insertBefore(rect, textN);
