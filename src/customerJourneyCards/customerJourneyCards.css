@@ -32,7 +32,7 @@
 }
 
 .cj-card__gauge {
-  margin: 0 auto;
+  margin: 0 auto 16px;
 }
 
 .cj-card__gauge svg {

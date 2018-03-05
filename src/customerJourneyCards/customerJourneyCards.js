@@ -1,10 +1,14 @@
 export default class CustomerJourneyCards {
 
-  constructor({tableId, cardContainerId, CJ_options}) {
+  constructor({tableId, cardContainerId, drilldownId, CJ_options}) {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableId);
     this.cardContainer = document.getElementById(cardContainerId);
     this.cardContainer.classList.add("cj-cards");
+
+    const drilldownContainer = document.getElementById(drilldownId);
+    this.drilldownSelect = drilldownContainer.querySelector('select');
+    this.drilldownButton = drilldownContainer.querySelector('input');
 
     this.cj_namespace = "http://www.w3.org/2000/svg";
     this.cj_circleRadius = 55;
@@ -19,12 +23,23 @@ export default class CustomerJourneyCards {
   }
 
   getDataFromTable() {
-    this.CJ_objectToProcess = [].reduce.call(document.getElementById('confirmit_agg_table').tBodies[0].children, (result, current) => {
-      if (current.querySelector('td.t0_hc_line.active')) {
-        result[result.length] = Object.assign({}, CJ_options[result.length]);
+    //let title;
+    let options = this.CJ_options[0];
+
+    this.CJ_objectToProcess = [].reduce.call(this.cj_table.tBodies[0].children, (result, current) => {
+      if (current.children[0].innerText.trim().indexOf(options.linebreakSegment) >= 0) {
+        options = this.CJ_options[result.length];
+        result[result.length] = Object.assign({}, options);
         result[result.length - 1].rows = [];
       } else {
-        result[result.length - 1].rows.push(current);
+        if(options.isCollapsed) {
+          if(current.children[0].innerText.trim().indexOf(options.questionSegment) >= 0) {
+            current.children[0].innerText = current.previousElementSibling.previousElementSibling.children[0].innerText.trim();
+            result[result.length - 1].rows.push(current);
+          }
+        } else {
+          result[result.length - 1].rows.push(current);
+        }
       }
 
       return result;
@@ -33,43 +48,14 @@ export default class CustomerJourneyCards {
 
   createCards() {
     this.CJ_objectToProcess.forEach(obj => {
-      obj.rows.forEach(row => {
+      obj.rows.forEach((row, index)=> {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
-        const svg = card.querySelector('svg');
-        const textN = svg.querySelector('.cj-card__text-name');
-        const SVGRect = textN.getBBox();
-        const rect = document.createElementNS(this.cj_namespace, "rect");
-        rect.classList.add('cj-card__text-background');
-        const textPadding = 2;
-        rect.setAttribute("x", SVGRect.x - textPadding);
-        rect.setAttribute("y", SVGRect.y - textPadding);
-        rect.setAttribute("width", SVGRect.width + 2*textPadding);
-        rect.setAttribute("height", SVGRect.height + 2*textPadding);
-        rect.setAttribute("fill", "white");
-        rect.style.display = 'none';
-        svg.insertBefore(rect, textN);
+        this.fixLongTitle(card);
 
-        let addEllipsis = false;
-        let oldText = textN.textContent;
-
-        while (textN.getComputedTextLength() >= this.cj_circleRadius * 2 - 20) {
-          addEllipsis = true;
-          textN.textContent = textN.textContent.substr(0, textN.textContent.length - 1);
-        }
-
-        if (addEllipsis) {
-          textN.textContent += '...';
-          let newText = textN.textContent;
-          textN.onmouseover = () => {
-            rect.style.display = '';
-            textN.textContent = oldText;
-
-          };
-          textN.onmouseout = () => {
-            rect.style.display = 'none';
-            textN.textContent = newText
-          };
+        card.onclick = () => {
+          this.drilldownSelect.value = obj.questionId + (obj.isCollapsed ? '' : '*' + obj.answerIds[index]);
+          this.drilldownButton.click();
         }
       });
     });
@@ -266,6 +252,44 @@ export default class CustomerJourneyCards {
       x: centerX + (radius * Math.cos(angleInRadians)),
       y: centerY + (radius * Math.sin(angleInRadians))
     };
+  }
+
+  fixLongTitle(card) {
+    const svg = card.querySelector('svg');
+    const textN = svg.querySelector('.cj-card__text-name');
+    const SVGRect = textN.getBBox();
+    const rect = document.createElementNS(this.cj_namespace, "rect");
+    rect.classList.add('cj-card__text-background');
+    const textPadding = 2;
+    rect.setAttribute("x", SVGRect.x - textPadding);
+    rect.setAttribute("y", SVGRect.y - textPadding);
+    rect.setAttribute("width", SVGRect.width + 2 * textPadding);
+    rect.setAttribute("height", SVGRect.height + 2 * textPadding);
+    rect.setAttribute("fill", "white");
+    rect.style.display = 'none';
+    svg.insertBefore(rect, textN);
+
+    let addEllipsis = false;
+    let oldText = textN.textContent;
+
+    while (textN.getComputedTextLength() >= this.cj_circleRadius * 2 - 20) {
+      addEllipsis = true;
+      textN.textContent = textN.textContent.substr(0, textN.textContent.length - 1);
+    }
+
+    if (addEllipsis) {
+      textN.textContent += '...';
+      let newText = textN.textContent;
+      textN.onmouseover = () => {
+        rect.style.display = '';
+        textN.textContent = oldText;
+
+      };
+      textN.onmouseout = () => {
+        rect.style.display = 'none';
+        textN.textContent = newText
+      };
+    }
   }
 }
 
