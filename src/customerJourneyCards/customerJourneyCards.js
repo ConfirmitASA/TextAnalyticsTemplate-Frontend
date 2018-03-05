@@ -54,7 +54,7 @@ export default class CustomerJourneyCards {
         this.fixLongTitle(card);
 
         card.onclick = () => {
-          this.drilldownSelect.value = obj.questionId + (obj.isCollapsed ? '' : '*' + obj.answerIds[index]);
+          this.drilldownSelect.value = 'r:s:' + obj.questionId + (obj.isCollapsed ? '' : '*' + obj.answerIds[index]);
           this.drilldownButton.click();
         }
       });

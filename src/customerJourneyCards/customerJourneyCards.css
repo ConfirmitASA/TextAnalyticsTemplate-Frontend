@@ -5,13 +5,18 @@
 }
 
 .cj-card {
-  margin: 16px;
   border: 1px solid transparent;
   padding: 8px 16px;
-  box-shadow: 1px 1px 4px 1px rgba(219, 219, 219, 1);
+  box-shadow: 0 0 2px 1px rgba(219, 219, 219, 1);
   border-radius: 2px;
   width: 220px;
-  margin-bottom: auto;
+  margin: 16px 16px auto;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.cj-card:hover {
+  box-shadow: 0 0 12px 1px rgba(219, 219, 219, 1);
 }
 
 .cj-card__title {
@@ -54,8 +59,4 @@
 
 .cj-card__card-row:not(:last-child) {
   border-bottom: 1px solid #f1f1f1;
-}
-
-.cj-card__text-name {
-  cursor: default;
 }
