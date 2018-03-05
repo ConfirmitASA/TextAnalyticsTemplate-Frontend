@@ -9,7 +9,7 @@ export default class TrendChart {
     this.table = document.getElementById(tableContainer);
     this.palette = palette;
     this.translations = translations;
-    //this.questionName = questionName;
+    this.indexOffset = 0;
     //console.log(translations["Priority Issues"]);
     this.data = [];
     this.labels = [];
@@ -34,14 +34,14 @@ export default class TrendChart {
     headers.forEach((header) => {
       this.labels.push(header.innerText);
     });
-    rows.forEach((row, index) => {
-      this.data.push(this.GetRowValues(row, index));
+    rows.forEach((row, index, rows) => {
+      const dataValue = this.GetRowValues(row, index, rows);
+      dataValue ? this.data.push(dataValue) : false;
+      //this.data.push(this.GetRowValues(row, index) ? this.GetRowValues(row, index : );
     });
   }
 
   setupChart() {
-    //const setupChartAreas = this.SetupChartAreasWithTranslationsAndPalette(this.translations, this.palette);
-
     let chartConfig = {
       legend: {
         layout: 'horizontal',
@@ -51,7 +51,7 @@ export default class TrendChart {
 
       title: {
         text: this.translations['Trend chart'],
-        align: left,
+        align: 'left',
         margin: 21
       },
 
@@ -92,15 +92,25 @@ export default class TrendChart {
     return row.children.item(index).innerText;
   }
 
-  GetRowValues(row, index) {
+  GetRowValues(row, index, rows) {
     const GetCurrentRowCellValue = (cellIndex) => this.GetCellValue(row, cellIndex);
-    const paletteColorIndex = index >= this.palette.chartColors.length ? (index - this.palette.chartColors.length * parseInt(index / this.palette.chartColors.length)) : index;
-    const name = GetCurrentRowCellValue(0).trim();
+    const GetNextRowCellValue = (cellIndex) => this.GetCellValue(rows[index+1], cellIndex);
+    const GetPreviousRowCellValue = (cellIndex) => this.GetCellValue(rows[index-1], cellIndex);
+
+    let name = GetCurrentRowCellValue(0).trim();
+    const nextRowName = index + 1 == rows.length ? "" : GetNextRowCellValue(0).trim();
+    if (nextRowName.toUpperCase() == "EMPTY HEADER") return null;
+    if (name.toUpperCase() == "EMPTY HEADER") {
+      name = GetPreviousRowCellValue(0).trim();
+      this.indexOffset--;
+    }
     const data = [];
     for (let i = 1; i < row.childElementCount; i ++) {
       data.push(GetCurrentRowCellValue(i) - 0)
     }
+    const paletteColorIndex = index + this.indexOffset >= this.palette.chartColors.length ? (index + this.indexOffset - this.palette.chartColors.length * parseInt((index + this.indexOffset)/ this.palette.chartColors.length)) : index + this.indexOffset;
     const color = this.palette.chartColors[paletteColorIndex];
     return {name: name, data: data, color: color};
   }
+
 }
