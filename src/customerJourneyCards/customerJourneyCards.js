@@ -48,10 +48,15 @@ export default class CustomerJourneyCards {
 
   createCards() {
     this.CJ_objectToProcess.forEach(obj => {
-      obj.rows.forEach(row => {
+      obj.rows.forEach((row, index)=> {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
         this.fixLongTitle(card);
+
+        card.onclick = () => {
+          this.drilldownSelect.value = obj.questionId + (obj.isCollapsed ? '' : '*' + obj.answerIds[index]);
+          this.drilldownButton.click();
+        }
       });
     });
   }
