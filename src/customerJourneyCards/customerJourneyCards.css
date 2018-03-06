@@ -5,25 +5,19 @@
 }
 
 .cj-card {
-  border: 1px solid transparent;
   padding: 8px 16px;
-  box-shadow: 0 0 2px 1px rgba(219, 219, 219, 1);
+  border: 1px solid var(--light-divider-color);
   border-radius: 2px;
   width: 220px;
-  margin: 16px 16px auto;
+  margin: 16px 8px auto;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.cj-card:hover {
-  box-shadow: 0 0 12px 1px rgba(219, 219, 219, 1);
 }
 
 .cj-card__title {
   font-size: 22px;
   line-height: 24px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid var(--light-divider-color);
   margin-bottom: 16px;
 }
 
@@ -58,5 +52,5 @@
 }
 
 .cj-card__card-row:not(:last-child) {
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid var(--light-divider-color);
 }
