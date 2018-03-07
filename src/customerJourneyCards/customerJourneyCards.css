@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 16px;
+  align-items: flex-start;
 }
 
 .cj-card {
@@ -9,8 +10,12 @@
   border: 1px solid var(--light-divider-color);
   border-radius: 2px;
   width: 220px;
-  margin: 16px 16px auto 0;
+  margin: 16px 16px 0 0;
   cursor: pointer;
+}
+
+.cj-card:hover {
+  border: 1px solid var(--secondary-text-color);
 }
 
 .cj-card__title {

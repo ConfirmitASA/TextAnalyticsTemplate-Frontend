@@ -1,10 +1,43 @@
+if (!Object.assign) {
+  Object.defineProperty(Object, 'assign', {
+    enumerable: false,
+    configurable: true,
+    writable: true,
+    value: function(target, firstSource) {
+      'use strict';
+      if (target === undefined || target === null) {
+        throw new TypeError('Cannot convert first argument to object');
+      }
+
+      var to = Object(target);
+      for (var i = 1; i < arguments.length; i++) {
+        var nextSource = arguments[i];
+        if (nextSource === undefined || nextSource === null) {
+          continue;
+        }
+
+        var keysArray = Object.keys(Object(nextSource));
+        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+          var nextKey = keysArray[nextIndex];
+          var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+          if (desc !== undefined && desc.enumerable) {
+            to[nextKey] = nextSource[nextKey];
+          }
+        }
+      }
+      return to;
+    }
+  });
+}
+
 export default class CustomerJourneyCards {
 
   constructor({tableId, cardContainerId, drilldownId, CJ_options}) {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableId);
     this.cardContainer = document.getElementById(cardContainerId);
-    this.cardContainer.classList.add("cj-cards");
+    //this.cardContainer.classList.add("cj-cards");
+    this.cardContainer.className = "cj-cards";
 
     const drilldownContainer = document.getElementById(drilldownId);
     this.drilldownSelect = drilldownContainer.querySelector('select');
@@ -33,9 +66,13 @@ export default class CustomerJourneyCards {
         result[result.length - 1].rows = [];
       } else {
         if(options.isCollapsed) {
-          if(current.children[0].innerText.trim().indexOf(options.questionSegment) >= 0) {
-            current.children[0].innerText = current.previousElementSibling.previousElementSibling.children[0].innerText.trim();
+          if(options.isSomeStatisticUsed) {
             result[result.length - 1].rows.push(current);
+          } else {
+            if (current.children[0].innerText.trim().indexOf(options.questionSegment) >= 0) {
+              current.children[0].innerText = current.previousElementSibling.previousElementSibling.children[0].innerText.trim();
+              result[result.length - 1].rows.push(current);
+            }
           }
         } else {
           result[result.length - 1].rows.push(current);
@@ -67,7 +104,8 @@ export default class CustomerJourneyCards {
     const card = document.createElement('div');
     const cardTitle = this.createTitle(row);
     card.appendChild(cardTitle);
-    card.classList.add('cj-card');
+    //card.classList.add('cj-card');
+    card.className = 'cj-card';
 
     obj.MetricIds.forEach(metricId => {
       const metricName = cj_table_firstRow.children[metricId + 1].innerText;
@@ -87,14 +125,16 @@ export default class CustomerJourneyCards {
 
   createTitle(row) {
     const cardTitle = document.createElement('div');
-    cardTitle.classList.add('cj-card__title');
+    //cardTitle.classList.add('cj-card__title');
+    cardTitle.className = 'cj-card__title';
     cardTitle.innerText = row.children[0].innerText;
     return cardTitle;
   }
 
   createGauge(obj, metricName, metricValue) {
     const cardGauge = document.createElement('div');
-    cardGauge.classList.add('cj-card__gauge');
+    //cardGauge.classList.add('cj-card__gauge');
+    cardGauge.className = 'cj-card__gauge';
     cardGauge.style.width = this.cj_circleRadius * 2 + 'px';
 
     const svg = this.createGaugeSVG(obj, metricName, metricValue);
@@ -177,14 +217,17 @@ export default class CustomerJourneyCards {
   createCardRow(metricName, metricValue) {
     const metricNameDiv = document.createElement('div');
     metricNameDiv.innerText = metricName;
-    metricNameDiv.classList.add('cj-card__metric-name');
+    //metricNameDiv.classList.add('cj-card__metric-name');
+    metricNameDiv.className = 'cj-card__metric-name';
 
     const metricValueDiv = document.createElement('div');
     metricValueDiv.innerText = isNaN(parseFloat(metricValue)) ? '–' : metricValue;
-    metricValueDiv.classList.add('cj-card__metric-value');
+    //metricValueDiv.classList.add('cj-card__metric-value');
+    metricValueDiv.className = 'cj-card__metric-value';
 
     const cardRow = document.createElement('div');
-    cardRow.classList.add('cj-card__card-row');
+    //cardRow.classList.add('cj-card__card-row');
+    cardRow.className = 'cj-card__card-row';
     cardRow.appendChild(metricNameDiv);
     cardRow.appendChild(metricValueDiv);
 
@@ -259,7 +302,9 @@ export default class CustomerJourneyCards {
     const textN = svg.querySelector('.cj-card__text-name');
     const SVGRect = textN.getBBox();
     const rect = document.createElementNS(this.cj_namespace, "rect");
-    rect.classList.add('cj-card__text-background');
+    //rect.classList.add('cj-card__text-background');
+    //rect.className = 'cj-card__text-background';
+    rect.setAttribute("class", 'cj-card__text-background');
     const textPadding = 2;
     rect.setAttribute("x", SVGRect.x - textPadding);
     rect.setAttribute("y", SVGRect.y - textPadding);
