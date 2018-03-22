@@ -233,7 +233,7 @@
 
 /*Hierarchycal styles*/
 /*coloring for even columns from end of table to compensate for uneven td count because of block headers*/
-.reportal-hierarchy-table>tbody>tr>td[class*=_dc]:nth-last-child(even){background: var(--table-column-color);}
+.striped-columns>tbody>tr>td[class*=_dc]:nth-last-child(even){background: var(--table-column-color);}
 .reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td{
   border-top:3px var(--divider-color) double !important;
   padding-top:2px !important;
