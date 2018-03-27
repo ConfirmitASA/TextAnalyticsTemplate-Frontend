@@ -1,0 +1,52 @@
+.alerts-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.alert-card {
+  padding: 8px 16px;
+  border: 1px solid var(--light-divider-color);
+  border-radius: 2px;
+  width: 220px;
+  margin: 16px 16px 0 0;
+  cursor: pointer;
+}
+
+.alert-card:hover {
+  border: 1px solid var(--secondary-text-color);
+}
+
+.alert-card__title {
+  font-size: 22px;
+  line-height: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--light-divider-color);
+  margin-bottom: 16px;
+}
+
+.alert-card__title:before{
+  content: "\26A0   ";
+}
+
+.alert-card__category {
+  line-height: 24px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.alert-card__changes {
+  line-height: 24px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.alert-card__decreasing {
+  color: var(--issues);
+}
+
+.alert-card__increasing {
+  color: var(--strength);
+}

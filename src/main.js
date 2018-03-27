@@ -27,6 +27,9 @@ import CorrelationView from './correlationChart/correlationview.js';
 import WordCloud from './wordCloud/cloud.js';
 import TrendChart from './trendChart/trendChart.js';
 import CustomerJourneyCards from './customerJourneyCards/customerJourneyCards.js';
+import SignificantChangesAlerts from './significantChangesAlerts/significantChangesAlerts.js';
+
+
 
 window.Reportal = window.Reportal || {};
 
@@ -39,5 +42,6 @@ ReportalBase.mixin(window.Reportal,{
   CorrelationView,
   WordCloud,
   TrendChart,
-  CustomerJourneyCards
+  CustomerJourneyCards,
+  SignificantChangesAlerts
 });
