@@ -66,7 +66,7 @@ export default class SignificantChangesAlerts {
       }
 
       this.container.appendChild(alertCard);
-      this.container.className = "alerts-content";
+      this.container.className += " alerts-content";
     });
   }
 }
