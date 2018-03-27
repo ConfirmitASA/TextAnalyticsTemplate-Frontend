@@ -9,7 +9,7 @@
   border: 1px solid var(--light-divider-color);
   border-radius: 2px;
   width: 220px;
-  margin: 16px 16px 0 0;
+  margin: 0 16px 0 0;
   cursor: pointer;
 }
 
