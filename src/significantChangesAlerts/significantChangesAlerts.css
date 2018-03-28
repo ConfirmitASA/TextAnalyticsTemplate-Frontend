@@ -1,3 +1,11 @@
+.reportal-table>tbody>tr>td.increasing {
+  background: var(--increasing);
+}
+
+.reportal-table>tbody>tr>td.decreasing {
+  background: var(--decreasing);
+}
+
 .alerts-content {
   display: flex;
   flex-wrap: wrap;

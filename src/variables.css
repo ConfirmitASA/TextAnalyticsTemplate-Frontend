@@ -17,6 +17,9 @@
   --divider-color:            #ccc;
   --light-divider-color:      #e1e4e9;
 
+  /* significant change backgrounds */
+  --increasing: #e7f5d1;
+  --decreasing: #fee1e6;
 
   /* conditional formatting colors */
   --positive-color:#7cc700;
