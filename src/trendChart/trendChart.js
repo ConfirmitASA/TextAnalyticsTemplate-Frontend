@@ -50,9 +50,7 @@ export default class TrendChart {
       },
 
       title: {
-        text: this.translations['Trend chart'],
-        align: 'left',
-        margin: 21
+        text: ''
       },
 
       subtitle: {

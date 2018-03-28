@@ -14,12 +14,7 @@ export default class SignificantChangesAlerts {
 
   getDataFromTable() {
     let markedCells;
-    try {
-      markedCells  = this.table.querySelectorAll('tbody td:last-child:-webkit-any(.increasingC, .decreasingC, .increasingS, .decreasingS)');
-    }
-    catch (e) {
-      markedCells  = this.table.querySelectorAll('tbody td:last-child:-moz-any(.increasingC, .decreasingC, .increasingS, .decreasingS)');
-    }
+    markedCells  = [...this.table.querySelectorAll('body td.increasingC:last-child, tbody td.decreasingC:last-child, tbody td.increasingS:last-child, tbody td.decreasingS:last-child')];
     markedCells.forEach(cell => {
       let categoryText = "";
       let changesText = "";
