@@ -112,7 +112,7 @@ class WordCloud {
       .text(d => d.text)
       .on('end', end);
 
-    let svg = d3.select('#cloud').append('svg')
+    let svg = d3.select(`#${elementToId}`).append('svg')
       .attr('width', layout.size()[0])
       .attr('height', layout.size()[1]);
 

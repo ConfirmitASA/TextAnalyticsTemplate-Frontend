@@ -3,7 +3,7 @@ let takeDataFromTable = ({elementId, countId, sentimentId}) => {
 
     let maxCount = -1;
 
-    let element = document.getElementById(elementId);
+    let element = document.querySelector(`#${elementId} table`);
     let tableBody = element.children[1];
 
     for (let i = 0; i < tableBody.children.length; i++) {
