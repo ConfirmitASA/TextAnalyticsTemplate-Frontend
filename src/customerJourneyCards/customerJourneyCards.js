@@ -32,9 +32,9 @@ if (!Object.assign) {
 
 export default class CustomerJourneyCards {
 
-  constructor({tableId, cardContainerId, drilldownId, CJ_options}) {
+  constructor({tableContainerId, cardContainerId, drilldownId, CJ_options}) {
     this.CJ_options = CJ_options;
-    this.cj_table = document.getElementById(tableId);
+    this.cj_table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     //this.cardContainer.classList.add("cj-cards");
     this.cardContainer.className = "cj-cards";
