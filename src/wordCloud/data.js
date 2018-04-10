@@ -38,7 +38,11 @@ let takeDataFromTable = ({elementId, countId, sentimentId}) => {
 };
 
 const takeExceptionsFromSelect = ({elementId}) => {
-  const select = document.getElementById(elementId).querySelector('select');
+  const select = document.querySelector(`#${elementId} > select`);
+
+  if(!select) {
+    return [];
+  }
 
   const selectedOptions = Array.from(select.children).filter(item => item.selected);
   return selectedOptions.map(item => item.innerText);
