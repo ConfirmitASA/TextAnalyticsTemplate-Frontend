@@ -30,32 +30,19 @@ if (!Object.assign) {
   });
 }
 
+/**
+ * This is required to fix a bug in MicrosoftAjaxWebForms.js
+ * in Firefox where if window.event is not initialized, it loops stack
+ * via arguments.callee.caller chain and breaks because of the
+ * "use strict" mode
+ */
 function hackEventWithinDoPostBack() {
-  var originalEventDescriptor = Object.getOwnPropertyDescriptor(Window.prototype, "event");
-  var hackEventVariable = false;
-  var eventPropertyHolder;
-  Object.defineProperty(window, "event", {
-    configurable: true,
-    get: function get() {
-      var result = originalEventDescriptor ? originalEventDescriptor.get.apply(this, arguments) : eventPropertyHolder;
-      if (result || !hackEventVariable)
-        return result;
-      return {};
-    },
-    set: function set(value) {
-      if (originalEventDescriptor)
-        originalEventDescriptor.set.apply(this, arguments);
-      else
-        eventPropertyHolder = value;
-    }
-  });
-
   var originalDoPostBack = window.WebForm_DoPostBackWithOptions;
 
   window.WebForm_DoPostBackWithOptions = function hackedDoPostBack() {
-    hackEventVariable = true;
-    originalDoPostBack.apply(this, arguments);
-    hackEventVariable = false;
+    if (!window.event)
+      window.event = {};
+    return originalDoPostBack.apply(this, arguments);
   };
 }
 
@@ -120,7 +107,10 @@ export default class CustomerJourneyCards {
         this.fixLongTitle(card);
 
         card.onclick = () => {
-          hackEventWithinDoPostBack();
+          if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+            hackEventWithinDoPostBack();
+          }
+
           this.drilldownSelect.value = 'r:s:' + obj.questionId + (obj.isCollapsed ? '' : '*' + obj.answerIds[index]);
           this.drilldownButton.click();
         }
