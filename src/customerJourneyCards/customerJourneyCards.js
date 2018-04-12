@@ -30,6 +30,35 @@ if (!Object.assign) {
   });
 }
 
+function hackEventWithinDoPostBack() {
+  var originalEventDescriptor = Object.getOwnPropertyDescriptor(Window.prototype, "event");
+  var hackEventVariable = false;
+  var eventPropertyHolder;
+  Object.defineProperty(window, "event", {
+    configurable: true,
+    get: function get() {
+      var result = originalEventDescriptor ? originalEventDescriptor.get.apply(this, arguments) : eventPropertyHolder;
+      if (result || !hackEventVariable)
+        return result;
+      return {};
+    },
+    set: function set(value) {
+      if (originalEventDescriptor)
+        originalEventDescriptor.set.apply(this, arguments);
+      else
+        eventPropertyHolder = value;
+    }
+  });
+
+  var originalDoPostBack = window.WebForm_DoPostBackWithOptions;
+
+  window.WebForm_DoPostBackWithOptions = function hackedDoPostBack() {
+    hackEventVariable = true;
+    originalDoPostBack.apply(this, arguments);
+    hackEventVariable = false;
+  };
+}
+
 export default class CustomerJourneyCards {
 
   constructor({tableContainerId, cardContainerId, drilldownId, CJ_options}) {
@@ -91,6 +120,7 @@ export default class CustomerJourneyCards {
         this.fixLongTitle(card);
 
         card.onclick = () => {
+          hackEventWithinDoPostBack();
           this.drilldownSelect.value = 'r:s:' + obj.questionId + (obj.isCollapsed ? '' : '*' + obj.answerIds[index]);
           this.drilldownButton.click();
         }
