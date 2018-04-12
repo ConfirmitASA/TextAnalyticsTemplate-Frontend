@@ -105,6 +105,7 @@ export default class CustomerJourneyCards {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
         this.fixLongTitle(card);
+        this.fixTitleHeight();
 
         card.onclick = () => {
           if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
@@ -355,6 +356,12 @@ export default class CustomerJourneyCards {
         textN.textContent = newText
       };
     }
+  }
+
+  fixTitleHeight() {
+    const titles = [].slice.call(document.querySelectorAll('.cj-card__title'));
+    const maxHeight = titles.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight;
+    titles.forEach(title => title.style.height = maxHeight + 'px');
   }
 }
 
