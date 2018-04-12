@@ -148,6 +148,9 @@ a, .link{
 
   margin:16px 24px;
 
+  & .btn{
+      margin: 0 5px;
+  }
   & .filter-button{
     background-color: var(--light-primary-color);
     fill: var(--primary-text-color);

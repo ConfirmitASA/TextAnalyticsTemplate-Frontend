@@ -23,8 +23,10 @@
   margin: 0px
 }
  }
-
-& .reportal-select, & .reportal-datepicker, & .reportal-dropdown {
+ & label:empty{
+   display: none;
+   }
+ & .reportal-select, & .reportal-datepicker, & .reportal-dropdown {
   display: block;
     & select, & .dd-target-button{
       width: 120px;
