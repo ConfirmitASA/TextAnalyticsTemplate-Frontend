@@ -68,11 +68,11 @@ export default class SignificantChangesAlerts {
 
   setCardsHeight() {
      const categoriesSections = [...this.container.querySelectorAll('.alert-card__category')];
-     const maxHeightCategories = categoriesSections.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight;
+     const maxHeightCategories = categoriesSections.length > 0 ? categoriesSections.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight : 0;
      categoriesSections.forEach(title => title.style.height = maxHeightCategories + 'px');
 
      const changesSections = [...this.container.querySelectorAll('.alert-card__changes')];
-     const maxHeightChanges = changesSections.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight;
+     const maxHeightChanges = changesSections.length > 0? changesSections.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight : 0;
      changesSections.forEach(title => title.style.height = maxHeightChanges + 'px');
   }
 }
