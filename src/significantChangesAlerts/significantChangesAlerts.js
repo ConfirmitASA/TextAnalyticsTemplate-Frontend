@@ -10,6 +10,7 @@ export default class SignificantChangesAlerts {
   init() {
     this.getDataFromTable();
     this.createCards();
+    this.setCardsHeight();
   }
 
   getDataFromTable() {
@@ -63,6 +64,16 @@ export default class SignificantChangesAlerts {
       this.container.appendChild(alertCard);
       this.container.className += " alerts-content";
     });
+  }
+
+  setCardsHeight() {
+     const categoriesSections = [...this.container.querySelectorAll('.alert-card__category')];
+     const maxHeightCategories = categoriesSections.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight;
+     categoriesSections.forEach(title => title.style.height = maxHeightCategories + 'px');
+
+     const changesSections = [...this.container.querySelectorAll('.alert-card__changes')];
+     const maxHeightChanges = changesSections.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight;
+     changesSections.forEach(title => title.style.height = maxHeightChanges + 'px');
   }
 }
 
