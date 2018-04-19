@@ -77,9 +77,13 @@ class WordCloud {
         .style("opacity", 1)
         .style('fill', d => {
           if (colorConfig !== undefined && d.sentiment !== undefined) {
-            let index = colorConfig.limiters.findIndex((limiter, index, limiters) => {
-              return index < limiters.length - 1 && d.sentiment >= limiter && d.sentiment <= limiters[index + 1];
-            });
+            let index = -1;
+            for (let i = 0; i < colorConfig.limiters.length; ++i) {
+              if (i < colorConfig.limiters.length - 1 && d.sentiment >= colorConfig.limiters[i] && d.sentiment <= colorConfig.limiters[i + 1]) {
+                index = i;
+                break;
+              }
+            }
             return colorConfig.colors[index];
           } else {
             return fill(d.ratio);
