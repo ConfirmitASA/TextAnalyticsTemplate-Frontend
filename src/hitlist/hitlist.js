@@ -3,7 +3,7 @@ var dateformat = require('dateformat');
 
 class Hitlist {
 
-  constructor({currentCategory = '', separator = ' ',hitlist, headers, hitlistData, dateTimeFormat, selectedWord, sentimentConfig =
+  constructor({currentCategory = '', separator = ' ',hitlist, headers, hitlistData, dateTimeFormat, selectedWords, sentimentConfig =
     [
       {
         sentiment: "positive",
@@ -72,7 +72,7 @@ class Hitlist {
     this.separator = separator;
     this.currentCategory = currentCategory;
     this.dateTimeFormat = dateTimeFormat;
-    this.selectedWord = selectedWord;
+    this.selectedWords = selectedWords;
     this.init();
   }
 
@@ -221,9 +221,9 @@ class Hitlist {
     [].slice.call(mainCells).forEach((cell, index)=>{
       this.wrapComment(cell);
 
-      //if(this.selectedWord) {
-      if(false) {
-        this.highlightSelectedWord(cell, index);
+      if(this.selectedWords) {
+      //if(false) {
+        this.highlightSelectedWords(cell, index);
       }
 
       //this.addDateToComment(cell, index);
@@ -253,8 +253,8 @@ class Hitlist {
     cell.appendChild(comment)
   }
 
-  highlightSelectedWord(cell, index) {
-    cell.children[0].innerHTML = cell.children[0].innerText.replace(new RegExp('(' + this.selectedWord + ')', 'ig'), '<span class="wc-word-highlight">$1</span>');
+  highlightSelectedWords(cell, index) {
+    cell.children[0].innerHTML = cell.children[0].innerText.replace(new RegExp('(' + this.selectedWords + ')', 'ig'), '<span class="wc-word-highlight">$1</span>');
 
   }
 
