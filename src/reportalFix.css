@@ -219,12 +219,12 @@ a, .link{
 
   & .increasing {
     background: var(--increasing);
-    padding:6px;
+    padding:8px;
   }
 
   & .decreasing {
     background: var(--decreasing);
-    padding:6px;
+    padding:8px;
   }
 
   & .cf_positive,
