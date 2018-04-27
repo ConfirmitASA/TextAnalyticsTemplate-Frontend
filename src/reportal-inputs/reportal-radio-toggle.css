@@ -29,7 +29,7 @@
   }
   & input:not(checked) + label {
     background: var(--button-text-color);
-    color: var(--secondary-text-color);
+    color: var(--disabled-text-color);
     border-color: var(--secondary-text-color);
   }
   & [type=radio] + label:before,

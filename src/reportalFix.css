@@ -217,6 +217,16 @@ a, .link{
   position: absolute;
   bottom: 14px;
 
+  & .increasing {
+    background: var(--increasing);
+    padding:6px;
+  }
+
+  & .decreasing {
+    background: var(--decreasing);
+    padding:6px;
+  }
+
   & .cf_positive,
   & .cf_negative,
   & .cf_neutral{
