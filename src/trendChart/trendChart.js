@@ -62,7 +62,12 @@ export default class TrendChart {
       },
 
       yAxis: {
-        title: null
+        title: {
+          enabled: true,
+          text: this.translations['Overall Sentiment']
+        },
+        min: -5,
+        max: 5
       },
 
       plotOptions: {
