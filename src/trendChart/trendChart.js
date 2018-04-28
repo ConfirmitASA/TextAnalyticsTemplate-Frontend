@@ -43,6 +43,10 @@ export default class TrendChart {
 
   setupChart() {
     let chartConfig = {
+      chart: {
+        zoomType: 'xy'
+      },
+
       legend: {
         layout: 'horizontal',
         align: 'center',
