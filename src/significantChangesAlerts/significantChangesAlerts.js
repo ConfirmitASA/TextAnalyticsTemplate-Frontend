@@ -1,8 +1,9 @@
 export default class SignificantChangesAlerts {
 
-  constructor({tableId, containerId}) {
+  constructor({tableId, containerId, separator}) {
     this.table = document.getElementById(tableId);
     this.container = document.getElementById(containerId);
+    this.separator = (!!separator && separator != "") ? separator : "|";
     this.alerts = [];
     this.init();
   }
@@ -20,7 +21,7 @@ export default class SignificantChangesAlerts {
       let categoryText = "";
       let changesText = "";
       let drilldownRef = cell.parentElement.firstElementChild.firstElementChild;
-      cell.parentElement.firstElementChild.innerText.split('|').forEach(categoryLevel => {
+      cell.parentElement.firstElementChild.innerText.split(this.separator).forEach(categoryLevel => {
         categoryText += categoryLevel.trim() + '\n';
       });
       const changeTypesArray = [{class:'increasingC', text:'<span class="alert-card__increasing">increased</span> in Volume'},

@@ -4,7 +4,7 @@ export default class SignificantChangesAlerts_studio {
     this.table = document.getElementById(tableId);
     this.container = document.getElementById(containerId);
     this.translations = translations;
-    this.separator = (separator != "") ? separator : "|";
+    this.separator = (!!separator && separator != "") ? separator : "|";
     this.alerts = [];
     this.init();
   }
