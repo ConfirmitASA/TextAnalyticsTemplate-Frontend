@@ -21,7 +21,7 @@ export default class SignificantChangesAlerts {
       let categoryText = "";
       let changesText = "";
       let drilldownRef = cell.parentElement.firstElementChild.firstElementChild;
-      cell.parentElement.firstElementChild.innerText.split('|').forEach(categoryLevel => {
+      cell.parentElement.firstElementChild.innerText.split(this.separator).forEach(categoryLevel => {
         categoryText += categoryLevel.trim() + '\n';
       });
       const changeTypesArray = [{class:'increasingC', text:'<span class="alert-card__increasing">increased</span> in Volume'},
