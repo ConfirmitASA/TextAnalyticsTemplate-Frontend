@@ -1,8 +1,9 @@
 export default class SignificantChangesAlerts {
 
-  constructor({tableId, containerId}) {
+  constructor({tableId, containerId, separator}) {
     this.table = document.getElementById(tableId);
     this.container = document.getElementById(containerId);
+    this.separator = (!!separator && separator != "") ? separator : "|";
     this.alerts = [];
     this.init();
   }
