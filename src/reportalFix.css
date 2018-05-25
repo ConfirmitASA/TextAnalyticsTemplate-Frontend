@@ -216,6 +216,7 @@ a, .link{
 .legend {
   position: absolute;
   bottom: 14px;
+  white-space: nowrap;
 
   & .increasing {
     background: var(--increasing);
