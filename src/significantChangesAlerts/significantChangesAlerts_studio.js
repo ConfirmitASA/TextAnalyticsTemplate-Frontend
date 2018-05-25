@@ -1,9 +1,10 @@
 export default class SignificantChangesAlerts_studio {
 
-  constructor({tableId, containerId, translations}) {
+  constructor({tableId, containerId, translations, separator}) {
     this.table = document.getElementById(tableId);
     this.container = document.getElementById(containerId);
     this.translations = translations;
+    this.separator = separator;
     this.alerts = [];
     this.init();
   }
@@ -21,7 +22,7 @@ export default class SignificantChangesAlerts_studio {
       let categoryText = "";
       let changesText = "";
       let drilldownRef = cell.parentElement.firstElementChild.firstElementChild;
-      cell.parentElement.firstElementChild.innerText.split('|').forEach(categoryLevel => {
+      cell.parentElement.firstElementChild.innerText.split(this.separator).forEach(categoryLevel => {
         categoryText += categoryLevel.trim() + '\n';
       });
       const changeTypesArray = [{class:'increasingC', text:'increased in Volume', r2class :'target__number r2i-green-color'},
