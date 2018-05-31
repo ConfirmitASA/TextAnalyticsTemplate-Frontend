@@ -31,7 +31,7 @@ export default class SignificantChangesAlerts_studio {
           {class:'decreasingS', text:'decreased in Sentiment', r2class :'target__number r2i-dark-red-color'}];
       changeTypesArray.forEach(classItem => {
         if (cell.classList.contains(classItem.class)){
-          changesText += classItem.text;
+          changesText += classItem.text + '\n';
           categoryText = "<span class = '" + classItem.r2class+ "'>" + categoryText  + "</span>";
         }
       });
