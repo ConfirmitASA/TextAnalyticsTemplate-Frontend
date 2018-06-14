@@ -80,6 +80,11 @@ export default class CorrelationTable {
         container.style.marginBottom = '16px';
         container.style.marginLeft = '8px';
       }
+    } else {
+      const container = document.getElementById(this.container);
+      container.innerHTML = '<label class="no-data-label">No data to display</label>';
+      container.style.marginBottom = '16px';
+      container.style.marginLeft = '8px';
     }
   }
 }
