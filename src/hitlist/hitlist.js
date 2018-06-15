@@ -87,6 +87,16 @@ class Hitlist {
       this.fixedHeader = new FixedHeader({source: this.source.querySelector('table')});
     } else { // hack to get pagination text and update an already initialised header since we'd need that new text on hitlist update
       this.source.querySelector('table.ta-fixed>thead').innerHTML = this.source.querySelector('table:not(.ta-fixed)>thead').innerHTML;
+
+      /* BEGIN setting column header sizes after sorting */
+      var initialHeader = this.source.querySelectorAll('table:not(.ta-fixed)>thead>tr>*');
+      var clonedHeader = this.source.querySelectorAll('table.ta-fixed>thead>tr>*');
+      [].slice.call(clonedHeader).forEach((el,index) => {
+        el.style.width=initialHeader[index].offsetWidth+'px';
+      });
+      clonedHeader.style.width = initialHeader.offsetWidth+'px';
+      /* END */
+
       var offset = this.source.querySelector('table:not(.ta-fixed)').parentNode.offsetTop;
       this.scrollTo(offset,200);
     }
