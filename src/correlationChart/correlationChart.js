@@ -171,8 +171,8 @@ export default class CorrelationChart {
             enabled: false,
             animation: false
           }
-        }
-
+        },
+        sizeByAbsoluteValue: true
       }],
 
       exporting: {
