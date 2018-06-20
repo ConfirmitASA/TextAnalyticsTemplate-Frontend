@@ -318,3 +318,10 @@
 .wc-word-highlight {
   background: #FFEE9E;
 }
+
+
+/* Sortable fix*/
+.reportal-hitlist-container .light-grey .hitlist th.yui3-datatable-sorted, .reportal-hitlist-container .light-grey .hitlist td.yui3-datatable-sorted{
+    border-left: none;
+    border-right: none;
+}
