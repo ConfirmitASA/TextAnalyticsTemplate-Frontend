@@ -105,7 +105,6 @@ export default class CustomerJourneyCards {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
         this.fixLongTitle(card);
-        this.fixTitleHeight();
 
         card.onclick = () => {
           if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
@@ -117,6 +116,8 @@ export default class CustomerJourneyCards {
         }
       });
     });
+
+    this.fixTitleHeight();
   }
 
   createCard(obj, row) {
