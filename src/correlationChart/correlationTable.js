@@ -31,7 +31,7 @@ export default class CorrelationTable {
     this.init();
   }
 
-  createRow(row, index){
+  createRow(row, index) {
     const tr = document.createElement('tr');
 
     const order = document.createElement('td');
@@ -39,7 +39,7 @@ export default class CorrelationTable {
 
     const categoryCell = document.createElement('td');
     const categoryContainer = row.firstElementChild;
-    if(categoryContainer.firstElementChild && categoryContainer.firstElementChild.tagName.toLowerCase() === 'a') {
+    if (categoryContainer.firstElementChild && categoryContainer.firstElementChild.tagName.toLowerCase() === 'a') {
       const categoryName = categoryContainer.firstElementChild.cloneNode(true);
       categoryCell.appendChild(categoryName);
     } else {
@@ -62,10 +62,10 @@ export default class CorrelationTable {
   init() {
     const rows = [...this.table.querySelectorAll("tbody>tr")];
 
-    if(rows.length > 0) {
+    if (rows.length > 0) {
       let isAnythingShown = false;
-      this.areas.forEach((area, index)=> {
-        area.rows = rows.filter((row, index) => ( index > 0 && row.children[1].classList.contains(`cf_${area.id}`)));
+      this.areas.forEach((area, index) => {
+        area.rows = rows.filter((row, index) => (index > 0 && row.children[1].classList.contains(`cf_${area.id}`)));
         area.rows.forEach((row, index) => document.getElementById(area.id).children[0].appendChild(this.createRow(row, index + 1)));
         if (area.rows.length === 0) {
           document.querySelector(`.correlation-header--${area.id}`).classList.add("hidden");
@@ -74,12 +74,17 @@ export default class CorrelationTable {
         }
       });
 
-      if(!isAnythingShown) {
+      if (!isAnythingShown) {
         const container = document.getElementById(this.container);
         container.innerHTML = '<label class="no-data-label">No data to display</label>';
         container.style.marginBottom = '16px';
         container.style.marginLeft = '8px';
       }
+    } else {
+      const container = document.getElementById(this.container);
+      container.innerHTML = '<label class="no-data-label">No data to display</label>';
+      container.style.marginBottom = '16px';
+      container.style.marginLeft = '8px';
     }
   }
 }
