@@ -133,6 +133,38 @@ export default class JourneyWidget {
     cardTitle.innerText = 'Where should we focus improvement?';
     cardTitle.style.whiteSpace = "normal";
 
+    let cardMenu = document.createElement('div');
+    cardMenu.className = 'widget__header-menu-container';
+
+    let infoIcon = document.createElement('div');
+    infoIcon.className = 'ta-info-icon';
+
+    let infoText = document.createElement('div');
+    infoText.className = 'ta-info-text';
+    infoText.innerText = "Surfaces any concerns customers are raising across the journey. " +
+      "It will show the pain points based on your criteria for action. \n\n" +
+      "Clicking on this box will take you through to the journey page to learn more.";
+    infoText.style.display = "none";
+
+    infoIcon.onmouseover = () => {
+      infoText.style.display = "";
+    };
+
+    infoIcon.onmouseout = () => {
+      infoText.style.display = "none";
+    };
+
+
+    /*cardMenuButtonSpan.innerHTML = "";
+
+
+  <div class="widget__header-menu-container">
+      <button class="comd-button___studio comd-button--icon___studio">
+      <span class="widget__options">icon</span>
+      </button>
+  </div>*/
+
+
     let widgetBody = document.createElement('div');
     widgetBody.className = 'widget__body widget__body--no-scrolling';
 
@@ -149,7 +181,9 @@ export default class JourneyWidget {
     let buttonsGroup = document.createElement('div');
     buttonsGroup.className = 'r2i-buttons-group-right';
 
+    cardMenu.appendChild(infoIcon);
     cardHeader.appendChild(cardTitle);
+    cardHeader.appendChild(cardMenu);
     card.appendChild(cardHeader);
 
     kpiElement.appendChild(mainContent);
@@ -158,6 +192,8 @@ export default class JourneyWidget {
 
     buttonsGroup.appendChild(button);
     card.appendChild(buttonsGroup);
+
+    card.appendChild(infoText);
 
     this.cardContainer.appendChild(card);
   }

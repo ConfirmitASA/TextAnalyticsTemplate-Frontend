@@ -71,7 +71,7 @@ The following imports of classes files are available:
 
 @import "significantChangesAlerts/significantChangesAlerts.css";
 
-
+@import "frontPageWidget/journey-widget.css";
 
 /** Styles for export */
 @import "export.css";
