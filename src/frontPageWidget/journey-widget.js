@@ -123,7 +123,8 @@ export default class JourneyWidget {
 
   createWidget() {
     const card = document.createElement('article');
-    card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal';
+    card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-journey-widget';
+    card.onclick = () => this.drilldownButton.click();
 
     this.createCardHeader(card);
     this.createCardBody(card);
@@ -139,7 +140,6 @@ export default class JourneyWidget {
     let cardTitle = document.createElement('h3');
     cardTitle.className = 'widget__title';
     cardTitle.innerText = 'Where should we focus improvement?';
-    cardTitle.style.whiteSpace = "normal";
 
     let cardMenu = document.createElement('div');
     cardMenu.className = 'widget__header-menu-container';
@@ -219,7 +219,7 @@ export default class JourneyWidget {
     let button = document.createElement('button');
     button.className = "comd-button___studio";
     button.innerHTML = "Co to Customer Journey Page";
-    button.onclick = () => this.drilldownButton.click();
+    // button.onclick = () => this.drilldownButton.click();
 
     let buttonsGroup = document.createElement('div');
     buttonsGroup.className = 'r2i-buttons-group-right';
