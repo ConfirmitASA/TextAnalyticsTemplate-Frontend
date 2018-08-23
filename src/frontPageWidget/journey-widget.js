@@ -125,6 +125,14 @@ export default class JourneyWidget {
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal';
 
+    this.createCardHeader(card);
+    this.createCardBody(card);
+    this.createButtons(card);
+
+    this.cardContainer.appendChild(card);
+  }
+
+  createCardHeader(card) {
     let cardHeader = document.createElement('header');
     cardHeader.className = 'widget__header';
 
@@ -154,17 +162,15 @@ export default class JourneyWidget {
       infoText.style.display = "none";
     };
 
+    cardMenu.appendChild(infoIcon);
+    cardHeader.appendChild(cardTitle);
+    cardHeader.appendChild(cardMenu);
 
-    /*cardMenuButtonSpan.innerHTML = "";
+    card.appendChild(cardHeader);
+    card.appendChild(infoText);
+  }
 
-
-  <div class="widget__header-menu-container">
-      <button class="comd-button___studio comd-button--icon___studio">
-      <span class="widget__options">icon</span>
-      </button>
-  </div>*/
-
-
+  createCardBody(card) {
     let widgetBody = document.createElement('div');
     widgetBody.className = 'widget__body widget__body--no-scrolling';
 
@@ -173,29 +179,9 @@ export default class JourneyWidget {
 
     let mainContent = this.createCategoriesContainer();
 
-    let button = document.createElement('button');
-    button.className = "comd-button___studio";
-    button.innerHTML = "Co to Customer Journey Page";
-    button.onclick = () => this.drilldownButton.click();
-
-    let buttonsGroup = document.createElement('div');
-    buttonsGroup.className = 'r2i-buttons-group-right';
-
-    cardMenu.appendChild(infoIcon);
-    cardHeader.appendChild(cardTitle);
-    cardHeader.appendChild(cardMenu);
-    card.appendChild(cardHeader);
-
     kpiElement.appendChild(mainContent);
     widgetBody.appendChild(kpiElement);
     card.appendChild(widgetBody);
-
-    buttonsGroup.appendChild(button);
-    card.appendChild(buttonsGroup);
-
-    card.appendChild(infoText);
-
-    this.cardContainer.appendChild(card);
   }
 
   createCategoriesContainer() {
@@ -227,5 +213,18 @@ export default class JourneyWidget {
     mainContent.appendChild(wrapper);
 
     return mainContent;
+  }
+
+  createButtons(card) {
+    let button = document.createElement('button');
+    button.className = "comd-button___studio";
+    button.innerHTML = "Co to Customer Journey Page";
+    button.onclick = () => this.drilldownButton.click();
+
+    let buttonsGroup = document.createElement('div');
+    buttonsGroup.className = 'r2i-buttons-group-right';
+
+    buttonsGroup.appendChild(button);
+    card.appendChild(buttonsGroup);
   }
 }
