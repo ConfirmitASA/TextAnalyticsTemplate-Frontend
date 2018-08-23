@@ -67,7 +67,9 @@ export default class JourneyWidget {
   init() {
     this.getDataFromTable();
     this.filterByNegativeKeyMetric();
-    this.createWidget();
+    if(this.CJ_objectToProcess.length > 0) {
+      this.createWidget();
+    }
   }
 
   getDataFromTable() {
