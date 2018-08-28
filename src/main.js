@@ -29,7 +29,7 @@ import TrendChart from './trendChart/trendChart.js';
 import CustomerJourneyCards from './customerJourneyCards/customerJourneyCards.js';
 import SignificantChangesAlerts from './significantChangesAlerts/significantChangesAlerts.js';
 import JourneyWidget from "./frontPageWidget/journey-widget";
-
+import SignificantChangeWidget from "./frontPageWidget/sig-change-widget"
 
 
 window.Reportal = window.Reportal || {};
@@ -45,5 +45,6 @@ ReportalBase.mixin(window.Reportal,{
   TrendChart,
   CustomerJourneyCards,
   SignificantChangesAlerts,
-  JourneyWidget
+  JourneyWidget,
+  SignificantChangeWidget
 });

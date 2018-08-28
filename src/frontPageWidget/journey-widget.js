@@ -1,66 +1,9 @@
-if (!Object.assign) {
-  Object.defineProperty(Object, 'assign', {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: function (target, firstSource) {
-      'use strict';
-      if (target === undefined || target === null) {
-        throw new TypeError('Cannot convert first argument to object');
-      }
-
-      var to = Object(target);
-      for (var i = 1; i < arguments.length; i++) {
-        var nextSource = arguments[i];
-        if (nextSource === undefined || nextSource === null) {
-          continue;
-        }
-
-        var keysArray = Object.keys(Object(nextSource));
-        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-          var nextKey = keysArray[nextIndex];
-          var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-          if (desc !== undefined && desc.enumerable) {
-            to[nextKey] = nextSource[nextKey];
-          }
-        }
-      }
-      return to;
-    }
-  });
-}
-
-/**
- * This is required to fix a bug in MicrosoftAjaxWebForms.js
- * in Firefox where if window.event is not initialized, it loops stack
- * via arguments.callee.caller chain and breaks because of the
- * "use strict" mode
- */
-function hackEventWithinDoPostBack() {
-  var originalDoPostBack = window.WebForm_DoPostBackWithOptions;
-
-  window.WebForm_DoPostBackWithOptions = function hackedDoPostBack() {
-    if (!window.event)
-      window.event = {};
-    return originalDoPostBack.apply(this, arguments);
-  };
-}
-
 export default class JourneyWidget {
   constructor({tableContainerId, cardContainerId, drilldownId, CJ_options}) {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
-    this.cardContainer.className = "cj-cards";
-
-    const drilldownContainer = document.getElementById(drilldownId);
-    this.drilldownSelect = drilldownContainer.querySelector('select');
-    this.drilldownButton = drilldownContainer.querySelector('input');
-
-    this.cj_namespace = "http://www.w3.org/2000/svg";
-    this.cj_circleRadius = 55;
-    this.cj_thickness = 5;
-
+    this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
     this.init();
   }
 
@@ -125,7 +68,7 @@ export default class JourneyWidget {
 
   createWidget() {
     const card = document.createElement('article');
-    card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-journey-widget';
+    card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-widget ta-journey-widget';
     card.onclick = () => this.drilldownButton.click();
 
     this.createCardHeader(card);

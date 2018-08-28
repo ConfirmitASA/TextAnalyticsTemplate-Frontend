@@ -1,0 +1,20 @@
+.ta-sig-change-widget__increasing {
+  color: var(--strength);
+}
+
+.ta-sig-change-widget__decreasing {
+  color: var(--issues);
+}
+
+.ta-sig-change-widget__increasing:before {
+  content: '↑';
+  font-family: 'Arial', sans-serif;
+  font-size: 40px;
+}
+
+.ta-sig-change-widget__decreasing:before {
+  content: '↓';
+  font-family: 'Arial', sans-serif;
+  font-size: 40px;
+}
+

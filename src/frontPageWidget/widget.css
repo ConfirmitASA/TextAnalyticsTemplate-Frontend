@@ -1,0 +1,8 @@
+.ta-widget {
+  cursor: pointer;
+}
+
+.ta-widget .widget__title {
+  padding-right: 40px;
+  white-space: normal;
+}
