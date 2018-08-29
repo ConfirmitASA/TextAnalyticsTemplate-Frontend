@@ -1,0 +1,27 @@
+.ta-osat-widget__wrapper {
+  display: flex;
+}
+
+.ta-osat-widget__previous-period {
+  margin-right: 12px;
+}
+
+.ta-osat-widget__previous-title {
+  font-size: 2rem !important;
+}
+
+.ta-osat-widget__current-title {
+  font-size: 2rem !important;
+}
+
+.ta-osat-widget__positive {
+  color: var(--positive-color);
+}
+
+.ta-osat-widget__neutral {
+  color: var(--neutral-color);
+}
+
+.ta-osat-widget__negative {
+  color: var(--negative-color);
+}

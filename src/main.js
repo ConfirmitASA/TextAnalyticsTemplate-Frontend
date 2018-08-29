@@ -30,6 +30,7 @@ import CustomerJourneyCards from './customerJourneyCards/customerJourneyCards.js
 import SignificantChangesAlerts from './significantChangesAlerts/significantChangesAlerts.js';
 import JourneyWidget from "./frontPageWidget/journey-widget";
 import SignificantChangeWidget from "./frontPageWidget/sig-change-widget"
+import OSATWidget from "./frontPageWidget/osat-wiget"
 
 
 window.Reportal = window.Reportal || {};
@@ -46,5 +47,6 @@ ReportalBase.mixin(window.Reportal,{
   CustomerJourneyCards,
   SignificantChangesAlerts,
   JourneyWidget,
-  SignificantChangeWidget
+  SignificantChangeWidget,
+  OSATWidget
 });
