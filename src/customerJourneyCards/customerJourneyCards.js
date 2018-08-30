@@ -3,7 +3,7 @@ if (!Object.assign) {
     enumerable: false,
     configurable: true,
     writable: true,
-    value: function(target, firstSource) {
+    value: function (target, firstSource) {
       'use strict';
       if (target === undefined || target === null) {
         throw new TypeError('Cannot convert first argument to object');
@@ -47,8 +47,7 @@ function hackEventWithinDoPostBack() {
 }
 
 export default class CustomerJourneyCards {
-
-  constructor({tableContainerId, cardContainerId, drilldownId, CJ_options}) {
+  constructor({tableContainerId, cardContainerId, drilldownId, CJ_options, translations}) {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
@@ -63,12 +62,15 @@ export default class CustomerJourneyCards {
     this.cj_circleRadius = 55;
     this.cj_thickness = 5;
 
+    this.translations = translations;
+
     this.init();
   }
 
   init() {
     this.getDataFromTable();
     this.createCards();
+    this.addInfoText();
   }
 
   getDataFromTable() {
@@ -81,8 +83,8 @@ export default class CustomerJourneyCards {
         result[result.length] = Object.assign({}, options);
         result[result.length - 1].rows = [];
       } else {
-        if(options.isCollapsed) {
-          if(options.isSomeStatisticUsed) {
+        if (options.isCollapsed) {
+          if (options.isSomeStatisticUsed) {
             result[result.length - 1].rows.push(current);
           } else {
             if (current.children[0].innerText.trim().indexOf(options.questionSegment) >= 0) {
@@ -101,13 +103,13 @@ export default class CustomerJourneyCards {
 
   createCards() {
     this.CJ_objectToProcess.forEach(obj => {
-      obj.rows.forEach((row, index)=> {
+      obj.rows.forEach((row, index) => {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
         this.fixLongTitle(card);
 
         card.onclick = () => {
-          if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+          if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
             hackEventWithinDoPostBack();
           }
 
@@ -363,6 +365,27 @@ export default class CustomerJourneyCards {
     const titles = [].slice.call(document.querySelectorAll('.cj-card__title'));
     const maxHeight = titles.reduce((res, cur) => cur.clientHeight > res.clientHeight ? cur : res).clientHeight;
     titles.forEach(title => title.style.height = maxHeight + 'px');
+  }
+
+  addInfoText() {
+    let infoText = document.createElement('div');
+    infoText.className = 'ta-info-text';
+    infoText.style.display = 'none';
+    infoText.innerText = this.translations['cj cards info text'];
+
+    let infoIcon = document.createElement('div');
+    infoIcon.className = 'ta-info-icon ta-info-icon--cj-cards';
+
+    infoIcon.onmouseover = () => {
+      infoText.style.display = '';
+    };
+
+    infoIcon.onmouseout = () => {
+      infoText.style.display = 'none';
+    };
+
+    this.cardContainer.insertBefore(infoIcon, this.cardContainer.children[0]);
+    this.cardContainer.appendChild(infoText);
   }
 }
 

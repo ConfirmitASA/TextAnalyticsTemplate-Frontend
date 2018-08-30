@@ -69,6 +69,8 @@ The following imports of classes files are available:
 
 @import "customerJourneyCards/customerJourneyCards.css";
 
+@import "trendChart/trendChart.css";
+
 @import "significantChangesAlerts/significantChangesAlerts.css";
 
 @import "frontPageWidget/widget.css";

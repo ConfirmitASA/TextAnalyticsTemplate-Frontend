@@ -1,4 +1,5 @@
 import Highcharts from '../lib/highcharts';
+
 window.Highcharts = Highcharts;
 require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
@@ -18,7 +19,8 @@ export default class TrendChart {
 
   init() {
     this.getDataFromTable();
-    if(this.data.length > 0) {
+
+    if (this.data.length > 0) {
       this.setupChart();
     } else {
       const container = document.getElementById(this.container);
@@ -27,10 +29,13 @@ export default class TrendChart {
       container.style.marginBottom = '16px';
       container.style.marginLeft = '8px';
     }
+
+    this.addInfoText();
   }
+
   getDataFromTable() {
     const rows = [...this.table.querySelectorAll("tbody>tr")];
-    const headers =  [ ...this.table.querySelectorAll("thead>tr")[0].querySelectorAll("td")].slice(1);
+    const headers = [...this.table.querySelectorAll("thead>tr")[0].querySelectorAll("td")].slice(1);
     headers.forEach((header) => {
       this.labels.push(header.innerText);
     });
@@ -101,8 +106,8 @@ export default class TrendChart {
 
   GetRowValues(row, index, rows) {
     const GetCurrentRowCellValue = (cellIndex) => this.GetCellValue(row, cellIndex);
-    const GetNextRowCellValue = (cellIndex) => this.GetCellValue(rows[index+1], cellIndex);
-    const GetPreviousRowCellValue = (cellIndex) => this.GetCellValue(rows[index-1], cellIndex);
+    const GetNextRowCellValue = (cellIndex) => this.GetCellValue(rows[index + 1], cellIndex);
+    const GetPreviousRowCellValue = (cellIndex) => this.GetCellValue(rows[index - 1], cellIndex);
 
     let name = GetCurrentRowCellValue(0).trim();
     const nextRowName = index + 1 == rows.length ? "" : GetNextRowCellValue(0).trim();
@@ -112,12 +117,33 @@ export default class TrendChart {
       this.indexOffset--;
     }
     const data = [];
-    for (let i = 1; i < row.childElementCount; i ++) {
+    for (let i = 1; i < row.childElementCount; i++) {
       data.push(GetCurrentRowCellValue(i) - 0)
     }
-    const paletteColorIndex = index + this.indexOffset >= this.palette.chartColors.length ? (index + this.indexOffset - this.palette.chartColors.length * parseInt((index + this.indexOffset)/ this.palette.chartColors.length)) : index + this.indexOffset;
+    const paletteColorIndex = index + this.indexOffset >= this.palette.chartColors.length ? (index + this.indexOffset - this.palette.chartColors.length * parseInt((index + this.indexOffset) / this.palette.chartColors.length)) : index + this.indexOffset;
     const color = this.palette.chartColors[paletteColorIndex];
     return {name: name, data: data, color: color};
   }
 
+  addInfoText() {
+    let infoText = document.createElement('div');
+    infoText.className = 'ta-info-text ta-info-text--trend-line';
+    infoText.style.display = 'none';
+    infoText.innerHTML = this.translations['trend line info text'];
+
+    let infoIcon = document.createElement('div');
+    infoIcon.className = 'ta-info-icon ta-info-icon--trend-line';
+
+    infoIcon.onmouseover = () => {
+      infoText.style.display = '';
+    };
+
+    infoIcon.onmouseout = () => {
+      infoText.style.display = 'none';
+    };
+
+    this.container.style.position = 'relative';
+    this.container.insertBefore(infoIcon, this.container.children[0]);
+    this.container.appendChild(infoText);
+  }
 }

@@ -1,0 +1,10 @@
+.ta-info-icon--trend-line {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: -32px;
+}
+
+.ta-info-text.ta-info-text--trend-line {
+  top: 8px;
+}

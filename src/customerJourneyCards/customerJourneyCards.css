@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 16px;
+  position: relative;
 }
 
 .cj-card {
@@ -59,4 +60,10 @@
 
 .cj-card__card-row:not(:last-child) {
   border-bottom: 1px solid var(--light-divider-color);
+}
+
+.ta-info-icon--cj-cards {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
