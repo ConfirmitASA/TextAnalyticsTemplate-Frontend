@@ -1,9 +1,10 @@
 export default class JourneyWidget {
-  constructor({tableContainerId, cardContainerId, drilldownId, CJ_options}) {
+  constructor({tableContainerId, cardContainerId, drilldownId, CJ_options, translations}) {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
+    this.translations = translations;
     this.init();
   }
 
@@ -84,7 +85,7 @@ export default class JourneyWidget {
 
     let cardTitle = document.createElement('h3');
     cardTitle.className = 'widget__title';
-    cardTitle.innerText = 'Where should we focus improvement?';
+    cardTitle.innerText = this.translations['journey widget title'];
 
     let cardMenu = document.createElement('div');
     cardMenu.className = 'widget__header-menu-container';
@@ -94,9 +95,7 @@ export default class JourneyWidget {
 
     let infoText = document.createElement('div');
     infoText.className = 'ta-info-text';
-    infoText.innerText = "Surfaces any concerns customers are raising across the journey. " +
-      "It will show the pain points based on your criteria for action. \n\n" +
-      "Clicking on this box will take you through to the journey page to learn more.";
+    infoText.innerHTML = this.translations['journey widget info text'];
     infoText.style.display = "none";
 
     infoIcon.onmouseover = () => {
@@ -163,7 +162,7 @@ export default class JourneyWidget {
   createButtons(card) {
     let button = document.createElement('button');
     button.className = "comd-button___studio";
-    button.innerHTML = "Co to Customer Journey Page";
+    button.innerHTML = this.translations['journey widget button'];
     // button.onclick = () => this.drilldownButton.click();
 
     let buttonsGroup = document.createElement('div');

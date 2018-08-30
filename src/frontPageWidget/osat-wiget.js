@@ -1,5 +1,5 @@
 export default class OSATWidget {
-  constructor({tableContainerId, cardContainerId, drilldownId, sentimentConfig = [
+  constructor({tableContainerId, cardContainerId, drilldownId, translations, sentimentConfig = [
     { sentiment: "positive", range: {min: 2, max: 5} },
     { sentiment: "neutral", range: {min: -1, max: 1} },
     { sentiment: "negative", range: {min: -5, max: -2} }
@@ -8,6 +8,7 @@ export default class OSATWidget {
     this.table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
+    this.translations = translations;
     this.init();
   }
 
@@ -40,7 +41,7 @@ export default class OSATWidget {
 
     let cardTitle = document.createElement('h3');
     cardTitle.className = 'widget__title';
-    cardTitle.innerText = 'Overall Sentiment';
+    cardTitle.innerText = this.translations['osat widget title'];
 
     let cardMenu = document.createElement('div');
     cardMenu.className = 'widget__header-menu-container';
@@ -50,9 +51,7 @@ export default class OSATWidget {
 
     let infoText = document.createElement('div');
     infoText.className = 'ta-info-text';
-    infoText.innerText = "Takes into account sentiment analysis " +
-      "and shows the average sentiment for the last two time periods. " +
-      "Clicking on this box will take you through to sentiment analysis to learn more.";
+    infoText.innerHTML = this.translations['osat widget info text'];
     infoText.style.display = "none";
 
     infoIcon.onmouseover = () => {
@@ -95,7 +94,7 @@ export default class OSATWidget {
     prevColumn.className = 'ta-osat-widget__previous-period';
     const prevTitle = document.createElement('div');
     prevTitle.className = 'ta-osat-widget__previous-title';
-    prevTitle.innerText = 'Last Month';
+    prevTitle.innerText = this.translations['osat widget previous period'];
     const prevValue = document.createElement('div');
     prevValue.className = 'ta-osat-widget__previous-value';
     prevValue.innerText = this.previousValue.innerText;
@@ -118,7 +117,7 @@ export default class OSATWidget {
     currentColumn.className = 'ta-osat-widget__current-period';
     const currentTitle = document.createElement('div');
     currentTitle.className = 'ta-osat-widget__current-title';
-    currentTitle.innerText = 'This Month';
+    currentTitle.innerText = this.translations['osat widget current period'];
     const currentValue = document.createElement('div');
     currentValue.className = 'ta-osat-widget__current-value';
     currentValue.innerText = this.currentValue.innerText;
@@ -145,7 +144,7 @@ export default class OSATWidget {
   createButtons(card) {
     let button = document.createElement('button');
     button.className = "comd-button___studio";
-    button.innerHTML = "Co to Sentiment Page";
+    button.innerHTML = this.translations['osat widget button'];
     // button.onclick = () => this.drilldownButton.click();
 
     let buttonsGroup = document.createElement('div');

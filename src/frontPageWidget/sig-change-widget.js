@@ -1,9 +1,10 @@
 export default class SignificantChangeWidget {
-  constructor({tableContainerId, cardContainerId, drilldownId, type}) {
+  constructor({tableContainerId, cardContainerId, drilldownId, type, translations}) {
     this.table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
     this.isSentiment = (type === "sentiment");
+    this.translations = translations;
     this.init();
   }
 
@@ -72,8 +73,8 @@ export default class SignificantChangeWidget {
     cardTitle.className = 'widget__title';
     cardTitle.innerText = (
       this.isSentiment ?
-        'How do our customers feel - top sentiment changes?' :
-        'What are our customers talking about - top 3 changes'
+        this.translations['sig change in sentiment title'] :
+        this.translations['sig change in volume title']
     );
 
     let cardMenu = document.createElement('div');
@@ -84,9 +85,11 @@ export default class SignificantChangeWidget {
 
     let infoText = document.createElement('div');
     infoText.className = 'ta-info-text';
-    infoText.innerText = "Shows where there are significant changes in " +
-      (this.isSentiment ? "sentiment" : "volume") +
-      ". Clicking on this box will take you through to sentiment analysis to learn more. ";
+    infoText.innerHTML = (
+      this.isSentiment ?
+        this.translations['sig change in sentiment info text'] :
+        this.translations['sig change in volume info text']
+    );
     infoText.style.display = "none";
 
     infoIcon.onmouseover = () => {
@@ -127,7 +130,7 @@ export default class SignificantChangeWidget {
     let text = "";
 
     if(this.data.length <= 0) {
-      text = "Nothing significant";
+      text = this.translations['Nothing significant'];
     } else {
       this.data.forEach(cell => {
         text += ("<span class='" +
@@ -147,7 +150,7 @@ export default class SignificantChangeWidget {
   createButtons(card) {
     let button = document.createElement('button');
     button.className = "comd-button___studio";
-    button.innerHTML = "Co to Recent Changes Page";
+    button.innerHTML = this.translations['sig change widget button'];
     // button.onclick = () => this.drilldownButton.click();
 
     let buttonsGroup = document.createElement('div');
