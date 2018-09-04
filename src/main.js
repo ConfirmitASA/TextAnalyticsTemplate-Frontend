@@ -31,6 +31,7 @@ import SignificantChangesAlerts from './significantChangesAlerts/significantChan
 import JourneyWidget from "./frontPageWidget/journey-widget";
 import SignificantChangeWidget from "./frontPageWidget/sig-change-widget"
 import OSATWidget from "./frontPageWidget/osat-wiget"
+import InfoIcon from "./infoIcon/info-icon";
 
 
 window.Reportal = window.Reportal || {};
@@ -48,5 +49,6 @@ ReportalBase.mixin(window.Reportal,{
   SignificantChangesAlerts,
   JourneyWidget,
   SignificantChangeWidget,
-  OSATWidget
+  OSATWidget,
+  InfoIcon
 });

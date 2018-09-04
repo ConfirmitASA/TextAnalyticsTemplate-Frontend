@@ -33,7 +33,7 @@
   --monitor: #ffb944;
   --maintain: #82b8ec;
 
-  --font-family: "Helvetica Neue", Roboto, sans-serif;
+  --font-family: "Source Sans Pro", "Helvetica Neue", Roboto, sans-serif;
 
   /* `container` gives a contained effect by setting a padding on sides to push contents from edges of the screen */
   --container:{

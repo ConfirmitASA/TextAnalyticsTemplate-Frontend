@@ -438,6 +438,7 @@ class Hitlist {
       infoIcon = document.createElement('div');
       infoIcon.className = infoIconClass;
       infoIcon.style.float = 'right';
+      infoIcon.style.position = 'static';
 
       infoIcon.onmouseover = () => {
         infoText.style.display = '';

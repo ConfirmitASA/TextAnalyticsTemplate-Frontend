@@ -1,3 +1,5 @@
+import InfoIcon from '../infoIcon/info-icon';
+
 if (!Object.assign) {
   Object.defineProperty(Object, 'assign', {
     enumerable: false,
@@ -368,24 +370,9 @@ export default class CustomerJourneyCards {
   }
 
   addInfoText() {
-    let infoText = document.createElement('div');
-    infoText.className = 'ta-info-text';
-    infoText.style.display = 'none';
-    infoText.innerText = this.translations['cj cards info text'];
-
-    let infoIcon = document.createElement('div');
-    infoIcon.className = 'ta-info-icon ta-info-icon--cj-cards';
-
-    infoIcon.onmouseover = () => {
-      infoText.style.display = '';
-    };
-
-    infoIcon.onmouseout = () => {
-      infoText.style.display = 'none';
-    };
-
-    this.cardContainer.insertBefore(infoIcon, this.cardContainer.children[0]);
-    this.cardContainer.appendChild(infoText);
+    const icon = new InfoIcon({
+      container: this.cardContainer, infoText: this.translations['cj cards info text']
+    });
   }
 }
 

@@ -1,4 +1,5 @@
 import Highcharts from '../lib/highcharts';
+import InfoIcon from "../infoIcon/info-icon";
 
 window.Highcharts = Highcharts;
 require('../lib/exporting')(Highcharts);
@@ -126,24 +127,12 @@ export default class TrendChart {
   }
 
   addInfoText() {
-    let infoText = document.createElement('div');
-    infoText.className = 'ta-info-text ta-info-text--trend-line';
-    infoText.style.display = 'none';
-    infoText.innerHTML = this.translations['trend line info text'];
-
-    let infoIcon = document.createElement('div');
-    infoIcon.className = 'ta-info-icon ta-info-icon--trend-line';
-
-    infoIcon.onmouseover = () => {
-      infoText.style.display = '';
-    };
-
-    infoIcon.onmouseout = () => {
-      infoText.style.display = 'none';
-    };
+    const icon = new InfoIcon({
+      container: this.container, infoText: this.translations['cj cards info text']
+    });
 
     this.container.style.position = 'relative';
-    this.container.insertBefore(infoIcon, this.container.children[0]);
-    this.container.appendChild(infoText);
+    icon.infoIcon.style.top = '-32px';
+    icon.infoText.style.top = '8px';
   }
 }
