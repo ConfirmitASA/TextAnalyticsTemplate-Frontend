@@ -1,0 +1,12 @@
+.ta-impact-analysis-widget .reportal-table > tbody > tr > td {
+  vertical-align: baseline;
+}
+
+.ta-impact-analysis-widget .target__number {
+  flex-direction: column;
+  width: 100%;
+}
+
+.ta-impact-analysis-widget .correlation-header {
+  font-size: 24px !important;
+}
