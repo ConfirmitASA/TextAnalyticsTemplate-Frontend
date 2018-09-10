@@ -1,12 +1,11 @@
-.ta-impact-analysis-widget .reportal-table > tbody > tr > td {
-  vertical-align: baseline;
+.ta-impact-analysis-widget__item--issues {
+  color: var(--issues,#ee627d);
 }
 
-.ta-impact-analysis-widget .target__number {
+.ta-impact-analysis-widget__item--strength {
+  color:  var(--strength,#7cc700);
+}
+
+.ta-impact-analysis-widget .co-st-r-widget-kpi .target__number {
   flex-direction: column;
-  width: 100%;
-}
-
-.ta-impact-analysis-widget .correlation-header {
-  font-size: 24px !important;
 }

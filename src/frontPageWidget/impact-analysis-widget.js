@@ -101,24 +101,14 @@ export default class ImpactAnalysisWidget {
       if (area.rows.length > 0) {
         isAnythingShown = true;
 
-        const wrapper = document.createElement('div');
-        const header = document.createElement('div');
-        header.className = `correlation-header correlation-header--${area.id}`;
-        header.innerText = area.headerText;
-        const table = document.createElement('table');
-        table.className = 'reportal-table';
-        const tbody = document.createElement('tbody');
-        tbody.className = `correlation-list correlation-list--${area.id}`;
-
-        table.appendChild(tbody);
-        wrapper.appendChild(header);
-        wrapper.appendChild(table);
-        mainContent.appendChild(wrapper);
-
         area.rows.forEach((row, index) => {
-          const newRow = this.createRow(row, index + 1);
-          newRow.style.verticalAlign = '';
-          tbody.appendChild(newRow);
+          const categoryContainer = row.firstElementChild.firstElementChild;
+          const newItem = document.createElement('div');
+          newItem.className = "ta-impact-analysis-widget__item--" + area.id;
+          newItem.innerText = (index + 1) + '. ' + categoryContainer.innerText;
+          newItem.onclick = () => categoryContainer.click();
+
+          mainContent.appendChild(newItem);
         });
       }
     }

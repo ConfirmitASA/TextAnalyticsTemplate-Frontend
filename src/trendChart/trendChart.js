@@ -128,7 +128,7 @@ export default class TrendChart {
 
   addInfoText() {
     const icon = new InfoIcon({
-      container: this.container, infoText: this.translations['cj cards info text']
+      container: this.container, infoText: this.translations['trend line info text']
     });
 
     this.container.style.position = 'relative';
