@@ -1,9 +1,15 @@
+.ta-impact-analysis-widget {
+  cursor: default;
+}
+
 .ta-impact-analysis-widget__item--issues {
   color: var(--issues,#ee627d);
+  cursor: pointer;
 }
 
 .ta-impact-analysis-widget__item--strength {
   color:  var(--strength,#7cc700);
+  cursor: pointer;
 }
 
 .ta-impact-analysis-widget .co-st-r-widget-kpi .target__number {

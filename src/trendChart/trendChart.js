@@ -6,7 +6,7 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendChart {
-  constructor({chartContainer, tableContainer, palette, translations, questionName}) {
+  constructor({chartContainer, tableContainer, palette, translations, period, questionName}) {
     this.container = document.getElementById(chartContainer);
     this.table = document.getElementById(tableContainer);
     this.palette = palette;
@@ -15,6 +15,7 @@ export default class TrendChart {
     //console.log(translations["Priority Issues"]);
     this.data = [];
     this.labels = [];
+    this.period = period;
     this.init();
   }
 
@@ -84,6 +85,57 @@ export default class TrendChart {
         series: {
           label: {
             connectionAllowed: false
+          },
+          point: {
+            events: {
+              click: (event) => {
+                const datePickers = document.querySelectorAll('.reportal-datepicker input');
+                const datePickerFrom = datePickers[0];
+                const datePickerTo = datePickers[1];
+                const datePeriodIndex = event.point.series.data.length - event.point.index - 1;
+                const now = new Date();
+                let fromDate, toDate;
+
+                switch (this.period) {
+                  case "w":
+                    // ISO 8601 states that week 1 is the week with january 4th in it
+                    const jan4 = new Date(now.getFullYear(), 0, 4);
+                    const week = parseInt(event.point.category.substr(2));
+                    const dayOfWeekIndex = (jan4.getDay() + 6) % 7;
+                    const firstDayIndex = (jan4.getDate() - dayOfWeekIndex);
+                    const firstDayOfFirstWeek = new Date(jan4.getFullYear(), jan4.getMonth(), firstDayIndex);
+
+                    fromDate = new Date(
+                      firstDayOfFirstWeek.getFullYear(),
+                      firstDayOfFirstWeek.getMonth(),
+                      firstDayOfFirstWeek.getDate() + (week - 1)*7
+                    );
+
+                    toDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate() + 6);
+                    break;
+                  case "m":
+                    const month = now.getMonth() - datePeriodIndex;
+                    fromDate = new Date(now.getFullYear(), month, 1);
+                    toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 1, 0);
+                    break;
+                  case "q":
+                    const quarter = Math.floor((now.getMonth() / 3)) - datePeriodIndex;
+                    fromDate = new Date(now.getFullYear(), quarter * 3, 1);
+                    toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 3, 0);
+                    break;
+                  case "y":
+                    const year = now.getFullYear() - datePeriodIndex;
+                    fromDate = new Date(year, 0, 1);
+                    toDate = new Date(year + 1, 0, 0);
+                    break;
+                }
+
+                datePickerFrom.value = fromDate.toLocaleDateString();
+                datePickerTo.value = toDate.toLocaleDateString();
+
+                document.querySelectorAll('#cj_cards .cj-card')[event.point.series.index].click();
+              }
+            }
           }
         }
       },
