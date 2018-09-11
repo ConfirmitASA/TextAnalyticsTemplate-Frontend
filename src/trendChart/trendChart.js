@@ -6,7 +6,7 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendChart {
-  constructor({chartContainer, tableContainer, palette, translations, period, questionName}) {
+  constructor({chartContainer, tableContainer, palette, translations, period, showPercent, questionName}) {
     this.container = document.getElementById(chartContainer);
     this.table = document.getElementById(tableContainer);
     this.palette = palette;
@@ -16,6 +16,7 @@ export default class TrendChart {
     this.data = [];
     this.labels = [];
     this.period = period;
+    this.showPercent = showPercent;
     this.init();
   }
 
@@ -77,8 +78,8 @@ export default class TrendChart {
           enabled: true,
           text: this.translations['Overall Sentiment']
         },
-        min: -5,
-        max: 5
+        min: this.showPercent ? 0 : -5,
+        max: this.showPercent ? 100 : 5
       },
 
       plotOptions: {
@@ -146,6 +147,10 @@ export default class TrendChart {
         buttonOptions: {
           enabled: false
         }
+      },
+
+      tooltip: {
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}' + (this.showPercent ? '%' : '') + '</b>'
       }
 
     };
