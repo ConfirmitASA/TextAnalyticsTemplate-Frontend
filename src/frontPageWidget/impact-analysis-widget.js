@@ -29,7 +29,7 @@ export default class ImpactAnalysisWidget {
   createWidget() {
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-widget ta-impact-analysis-widget';
-    card.onclick = () => this.drilldownButton.click();
+    // card.onclick = () => this.drilldownButton.click();
 
     this.createCardHeader(card);
     this.createCardBody(card);
