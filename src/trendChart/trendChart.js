@@ -6,9 +6,12 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendChart {
-  constructor({chartContainer, tableContainer, palette, translations, period, showPercent, questionName}) {
+  constructor({chartContainer, tableContainer, drilldownButtonContainer, drilldownSelectContainer, palette, translations, period, showPercent, questionName}) {
     this.container = document.getElementById(chartContainer);
     this.table = document.getElementById(tableContainer);
+    this.drilldownButton = document.getElementById(drilldownButtonContainer).querySelector('input');
+    this.drilldownSelect = document.getElementById(drilldownSelectContainer).querySelector('select');
+
     this.palette = palette;
     this.translations = translations;
     this.indexOffset = 0;
@@ -134,7 +137,12 @@ export default class TrendChart {
                 datePickerFrom.value = fromDate.toLocaleDateString();
                 datePickerTo.value = toDate.toLocaleDateString();
 
-                document.querySelectorAll('#cj_cards .cj-card')[event.point.series.index].click();
+                const selectValue = this.drilldownSelect
+                  .querySelectorAll('option')[event.point.series.index + 1]
+                  .getAttribute('value');
+
+                this.drilldownSelect.value = selectValue;
+                this.drilldownButton.click();
               }
             }
           }
