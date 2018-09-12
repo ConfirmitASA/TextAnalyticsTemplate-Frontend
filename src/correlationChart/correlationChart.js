@@ -1,4 +1,5 @@
 import Highcharts from '../lib/highcharts';
+
 window.Highcharts = Highcharts;
 require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
@@ -17,7 +18,7 @@ export default class CorrelationChart {
 
   init() {
     this.getDataFromTable();
-    if(this.data.length > 0) {
+    if (this.data.length > 0) {
       this.setupChart();
     } else {
       const container = document.getElementById(this.container);
@@ -27,6 +28,7 @@ export default class CorrelationChart {
       container.style.marginLeft = '8px';
     }
   }
+
   getDataFromTable() {
     let rows = [...this.table.querySelectorAll("tbody>tr")];
 
@@ -37,6 +39,19 @@ export default class CorrelationChart {
 
   setupChart() {
     const setupChartAreas = this.SetupChartAreasWithTranslationsAndPalette(this.translations, this.palette);
+
+    const getMaximumProperty = (data, propertyName, zero = 0) => (
+      Math.abs(
+        data.reduce(
+          (max, current) => Math.abs(current[propertyName] - zero) > Math.abs(max[propertyName] - zero) ? current : max
+        )[propertyName] - zero
+      )
+    );
+
+    const maxXValue = getMaximumProperty(this.data, "x", this.xAxis);
+    const maxYValue = getMaximumProperty(this.data, "y");
+      // Math.abs(this.data.reduce((max, current) => Math.abs(current.y) > Math.abs(max.y) ? current : max).y);
+
 
     let chartConfig = {
 
@@ -64,6 +79,8 @@ export default class CorrelationChart {
       },
 
       xAxis: {
+        max: this.xAxis + maxXValue + 0.5,
+        min: this.xAxis - maxXValue - 0.5,
         gridLineWidth: 1,
         title: {
           text: this.translations['Average Category Sentiment'],
@@ -92,6 +109,8 @@ export default class CorrelationChart {
       },
 
       yAxis: {
+        max: maxYValue + 0.5,
+        min: -maxYValue - 0.5,
         startOnTick: false,
         endOnTick: false,
         title: {
@@ -200,9 +219,9 @@ export default class CorrelationChart {
       areas.forEach((area, index) => {
         let {title, color, coordinates} = area;
         headers[index] = headers[index] || chart.renderer.rect().attr({
-            fill: color,
-            class: "ta-correlation-table--area-label"
-          }).add();
+          fill: color,
+          class: "ta-correlation-table--area-label"
+        }).add();
 
         headers[index].attr({
           x: coordinates[0],
@@ -268,9 +287,9 @@ export default class CorrelationChart {
     let {plotLeft, plotWidth, plotTop, plotBottom, xAxis, plotHeight} = chart;
     let yPlotline = xAxis[0].toPixels(xAxis[0].plotLinesAndBands[0].options.value);
 
-    if(yPlotline > plotWidth + plotLeft) {
+    if (yPlotline > plotWidth + plotLeft) {
       yPlotline = plotWidth + plotLeft;
-    } else if(yPlotline < plotLeft) {
+    } else if (yPlotline < plotLeft) {
       yPlotline = plotLeft;
     }
 
