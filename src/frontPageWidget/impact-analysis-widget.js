@@ -9,6 +9,7 @@ export default class ImpactAnalysisWidget {
       infoText: translations['impact analysis widget info text ' + areaId],
       title: translations['impact analysis widget title ' + areaId],
       buttonText: translations['impact analysis widget button'],
+      noDataLabel: translations['No data to display'],
       rows: []
     };
 
@@ -115,7 +116,7 @@ export default class ImpactAnalysisWidget {
 
     if (!isAnythingShown) {
       const label = document.createElement('label');
-      label.innerText = 'No data to display';
+      label.innerText = this.area.noDataLabel;
       mainContent.appendChild(label);
     }
 

@@ -27,7 +27,7 @@ export default class TrendChart {
       this.setupChart();
     } else {
       const container = document.getElementById(this.container);
-      container.innerHTML = '<label class="no-data-label">No data to display</label>';
+      container.innerHTML = `<label class="no-data-label">${this.translations['No data to display']}</label>`;
       container.style.height = '';
       container.style.marginBottom = '16px';
       container.style.marginLeft = '8px';
@@ -76,7 +76,7 @@ export default class TrendChart {
       yAxis: {
         title: {
           enabled: true,
-          text: this.translations['Overall Sentiment']
+          text: this.translations['Overall Sentiment'] + (this.showPercent ? ", %" : "")
         },
         min: this.showPercent ? 0 : -5,
         max: this.showPercent ? 100 : 5
@@ -109,7 +109,7 @@ export default class TrendChart {
                     fromDate = new Date(
                       firstDayOfFirstWeek.getFullYear(),
                       firstDayOfFirstWeek.getMonth(),
-                      firstDayOfFirstWeek.getDate() + (week - 1)*7
+                      firstDayOfFirstWeek.getDate() + (week - 1) * 7
                     );
 
                     toDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate() + 6);
@@ -150,7 +150,12 @@ export default class TrendChart {
       },
 
       tooltip: {
-        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}' + (this.showPercent ? '%' : '') + '</b>'
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}' +
+        (this.showPercent ? '%' : '') +
+        '</b><br/>' +
+        '<span style="color:{point.color}">\u25CF</span> ' +
+        this.translations['# of Responses'] +
+        ': <b>{point.count}</b><br/>'
       }
 
     };
@@ -175,8 +180,11 @@ export default class TrendChart {
       this.indexOffset--;
     }
     const data = [];
-    for (let i = 1; i < row.childElementCount; i++) {
-      data.push(GetCurrentRowCellValue(i) - 0)
+    for (let i = 1; i < row.childElementCount; i += 2) {
+      data.push({
+        y: GetCurrentRowCellValue(i + 1) - 0,
+        count: GetCurrentRowCellValue(i) - 0
+      })
     }
     const paletteColorIndex = index + this.indexOffset >= this.palette.chartColors.length ? (index + this.indexOffset - this.palette.chartColors.length * parseInt((index + this.indexOffset) / this.palette.chartColors.length)) : index + this.indexOffset;
     const color = this.palette.chartColors[paletteColorIndex];

@@ -21,7 +21,7 @@ export default class CorrelationChart {
       this.setupChart();
     } else {
       const container = document.getElementById(this.container);
-      container.innerHTML = '<label class="no-data-label">No data to display</label>';
+      container.innerHTML = `<label class="no-data-label">${this.translations['No data to display']}</label>`;
       container.style.height = '';
       container.style.marginBottom = '16px';
       container.style.marginLeft = '8px';
