@@ -205,7 +205,9 @@ export default class TrendChart {
     });
 
     this.container.style.position = 'relative';
-    icon.infoIcon.style.top = '-32px';
-    icon.infoText.style.top = '8px';
+    icon.infoIcon.style.top = '-76px';
+    icon.infoText.style.top = '-36px';
+    icon.infoIcon.style.right = '-4px';
+    icon.infoText.style.right = '-4px';
   }
 }

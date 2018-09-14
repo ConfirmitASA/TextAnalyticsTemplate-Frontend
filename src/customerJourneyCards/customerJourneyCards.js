@@ -1,4 +1,5 @@
 import InfoIcon from '../infoIcon/info-icon';
+import * as d3 from 'd3';
 
 if (!Object.assign) {
   Object.defineProperty(Object, 'assign', {
@@ -53,7 +54,6 @@ export default class CustomerJourneyCards {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
-    //this.cardContainer.classList.add("cj-cards");
     this.cardContainer.className = "cj-cards";
 
     const drilldownContainer = document.getElementById(drilldownId);
@@ -63,6 +63,9 @@ export default class CustomerJourneyCards {
     this.cj_namespace = "http://www.w3.org/2000/svg";
     this.cj_circleRadius = 55;
     this.cj_thickness = 5;
+
+    this.canvasWidth = 169;
+    this.canvasHeight = 154;
 
     this.translations = translations;
 
@@ -76,7 +79,6 @@ export default class CustomerJourneyCards {
   }
 
   getDataFromTable() {
-    //let title;
     let options = this.CJ_options[0];
 
     this.CJ_objectToProcess = [].reduce.call(this.cj_table.tBodies[0].children, (result, current) => {
@@ -108,7 +110,7 @@ export default class CustomerJourneyCards {
       obj.rows.forEach((row, index) => {
         const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
-        this.fixLongTitle(card);
+        // this.fixLongTitle(card);
 
         card.onclick = () => {
           if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
@@ -121,17 +123,17 @@ export default class CustomerJourneyCards {
       });
     });
 
-    this.fixTitleHeight();
+    // this.fixTitleHeight();
   }
 
   createCard(obj, row) {
     const cj_table_firstRow = this.cj_table.tHead.children[0];
 
-    const card = document.createElement('div');
-    const cardTitle = this.createTitle(row);
-    card.appendChild(cardTitle);
-    //card.classList.add('cj-card');
-    card.className = 'cj-card';
+    const card = document.createElement('article');
+    card.className = 'dashboard__widget dashboard__widget--small ta-cj-card';
+
+    const cardHeader = this.createCardHeader(row);
+    card.appendChild(cardHeader);
 
     obj.MetricIds.forEach(metricId => {
       const metricName = cj_table_firstRow.children[metricId + 1].innerText;
@@ -139,7 +141,7 @@ export default class CustomerJourneyCards {
 
       if (obj.KeyMetricId === metricId) {
         const cardGauge = this.createGauge(obj, metricName, metricValue);
-        card.insertBefore(cardGauge, cardTitle.nextElementSibling);
+        card.insertBefore(cardGauge, cardHeader.nextElementSibling);
       } else {
         const cardRow = this.createCardRow(metricName, metricValue);
         card.appendChild(cardRow);
@@ -149,178 +151,174 @@ export default class CustomerJourneyCards {
     return card;
   }
 
-  createTitle(row) {
-    const cardTitle = document.createElement('div');
-    //cardTitle.classList.add('cj-card__title');
-    cardTitle.className = 'cj-card__title';
+  createCardHeader(row) {
+    let cardHeader = document.createElement('header');
+    cardHeader.className = 'widget__header';
+
+    let cardTitle = document.createElement('h3');
+    cardTitle.className = 'widget__title';
     cardTitle.innerText = row.children[0].innerText;
-    return cardTitle;
+    cardHeader.appendChild(cardTitle);
+
+    return cardHeader;
   }
 
-  createGauge(obj, metricName, metricValue) {
-    const cardGauge = document.createElement('div');
-    //cardGauge.classList.add('cj-card__gauge');
-    cardGauge.className = 'cj-card__gauge';
-    cardGauge.style.width = this.cj_circleRadius * 2 + 'px';
+  createGauge(cj_object, metricName, metricValue) {
+    const canvasWidth = this.canvasWidth;
+    const canvasHeight = this.canvasHeight;
 
-    const svg = this.createGaugeSVG(obj, metricName, metricValue);
-    cardGauge.appendChild(svg);
+    let widgetBody = document.createElement('div');
+    widgetBody.className = 'widget__body widget__body--no-scrolling';
 
-    return cardGauge;
+    let kpiElement = document.createElement('div');
+    kpiElement.className = 'co-st-r-widget-kpi';
+
+    let mainContent = document.createElement('div');
+    mainContent.className = 'main-metric-wrapper';
+
+    kpiElement.appendChild(mainContent);
+    widgetBody.appendChild(kpiElement);
+
+    const vis = d3.select(mainContent)
+      .append("svg")
+      .attr("class", "gauge-metric")
+      .attr("width", canvasWidth).attr("height", canvasHeight)
+      .append("g")
+      .attr("class", "comd-portal-trigger");
+
+    this.addGaugeText(vis, metricName, metricValue, 'off');
+    this.addGaugeChart(vis, cj_object, metricName, metricValue, 'off');
+
+    return widgetBody;
   }
 
-  createGaugeSVG(obj, metricName, metricValue) {
-    const metricValueNumber = parseFloat(metricValue);
-
-    const svg = document.createElementNS(this.cj_namespace, "svg");
-    svg.setAttribute('xmlns', this.cj_namespace);
-    svg.setAttribute('width', this.cj_circleRadius * 2);
-    svg.setAttribute('height', this.cj_circleRadius * 2);
-    svg.setAttribute('viewBox', '0 0 ' + this.cj_circleRadius * 2 + ' ' + this.cj_circleRadius * 2);
-
-    const allLimits = Object.keys(obj.colors).reduce((result, color) => {
-      return [...result, ...obj.colors[color]];
+  addGaugeChart(container, cj_object, kpi_name, kpi_value, kpi_target) {
+    const allLimits = Object.keys(cj_object.colors).reduce((result, color) => {
+      return [...result, ...cj_object.colors[color]];
     }, []).sort((a, b) => a - b);
 
     const minValue = allLimits[0];
     const maxValue = allLimits[allLimits.length - 1];
-    let angle = (metricValueNumber - minValue) * 270 / (maxValue - minValue);
-    angle = isNaN(angle) ? 0 : angle;
-    const grayColor = '#dedede';
-    let metricColor = grayColor;
 
-    for (let color in obj.colors) {
-      if (metricValueNumber >= obj.colors[color][0] && metricValueNumber <= obj.colors[color][1]) {
-        metricColor = color;
+    const canvasWidth = this.canvasWidth;
+    const pi = Math.PI;
+
+    const kpi = kpi_value;
+    const target = kpi_target;
+
+    const radiusOuter = 82;
+    const radiusInner = 74;
+
+    const arcLength = 300 * pi / 180;
+    const startAngle = 0 - arcLength / 2;
+    const endAngle = arcLength / 2;
+
+    const targetArcLength = (target - minValue) * arcLength / (maxValue - minValue);
+    const targetEndAngle = startAngle + targetArcLength;
+
+    const kpiArcLength = kpi !== undefined ? (kpi - minValue) * arcLength / (maxValue - minValue) : 0;
+    const kpiEndAngle = startAngle + kpiArcLength;
+
+    const _top = radiusOuter + 1;
+    const _left = canvasWidth / 2;
+
+    let arcColor = '#dedede';
+    const metricValueNumber = parseFloat(kpi_value);
+
+    for (let color in cj_object.colors) {
+      if (metricValueNumber >= cj_object.colors[color][0] && metricValueNumber <= cj_object.colors[color][1]) {
+        arcColor = color;
         break;
       }
     }
 
-    const pathGray = this.createSector(-135, 135, grayColor);
-    const pathColored = this.createSector(225, 225 + angle, metricColor);
-    const circle = this.createCircle();
-    const textV = this.createText(isNaN(metricValueNumber) ? '–' : metricValue, {
-      x: this.cj_circleRadius,
-      y: this.cj_circleRadius,
-      fontSize: '24px'
-    });
-    const textN = this.createText(metricName, {x: this.cj_circleRadius, y: this.cj_circleRadius + 20, fontSize: '9px'});
-    textN.setAttribute('class', 'cj-card__text-name');
+    const arc = d3.arc()
+      .innerRadius(radiusInner)
+      .outerRadius(radiusOuter);
 
-    const textMin = this.createText(minValue, {
-      x: this.cj_circleRadius - this.cj_circleRadius / 2,
-      y: this.cj_circleRadius * 2 - 9,
-      fontSize: '9px',
-      color: '#DEDEDE'
-    });
-    const textMax = this.createText(maxValue, {
-      x: this.cj_circleRadius + this.cj_circleRadius / 2,
-      y: this.cj_circleRadius * 2 - 9,
-      fontSize: '9px',
-      color: '#DEDEDE'
-    });
+    const vis = container.append("g")
+      .attr("class", "arcs")
+      .attr("transform", "translate(" + _left + "," + _top + ")");
 
-    svg.appendChild(pathGray);
-    svg.appendChild(pathColored);
-    svg.appendChild(circle);
-    svg.appendChild(textN);
-    svg.appendChild(textV);
-    svg.appendChild(textMin);
-    svg.appendChild(textMax);
-    return svg;
+    vis.append("path")
+      .datum({startAngle, endAngle})
+      .attr("class", "arc__basis")
+      .attr("d", arc);
+
+    if (!isNaN(kpiEndAngle)) {
+      vis.append("path")
+        .datum({startAngle, endAngle: startAngle})
+        .attr("d", arc)
+        .attr("fill", arcColor).transition().duration(2000)
+        .attrTween("d", tweenArc({startAngle, endAngle: kpiEndAngle}));
+    }
+
+    if (target !== 'off' && !isNaN(targetEndAngle)) {
+      vis.append("path")
+        .datum({startAngle: targetEndAngle - 0.015, endAngle: targetEndAngle + 0.015})
+        .attr("class", "target__marker")
+        .attr("d", arc);
+    }
+
+    function tweenArc(b) {
+      return function (a) {
+        const i = d3.interpolate(a, b);
+        return function (t) {
+          a.endAngle = i(t).endAngle;
+          return arc(a);
+        };
+      }
+    }
   }
 
-  createCircle() {
-    const circle = document.createElementNS(this.cj_namespace, "circle");
-    circle.setAttribute("cx", this.cj_circleRadius);
-    circle.setAttribute("cy", this.cj_circleRadius);
-    circle.setAttribute("r", this.cj_circleRadius - this.cj_thickness);
-    circle.setAttribute("fill", 'white');
+  addGaugeText(container, kpi_name, kpi_value, kpi_target, formatter = "") {
+    const canvasWidth = this.canvasWidth;
+    const canvasHeight = this.canvasHeight;
 
-    return circle;
+    const _top = canvasHeight - 104;
+    const _left = canvasWidth / 2;
+
+    const vis = container.append("g");
+
+    vis.append("text")
+      .attr("transform", "translate(" + _left + "," + _top + ")")
+      .attr("class", "target__text")
+      .text(kpi_name);
+
+    vis.append("text")
+      .attr("transform", "translate(" + _left + "," + (_top + 42) + ")")
+      .attr("class", "target__number")
+      .text(isNaN(kpi_value) ? '-' : kpi_value + formatter);
+
+    if(kpi_target !== 'off') {
+      vis.append("text")
+        .attr("transform", "translate(" + _left + "," + (_top + 70) + ")")
+        .attr("class", "gap-to-target__text")
+        .text("Gap to target");
+
+      const gap = Number(Math.abs(kpi_value - kpi_target).toFixed(2));
+      vis.append("text")
+        .attr("transform", "translate(" + _left + "," + (_top + 89) + ")")
+        .attr("class", "gap-to-target__number")
+        .text(isNaN(gap) ? '-' : gap + formatter);
+    }
   }
 
   createCardRow(metricName, metricValue) {
     const metricNameDiv = document.createElement('div');
     metricNameDiv.innerText = metricName;
-    //metricNameDiv.classList.add('cj-card__metric-name');
     metricNameDiv.className = 'cj-card__metric-name';
 
     const metricValueDiv = document.createElement('div');
     metricValueDiv.innerText = isNaN(parseFloat(metricValue)) ? '–' : metricValue;
-    //metricValueDiv.classList.add('cj-card__metric-value');
     metricValueDiv.className = 'cj-card__metric-value';
 
     const cardRow = document.createElement('div');
-    //cardRow.classList.add('cj-card__card-row');
     cardRow.className = 'cj-card__card-row';
     cardRow.appendChild(metricNameDiv);
     cardRow.appendChild(metricValueDiv);
 
     return cardRow;
-  }
-
-  createText(content, {x, y, fontSize, color = '#6E6E6E'}) {
-    const text = document.createElementNS(this.cj_namespace, "text");
-    text.setAttribute("x", x);
-    text.setAttribute("y", y);
-    text.setAttribute("alignment-baseline", 'middle');
-    text.setAttribute("text-anchor", 'middle');
-    text.setAttribute("font-size", fontSize);
-    text.setAttribute("font-weight", '300');
-    text.setAttribute("color", color);
-    text.textContent = content;
-
-    return text;
-  }
-
-  createSector(start_angle, end_angle, color) {
-    const path = document.createElementNS(this.cj_namespace, "path");
-    path.setAttribute('fill', color);
-    path.setAttribute('stroke', 'none');
-    path.setAttribute('fill-rule', 'evenodd');
-    path.setAttribute('d', this.getSectorDAttribute(start_angle, end_angle));
-
-    return path;
-  }
-
-  getSectorDAttribute(start_angle, end_angle) {
-    const opts = {
-      cx: this.cj_circleRadius,
-      cy: this.cj_circleRadius,
-      radius: this.cj_circleRadius,
-      thickness: this.cj_thickness,
-      start_angle, end_angle
-    };
-
-    const start = this.polarToCartesian(opts.cx, opts.cy, opts.radius, opts.end_angle);
-    const end = this.polarToCartesian(opts.cx, opts.cy, opts.radius, opts.start_angle);
-    const largeArcFlag = opts.end_angle - opts.start_angle <= 180 ? "0" : "1";
-
-    const cutout_radius = opts.radius - opts.thickness,
-      start2 = this.polarToCartesian(opts.cx, opts.cy, cutout_radius, opts.end_angle),
-      end2 = this.polarToCartesian(opts.cx, opts.cy, cutout_radius, opts.start_angle);
-
-    return [
-      "M", start.x, start.y,
-      "A", opts.radius, opts.radius, 0, largeArcFlag, 0, end.x, end.y,
-      "L", opts.cx, opts.cy,
-      "Z",
-
-      "M", start2.x, start2.y,
-      "A", cutout_radius, cutout_radius, 0, largeArcFlag, 0, end2.x, end2.y,
-      "L", opts.cx, opts.cy,
-      "Z"
-    ].join(" ");
-  }
-
-  polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-    const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
-
-    return {
-      x: centerX + (radius * Math.cos(angleInRadians)),
-      y: centerY + (radius * Math.sin(angleInRadians))
-    };
   }
 
   fixLongTitle(card) {
