@@ -28,6 +28,7 @@ import WordCloud from './wordCloud/cloud.js';
 import TrendChart from './trendChart/trendChart.js';
 import CustomerJourneyCards from './customerJourneyCards/customerJourneyCards.js';
 import SignificantChangesAlerts from './significantChangesAlerts/significantChangesAlerts.js';
+import SignificantChangesAlerts_studio from './significantChangesAlerts/SignificantChangesAlerts_studio.js';
 import JourneyWidget from "./frontPageWidget/journey-widget";
 import SignificantChangeWidget from "./frontPageWidget/sig-change-widget"
 import OSATWidget from "./frontPageWidget/osat-wiget"
@@ -48,6 +49,7 @@ ReportalBase.mixin(window.Reportal,{
   TrendChart,
   CustomerJourneyCards,
   SignificantChangesAlerts,
+  SignificantChangesAlerts_studio,
   JourneyWidget,
   SignificantChangeWidget,
   OSATWidget,
