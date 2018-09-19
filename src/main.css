@@ -1,5 +1,18 @@
 @import "./variables.css";
 
+/* studio styles */
+@import "studioIntegrationStyles/base.css";
+@import "studioIntegrationStyles/kpi-widget.css";
+@import "studioIntegrationStyles/widgets.css";
+@import "studioIntegrationStyles/button.module.css";
+@import "studioIntegrationStyles/filter-panel.css";
+@import "studioIntegrationStyles/dashboard-canvas.css";
+@import "studioIntegrationStyles/pdf-export.css";
+
+
+@import "studioIntegrationStyles/integra1.css";
+@import "studioIntegrationStyles/integra2.css";
+
 /*A set of layout classes and mixins that let you specify layout properties directly in markup.
 Guide to use classes and mixins are in the README.md of this boilerplate
 
@@ -77,7 +90,9 @@ The following imports of classes files are available:
 @import "frontPageWidget/impact-analysis-widget.css";
 
 @import "infoIcon/info-icon.css";
+@import "trendChart/trendChart.css";
 
 /** Styles for export */
 @import "export.css";
 
+@import "studioIntegrationStyles/reportal-styles.css";

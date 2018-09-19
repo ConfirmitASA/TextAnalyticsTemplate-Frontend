@@ -1,0 +1,35 @@
+@media print {
+	body.reportal-viewmode{
+		background-color: transparent;
+	}
+
+	.dashboard__main-wrapper.view-mode .dashboard__widget--small {
+		width: calc(50% - 1.429rem);
+	}
+
+	.dashboard__main-wrapper.view-mode .dashboard__widget {
+		border: 1px solid var(--divider-color);
+	}
+
+	table.Table thead td:first-child {
+		background-color:transparent;
+	}
+
+	.side-nav,
+	.comd-button__content___studio,
+	.comd-button___studio,
+	.text_headerorange,
+	.text_header,
+	.company-logo,
+	.dashboard__toolbar {
+		display:none;
+	}
+
+	.page-break {
+		page-break-after: always
+	}
+
+	.display-none {
+		display:none;
+	}
+}

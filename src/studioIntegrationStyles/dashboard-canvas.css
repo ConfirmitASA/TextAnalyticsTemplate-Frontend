@@ -1,0 +1,442 @@
+.dashboard {
+  position: relative
+}
+
+@media screen and (min-width: 600px) {
+  .dashboard {
+    position: static
+  }
+}
+
+.dashboard__header {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: justify;
+  justify-content: space-between
+}
+
+@media screen and (min-width: 600px) {
+  .dashboard__main-wrapper {
+    display: -ms-flexbox;
+    display: flex
+  }
+}
+
+@media screen and (min-width: 44rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible {
+    display: -ms-flexbox;
+    display: flex
+  }
+}
+
+.dashboard__main-wrapper.editing-mode.sidebar--visible {
+  display: -ms-flexbox;
+  display: flex
+}
+
+@media screen and (min-width: 600px) {
+  .dashboard__main {
+    -ms-flex: 1 1 100%;
+    flex: 1 1 100%;
+    min-width: 0;
+    width: auto
+  }
+}
+
+@media screen and (min-width: 44rem) {
+  .view-mode.sidebar--visible .dashboard__main {
+    -ms-flex: 1 1 100%;
+    flex: 1 1 100%;
+    min-width: 0;
+    width: auto
+  }
+}
+
+.editing-mode.sidebar--visible .dashboard__main {
+  -ms-flex: 1 1 100%;
+  flex: 1 1 100%;
+  min-width: 0;
+  width: auto
+}
+
+.client-branding {
+  -ms-flex: 0 1 50%;
+  flex: 0 1 50%;
+  padding: 1rem 0 1rem 1.5rem
+}
+
+@media screen and (min-width: 37rem) {
+  .client-branding {
+    -ms-flex: 0 0 161px;
+    flex: 0 0 161px;
+    margin-top: .5rem;
+    -ms-flex-order: 1;
+    order: 1;
+    padding-top: 0
+  }
+}
+
+.nav--user {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -ms-flex-order: 2;
+  order: 2;
+  padding: 1rem 1.5rem
+}
+
+.sec-nav-search__wrapper {
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  -ms-flex-order: 4;
+  order: 4
+}
+
+@media screen and (min-width: 37rem) {
+  .sec-nav-search__wrapper {
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+  }
+}
+
+.branding-user-nav__wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%
+}
+
+.nav--sec {
+  margin-right: auto;
+  padding: 0;
+  position: relative
+}
+
+.nav__list {
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0
+}
+
+.nav-list__item {
+  display: inline;
+  margin-bottom: 0;
+  padding-right: 15px;
+  width: auto
+}
+
+.nav-list__item:last-child {
+  padding-right: 0
+}
+
+.widgets__wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 1rem;
+  width: inherit
+}
+
+.dashboard__header {
+  background-color: #fff;
+  padding-top: 1rem
+}
+
+.dashboard__header--hide {
+  padding-top: 0
+}
+
+.sec-nav-search__wrapper {
+  padding-left: 1.714rem;
+  padding-right: 1.714rem
+}
+
+.branding-user-nav__wrapper, .sec-nav-search__wrapper {
+  border-bottom: .071rem solid rgba(18, 24, 33, .12)
+}
+
+.client-branding__logo-image {
+  max-height: 4rem
+}
+
+.sec-nav__wrapper {
+  width: 100%
+}
+
+.sec-nav__wrapper--with-search {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-right: 1.714rem
+}
+
+.nav-tabs__tab {
+  color: rgba(18, 24, 33, .87);
+  font: 400 1.143rem/1.25 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+  text-decoration: none;
+  text-transform: none
+}
+
+.nav-tabs__tab.active {
+  font-weight: 600
+}
+
+.nav-tabs__tab--hidden-in-view-mode {
+  color: rgba(18, 24, 33, .38)
+}
+
+.nav--user, .user-options {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.user-options .r2-icon:first-child {
+  margin-right: .5rem
+}
+
+.user-nav__item:not(:last-child) {
+  margin-right: 1.929rem
+}
+
+.user-options__avatar img {
+  border-radius: 50%;
+  height: auto;
+  width: 40px
+}
+
+.dashboard__toolbar {
+  height: 3.429rem;
+  -ms-flex-pack: justify;
+  justify-content: space-between
+}
+
+.dashboard__toolbar, .dashboard__toolbar-filter {
+  background-color: #f0f2f5;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: r2-to-relative-unit(4, rem) 0
+}
+
+.dashboard__toolbar-filter {
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: start;
+  justify-content: flex-start
+}
+
+.filter-toolbar__text {
+  -ms-flex-align: center;
+  color: rgba(18, 24, 33, .6);
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  margin-left: .5rem
+}
+
+.filter-toolbar__text, .toolbar__icon {
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.toolbar__icon {
+  -ms-flex-align: center;
+  background-color: var(--light-primary-color);
+  border-radius: 1.429rem;
+  cursor: pointer;
+  -ms-flex: 0 0 2.857rem;
+  flex: 0 0 2.857rem;
+  height: 2.857rem;
+  -ms-flex-pack: center;
+  justify-content: center;
+  transition: width 2s ease;
+  width: 2.857rem
+}
+
+.toolbar__icon:hover {
+  background-color: var(--light-primary-hover-color);
+  transition: background-color .5s ease
+}
+
+.toolbar__icon:hover .r2-icon {
+  fill: rgba(0, 0, 0, .7);
+  transition: fill .5s ease
+}
+
+.toolbar__icon--filter {
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-left: 1rem;
+  width: 2.857rem
+}
+
+.toolbar__icon--filter--open {
+  padding-right: .5rem;
+  transition: padding-right .5s ease
+}
+
+.toolbar__icon--filter--open .toolbar__icon--filter--chevron {
+  margin-right: .214rem;
+  opacity: .8;
+  transition: opacity .5s ease, margin-right .5s ease
+}
+
+.toolbar__icon--filter--closed {
+  padding-right: .857rem;
+  transition: padding-right .5s ease
+}
+
+.toolbar__icon--filter--closed .toolbar__icon--filter--chevron {
+  margin-right: 0;
+  opacity: 0;
+  transition: opacity .5s ease, margin-right .5s ease
+}
+
+.toolbar__icon--right:not(:first-child) {
+  margin-left: .357rem
+}
+
+.toolbar__icon--visible {
+  -ms-flex: 0 0 2.857rem;
+  flex: 0 0 2.857rem;
+  opacity: 1
+}
+
+.toolbar__icon--hidden, .toolbar__icon--visible {
+  transition: flex .5s ease, opacity .5s ease;
+  transition: flex .5s ease, opacity .5s ease, -ms-flex .5s ease
+}
+
+.toolbar__icon--hidden {
+  -ms-flex: 0;
+  flex: 0;
+  opacity: 0
+}
+
+.dashboard-toolbar-icons__wrapper {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-right: .857rem;
+  position: relative
+}
+
+.dashboard-toolbar-icons__wrapper .r2-icon:not(:first-child) {
+  margin-left: 1.5rem
+}
+
+.dashboard-toolbar-icons__wrapper .r2-icon.r2-icon-search {
+  margin-left: auto;
+  margin-right: auto
+}
+
+/*
+.editor__toolbar {
+  background-color: #fff;
+  border-bottom: .071rem solid rgba(18, 24, 33, .12);
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: .857rem 1.143rem .857rem 1.429rem
+}
+
+.editor-nodes-toggle, .editor__toolbar {
+  display: -ms-flexbox;
+  display: flex
+}
+
+.editor-nodes-toggle__item:first-child {
+  margin-right: .571rem
+}
+
+.editor-nodes-toggle__item {
+  border-radius: .214rem;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: rgba(18, 24, 33, .06);
+  display: -ms-flexbox;
+  display: flex
+}
+
+.editor-nodes-toggle__item--collapse .r2-icon {
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg)
+}
+
+.editor-nodes-toggle__icon--arrow-dropdown {
+  margin-left: .357rem;
+  margin-right: .357rem
+}
+
+.editor-panel-view {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.editor-panel-view__item:not(:first-child) {
+  margin-left: .857rem
+}
+
+.editor-panel-view__item .r2-icon {
+  height: 16px;
+  width: 16px
+}
+
+.create-application-pages.view-mode {
+  height: 100vh
+}
+*/
+
+.dashboard {
+  background-color: var(--background-color);
+  height: 100%;
+  margin: 0;
+  overflow: hidden
+}
+
+.dashboard.editing-mode {
+  overflow: visible
+}
+
+.dashboard.view-mode {
+  overflow: auto
+}
+
+.dashboard__footer--hidden {
+  display: none
+}
+
+.r2-dashboard-canvas__modals {
+  z-index: 100000
+}
+
+.r2-dashboard-canvas__modal {
+  height: 90%;
+  overflow: hidden
+}

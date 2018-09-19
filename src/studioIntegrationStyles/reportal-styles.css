@@ -1,0 +1,289 @@
+/* Global Font Style */
+body, td, input, a, select, textarea, div, span {
+  font-family: Source Sans Pro !important;
+}
+body {
+  color: #121821;
+}
+
+/* Logo Styles */
+.r2-icon-logo {
+  height: 24px;
+  width: 161px;
+}
+
+/* Widget Styles */
+/* Widget Title */
+.widget__title {
+  font: 600 1.8rem/1.36 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+}
+/* Widget Value */
+.co-st-r-widget-kpi .target__number * {
+  font-size: 2.786rem;
+  font-weight: 300;
+}
+/* Widget Text */
+.r2i-widget .small__text {
+  font: 400 1.6rem/1.38 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+  margin-bottom: .571rem;
+}
+
+/*  Button styles */
+.comd-button___studio, .comd-button__content___studio {
+
+}
+.comd-button--primary___studio,
+.comd-button--primary___studio  .comd-button__content___studio {
+
+}
+.comd-button___studio:hover,
+.comd-button___studio:hover .comd-button__content___studio {
+
+}
+.comd-button___studio:active,
+.comd-button___studio:active .comd-button__content___studio {
+
+}
+.comd-button--primary___studio:focus,
+.comd-button--primary___studio:hover,
+.comd-button--primary___studio:focus .comd-button__content___studio,
+.comd-button--primary___studio:hover .comd-button__content___studio {
+
+}
+
+/* Hierarchy Component Button */
+.dd-button-select {
+
+}
+.dd-button-select:active,
+.dd-button-select:hover {
+
+}
+
+/* Filter Panel Controls */
+.btn-base-single .btn-base-choice .btn-base-indicator {
+
+}
+.btn-base-single .btn-base-selected .btn-base-indicator {
+
+}
+.btn-base-multi .btn-base-choice .btn-base-indicator {
+
+}
+.btn-base-multi .btn-base-selected .btn-base-indicator {
+
+}
+
+/* Studio Colors */
+.r2i-blue-color {
+  color: var(--button-hover-color);
+}
+.r2i-light-blue-color {
+  color: var(--button-main-color);
+}
+.r2i-green-color {
+  color: #42bd41;
+}
+.r2i-orange-color {
+  color: #ffab00;
+}
+.r2i-dark-orange-color {
+  color: #ff6d00;
+}
+.r2i-dark-red-color {
+  color: #d40000;
+}
+.r2i-orange-bg, .r2i-orange-bg:hover, .r2i-orange-bg:focus {
+  background-color: #ffab28 !important;
+}
+.r2i-dark-orange-bg, .r2i-dark-orange-bg:hover, .r2i-dark-orange-bg:focus {
+  background-color: #ff6d00 !important;
+}
+.r2i-light-green-bg {
+  background-color: #81d853 !important;
+}
+.r2i-green-bg, .r2i-green-bg:hover, .r2i-green-bg:focus {
+  background-color: #42bd41 !important;
+}
+.r2i-yellow-bg {
+  background-color: #ffd62f !important;
+}
+.r2i-light-blue-bg {
+  background-color: #40c4fd !important;
+}
+.r2i-blue-bg, .r2i-blue-bg:hover, .r2i-blue-bg:focus   {
+  background-color: #00b0ff !important;
+}
+.r2i-dark-red-bg, .r2i-dark-red-bg:hover, .r2i-dark-red-bg:focus {
+  background-color: #d40000 !important;
+}
+.r2i-pink-bg {
+  background-color: #fa5263 !important;
+}
+
+/* Conditional Formatting */
+.r2i-cf:after, .cf_r2i-cf:after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+}
+.r2i-green-circle:after {
+  border-radius: 50%;
+  background: #23c813;
+}
+.r2i-yellow-circle:after {
+  border-radius: 50%;
+  background: #ffd600;
+}
+.r2i-red-circle:after {
+  border-radius: 50%;
+  background: #d40000;
+}
+.r2i-green-square:after {
+  background: #23c813;
+}
+.r2i-yellow-square:after {
+  background: #ffd600;
+}
+.r2i-red-square:after {
+  background: #d40000;
+}
+
+/**
+TA FIXES
+ */
+.layout-wrapper {
+  margin: 24px;
+  width: auto;
+  height: auto;
+  min-height: 1px;
+}
+
+.reportal-filterpanel {
+  width: 100%;
+  max-width: inherit;
+}
+
+.reportal-filterpanel .reportal-filterpanel-wrapper {
+  width: 100%;
+}
+
+.reportal-filterpanel .reportal-select>span {
+  width: 100%;
+}
+
+.reportal-filterpanel .reportal-select select,
+.reportal-filterpanel .reportal-select .dd-target-button,
+.reportal-filterpanel .reportal-datepicker select,
+.reportal-filterpanel .reportal-datepicker .dd-target-button,
+.reportal-filterpanel .reportal-dropdown select,
+.reportal-filterpanel .reportal-dropdown .dd-target-button {
+  width: 100%;
+}
+
+.reportal-filterpanel .reportal-select.reportal-dropdown>span:after, .reportal-filterpanel .reportal-datepicker.reportal-dropdown>span:after, .reportal-filterpanel .reportal-dropdown.reportal-dropdown>span:after {
+  right: 8px;
+}
+
+.reportal-datepicker>span>span> input {
+  width: 100% !important;
+}
+
+.reportal-datepicker>span>span>img {
+  right: 4px;
+  left: inherit;
+}
+
+.report-filters-horizontal {
+  padding: 16px 24px;
+}
+
+.filter-bar div {
+  height: 32px;
+  line-height: 32px;
+}
+.btn, button {
+  height: 32px;
+}
+
+.dashboard__toolbar {
+  height: initial;
+}
+
+.report-settings {
+  height: 32px;
+}
+
+.reportal-filterpanel .reportal-filterpanel-wrapper {
+  display: block;
+}
+
+.reportal-filterpanel .reportal-select, .reportal-filterpanel .reportal-datepicker, .reportal-filterpanel .reportal-dropdown {
+  overflow: hidden;
+}
+
+.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label {
+  white-space: nowrap;
+}
+
+.yui3-menu-horizontal ul > li.css-menu-selected > a, .yui3-menu-horizontal ul > li.css-menu-child-selected > a, .yui3-menu-horizontal ul > li.css-menu-topitem > a:hover, .yui3-menu-horizontal ul > li > a.yui3-menu-label-menuvisible:not(.css-menu-sublabel) {
+  background-color: transparent;
+}
+
+.yui3-menu-horizontal ul > li > a {
+  background-color: transparent;
+}
+
+.light-grey .vp-container {
+  top: 44px !important;
+}
+
+.r2i-widget.r2i-TA-x-small .co-st-r-widget-kpi {
+  min-height: 10.143rem;
+}
+
+.r2i-widget .co-st-r-widget-kpi {
+  padding-bottom: 60px;
+}
+
+
+/* IE11 Flex fixes */
+@media screen and (min-width: 40rem) {
+  .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
+    width: calc(50% - 1.429rem);
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
+    width: calc(33.3% - 1.429rem);
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
+    width: calc(25% - 1.429rem);
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+  }
+}
+
+@media screen and (min-width: 100rem) {
+  .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
+    width:  calc(20% - 1.429rem);
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+  }
+}
+
+.dashboard__main-wrapper.view-mode .r2i-TA-x-small {
+  min-width: 19.786rem;
+}

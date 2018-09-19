@@ -1,0 +1,263 @@
+.dashboard__main-wrapper.view-mode .dashboard__widget {
+  margin: .714rem;
+  min-width: 23.786rem;
+  width: 100%
+}
+
+@media screen and (min-width: 49rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--small {
+    -ms-flex: 0 1 calc(50% - 1.429rem);
+    flex: 0 1 calc(50% - 1.429rem);
+    margin-left: .714rem;
+    margin-right: .714rem
+  }
+}
+
+@media screen and (min-width: 74.214rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--small {
+    -ms-flex: 0 1 calc(33.3% - 1.429rem);
+    flex: 0 1 calc(33.3% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 99.429rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--small {
+    -ms-flex: 0 1 calc(25% - 1.429rem);
+    flex: 0 1 calc(25% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 126.071rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--small {
+    -ms-flex: 0 1 calc(20% - 1.429rem);
+    flex: 0 1 calc(20% - 1.429rem)
+  }
+}
+
+.dashboard__main-wrapper.view-mode .dashboard__widget--medium {
+  width: 100%
+}
+
+@media screen and (min-width: 49rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--medium {
+    -ms-flex: 0 1 calc(100% - 1.429rem);
+    flex: 0 1 calc(100% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 74.214rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--medium {
+    -ms-flex: 0 1 calc(66.6% - 1.429rem);
+    flex: 0 1 calc(66.6% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 99.429rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--medium {
+    -ms-flex: 0 1 calc(50% - 1.429rem);
+    flex: 0 1 calc(50% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 49rem) {
+  .dashboard__main-wrapper.view-mode .dashboard__widget--large {
+    -ms-flex: 0 1 calc(100% - 1.429rem);
+    flex: 0 1 calc(100% - 1.429rem)
+  }
+}
+
+.dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget {
+  -ms-flex: 0 1 calc(100% - 1.429rem);
+  flex: 0 1 calc(100% - 1.429rem)
+}
+
+@media screen and (min-width: 68.071rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--small {
+    -ms-flex: 0 1 calc(50% - 1.429rem);
+    flex: 0 1 calc(50% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 93.286rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--small {
+    -ms-flex: 0 1 calc(33.3% - 1.429rem);
+    flex: 0 1 calc(33.3% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 118.5rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--small {
+    -ms-flex: 0 1 calc(25% - 1.429rem);
+    flex: 0 1 calc(25% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 143.714rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--small {
+    -ms-flex: 0 1 calc(20% - 1.429rem);
+    flex: 0 1 calc(20% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 68.071rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--medium {
+    -ms-flex: 0 1 calc(100% - 1.429rem);
+    flex: 0 1 calc(100% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 93.286rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--medium {
+    -ms-flex: 0 1 calc(66% - 1.429rem);
+    flex: 0 1 calc(66% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 118.5rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--medium {
+    -ms-flex: 0 1 calc(50% - 1.429rem);
+    flex: 0 1 calc(50% - 1.429rem)
+  }
+}
+
+@media screen and (min-width: 68.071rem) {
+  .dashboard__main-wrapper.view-mode.sidebar--visible .dashboard__widget--large {
+    -ms-flex: 0 1 calc(100% - 1rem);
+    flex: 0 1 calc(100% - 1rem)
+  }
+}
+
+.dashboard__main-wrapper.editing-mode .dashboard__widget {
+  -ms-flex: 0 1 calc(25% - 1.429rem);
+  flex: 0 1 calc(25% - 1.429rem);
+  margin: .714rem;
+  min-width: 23.786rem
+}
+
+.dashboard__main-wrapper.editing-mode .dashboard__widget--medium {
+  -ms-flex: 0 1 calc(50% - 1.429rem);
+  flex: 0 1 calc(50% - 1.429rem)
+}
+
+.dashboard__main-wrapper.editing-mode .dashboard__widget--large {
+  -ms-flex: 0 1 calc(100% - 1.429rem);
+  flex: 0 1 calc(100% - 1.429rem)
+}
+
+.widget__body {
+  padding: 0 1.143rem 1.143rem
+}
+
+@media screen and (min-width: 29.571rem) {
+  .widget__body {
+    padding: 0 1.714rem 1.714rem
+  }
+}
+
+.widget__body--no-padding {
+  padding: 0
+}
+
+.widget__title {
+  padding: 1.143rem 2.857rem 1.143rem 1.143rem
+}
+
+@media screen and (min-width: 29.571rem) {
+  .widget__title {
+    padding: 1.143rem 3.143rem 1.143rem 1.714rem
+  }
+}
+
+.widget__header-menu-container {
+  right: 1.143rem;
+  top: 1.143rem
+}
+
+@media screen and (min-width: 29.571rem) {
+  .widget__header-menu-container {
+    right: .714rem
+  }
+}
+
+.dashboard__widget {
+  background-color: var(--widget-background-color);
+  border-radius: 3px;
+  box-shadow: 0 0 6px 0 var(--divider-color);
+  overflow: auto;
+  position: relative
+}
+
+.widget__header {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0
+}
+
+.widget__header-menu-container {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: absolute
+}
+
+.widget__header--no-padding .widget__header-menu-container {
+  right: 0;
+  top: 0
+}
+
+.widget__header--no-padding .widget__title {
+  padding-left: 0;
+  padding-top: 0
+}
+
+.widget__header--no-padding .r2-menu-list--widget-options {
+  right: .071rem;
+  top: .071rem
+}
+
+.widget__header--shadow {
+  box-shadow: 0 .286rem .571rem 0 var(--light-primary-hover-color)
+}
+
+.r2-menu-list--widget-options .r2-icon.r2-icon-star {
+  height: 1.071rem;
+  width: 1.071rem
+}
+
+.widget__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 600 1.286rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+  margin: 0
+}
+
+.widget__body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  min-height: 6rem
+}
+
+.widget__body--left {
+  -ms-flex-pack: start;
+  justify-content: flex-start
+}
+
+.widget__body--center {
+  -ms-flex-pack: center;
+  justify-content: center
+}
+
+.widget__body--no-scrolling {
+  overflow: hidden
+}
+
+.kpi-widget {
+  display: block;
+  margin: 1.5rem auto 1rem
+}

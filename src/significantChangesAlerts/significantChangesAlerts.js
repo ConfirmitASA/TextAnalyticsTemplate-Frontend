@@ -25,11 +25,7 @@ export default class SignificantChangesAlerts {
       cell.parentElement.firstElementChild.innerText.split(this.separator).forEach(categoryLevel => {
         categoryText += categoryLevel.trim() + '<br>';
       });
-      const changeTypesArray = [{
-        class: 'increasingC',
-        text: 'increased in Volume',
-        r2class: 'target__number r2i-green-color'
-      },
+      const changeTypesArray = [{class: 'increasingC', text: 'increased in Volume', r2class: 'target__number r2i-green-color'},
         {class: 'increasingS', text: 'increased in Sentiment', r2class: 'target__number r2i-green-color'},
         {class: 'decreasingC', text: 'decreased in Volume', r2class: 'target__number r2i-dark-red-color'},
         {class: 'decreasingS', text: 'decreased in Sentiment', r2class: 'target__number r2i-dark-red-color'}];

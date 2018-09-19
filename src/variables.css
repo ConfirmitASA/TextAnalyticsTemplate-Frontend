@@ -1,15 +1,17 @@
 /* Config to define variables */
 :root {
   /* theme colors defined*/
- /* --dark-primary-color:       #3f3f3f;*/
+  /*--dark-primary-color:       #444445;*/
   --background-color:    #e1e4e9;
   --header-background-color: #ffffff;
+  --widget-background-color: #ffffff;
   --header-text-color: #3F454C;
   --light-primary-color:      #f0f2f5;
+  --light-primary-hover-color:      #e3e5e9;
   --button-text-color:       #FFFFFF;
-  --button-hover-color:        #0087c4;
-  --button-main-color:     #30b8f1;
- /* --light-accent-color:       #e6f5fc; */
+  --button-hover-color:        #00b0ff;
+  --button-main-color:     #40c4ff;
+  /*--light-accent-color:       #e6f5fc; */
   --table-column-color: #f6f6f6;
   --primary-text-color:       #3F454C;
   --secondary-text-color:     #737B8E;

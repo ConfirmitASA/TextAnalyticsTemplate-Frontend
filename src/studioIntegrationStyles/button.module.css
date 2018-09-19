@@ -1,0 +1,315 @@
+.comd-button___studio {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    touch-action: manipulation;
+    user-select: none;
+    padding: .643rem 1.571rem;
+    position: relative;
+    display: inline-block
+}
+
+.comd-button___studio::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+.comd-button___studio:disabled {
+    color: var(--disabled-text-color);
+    pointer-events: none;
+    cursor: default
+}
+
+/*
+.comd-button--secondary___studio {
+    color: var(--button-hover-color);
+    font: 600 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: background-color .3s;
+    background-color: transparent;
+    position: relative
+}
+
+.comd-button--secondary___studio:focus, .comd-button--secondary___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    background-color: rgba(18, 24, 33, .06)
+}
+
+.comd-button--secondary___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: rgba(9, 12, 17, .06)
+}
+
+.comd-button--secondary___studio:active:before {
+    outline: none;
+    padding-top: 140%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 140%
+}
+*/
+
+.comd-button--primary___studio {
+    font: 600 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+    text-transform: uppercase;
+    border-radius: .143rem;
+    color: #fff;
+    display: inline-block;
+    overflow: hidden;
+    transition: background-color .3s;
+    /*background-color: #42bd41;*/
+    position: relative
+}
+
+.comd-button--primary___studio:focus, .comd-button--primary___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    /*background-color: #3baa3a*/
+}
+
+.comd-button--primary___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: #359734
+}
+
+.comd-button--primary___studio:active:before {
+    outline: none;
+    padding-top: 140%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 140%
+}
+
+.comd-button--primary___studio:disabled {
+    background-color: rgba(18, 24, 33, .06);
+    box-shadow: none
+}
+
+/*
+.comd-button--primary-invert___studio {
+    font: 600 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: background-color .3s;
+    background-color: transparent;
+    position: relative
+}
+
+.comd-button--primary-invert___studio:focus, .comd-button--primary-invert___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    background-color: rgba(18, 24, 33, .06)
+}
+
+.comd-button--primary-invert___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: rgba(9, 12, 17, .06)
+}
+
+.comd-button--primary-invert___studio:active:before {
+    outline: none;
+    padding-top: 140%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 140%
+}
+
+.comd-button--success___studio {
+    font: 600 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+    text-transform: uppercase;
+    color: #42bd41;
+    overflow: hidden;
+    transition: background-color .3s;
+    background-color: transparent;
+    position: relative
+}
+
+.comd-button--success___studio:focus, .comd-button--success___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    background-color: rgba(18, 24, 33, .06)
+}
+
+.comd-button--success___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: rgba(9, 12, 17, .06)
+}
+
+.comd-button--success___studio:active:before {
+    outline: none;
+    padding-top: 140%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 140%
+}
+
+.comd-button--danger___studio {
+    font: 600 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+    text-transform: uppercase;
+    border-radius: .143rem;
+    color: #fff;
+    display: inline-block;
+    overflow: hidden;
+    transition: background-color .3s;
+    background-color: #f50057;
+    position: relative
+}
+
+.comd-button--danger___studio:focus, .comd-button--danger___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    background-color: #dc004e
+}
+
+.comd-button--danger___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: #c20045
+}
+
+.comd-button--danger___studio:active:before {
+    outline: none;
+    padding-top: 140%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 140%
+}
+
+.comd-button--danger___studio:disabled {
+    background-color: rgba(18, 24, 33, .06);
+    box-shadow: none
+}
+
+
+.comd-button--link___studio {
+    color: var(--button-hover-color);
+    overflow: hidden;
+    transition: background-color .3s;
+    background-color: transparent;
+    position: relative
+}
+
+.comd-button--link___studio:focus, .comd-button--link___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    background-color: rgba(18, 24, 33, .06)
+}
+
+.comd-button--link___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: rgba(9, 12, 17, .06)
+}
+
+.comd-button--link___studio:active:before {
+    outline: none;
+    padding-top: 140%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 140%
+}
+
+.comd-button--small___studio {
+    padding: .643rem .571rem
+}
+
+.comd-button--large___studio {
+    padding: .643rem 4rem
+}
+
+*/
+
+.comd-button--icon___studio {
+    position: relative;
+    overflow: hidden;
+    transition: background-color .3s;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    width: 3.429rem;
+    height: 3.429rem;
+    line-height: 3.429rem;
+    padding: 0
+}
+
+.comd-button--icon___studio:before {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    left: 50%;
+    padding-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background-color: rgba(9, 12, 17, .06)
+}
+
+.comd-button--icon___studio:active:before {
+    outline: none;
+    padding-top: 100%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+    width: 100%
+}
+
+.comd-button--icon___studio:focus, .comd-button--icon___studio:hover {
+    border-radius: .143rem;
+    outline: none;
+    background-color: rgba(18, 24, 33, .06)
+}
+
+.comd-button--icon___studio:active, .comd-button--icon___studio:focus, .comd-button--icon___studio:hover {
+    border-radius: 50%
+}
+
+.comd-button__content___studio {
+    position: relative
+}

@@ -1,6 +1,6 @@
 /*Viewer presentation styles*/
 .vp-collapsible{
-  border-radius: var(--border-radius,3px);
+  border-radius: 8px;
   text-align:left;
   z-index: 1;
   position: relative;
@@ -8,9 +8,11 @@
   & .vp-header{
       border-radius: var(--border-radius,3px) var(--border-radius,3px) 0 0 !important;
       background-image: none !important;
-      background-color:#ededed !importnat;
+      /*background-color:#ededed !importnat;*/
+      padding: 4px;
+      transition: all .3s;
 
-      &:hover{background:#ededed !important;}
+      &:hover{background:var(--light-primary-hover-color) !important;}
       &>h3,
       &>.vp-toggle,
       &>.vp-menu-addpresentation,
@@ -21,7 +23,7 @@
 
       &>h3{
         width:auto !important;
-        padding-right:12px;
+        /*padding-right:12px;*/
       }
 
       & .vp-toggle{
@@ -69,4 +71,8 @@
   & .vp-container{
      border-radius: 0 0  var(--border-radius,3px) var(--border-radius,3px) !important;
   }
+}
+
+div.vp-item-menu .yui3-menuitem-content {
+  font-size: 12px !important;
 }

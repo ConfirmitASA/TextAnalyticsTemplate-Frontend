@@ -3,12 +3,12 @@
 }
 
 .ta-impact-analysis-widget__item--issues {
-  color: var(--issues,#ee627d);
+  color: var(--issues);
   cursor: pointer;
 }
 
 .ta-impact-analysis-widget__item--strength {
-  color:  var(--strength,#7cc700);
+  color:  var(--strength);
   cursor: pointer;
 }
 
