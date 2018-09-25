@@ -38,11 +38,13 @@ class AggregatedTable{
       //initialize buttons that will toggle between flat and tree view in the original table
       let buttonHost = this.fixedHeader.clonedHeader.querySelector('.reportal-hierarchical-header');
       [].slice.call(buttonHost.children).forEach((item)=>{item.parentNode.removeChild(item)}); //clears hierarchy toggle buttons cloned from original header
-      this.addToggleButton(buttonHost,'hierarchy-tree',false,'Tree View');
-      this.addToggleButton(buttonHost,'hierarchy-flat',true,'Flat View');
-
+      let buttonWrapper = document.createElement('div');
+      buttonWrapper.style.display = 'inline-block';
+      buttonHost.appendChild(buttonWrapper);
+      this.addToggleButton(buttonWrapper,'hierarchy-tree',false,'Tree View');
+      this.addToggleButton(buttonWrapper,'hierarchy-flat',true,'Flat View');
       if(this.hierarchy.search.enabled){
-        this.addSearchBox(buttonHost);
+        this.addSearchBox(buttonWrapper);
       }
     }
     if(sorting){
@@ -171,7 +173,8 @@ class AggregatedTable{
       if(flat==this.hierarchy.flat){return;} else {
         this.hierarchy.flat = flat;
         // we want to get all hier. toggle buttons in both cloned header and the table itself
-        let hierColumnButtons = this.hierarchy.source.parentNode.querySelectorAll('.reportal-hierarchical-header>.btn:not(.hierarchy-search)');
+        let hierColumnButtons = this.hierarchy.source.parentNode.querySelectorAll('.reportal-hierarchical-header>div>.btn:not(.hierarchy-search)');
+
         if(hierColumnButtons){[].slice.call(hierColumnButtons).forEach((item)=>{
           //By default one button is already `.active`, we need just to swap the `.active` class on them
           !item.classList.contains('active')?item.classList.add('active'):item.classList.remove('active');
