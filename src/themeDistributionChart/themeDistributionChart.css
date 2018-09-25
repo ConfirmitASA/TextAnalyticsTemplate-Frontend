@@ -1,0 +1,18 @@
+#theme-distribution .aggregatedTableContainer > table > thead > tr:last-child {
+  display: none;
+}
+
+#theme-distribution .aggregatedTableContainer > table > tbody > tr > td:nth-child(2n+3) {
+  display: none;
+}
+
+#drilldown-button-container {
+  display: none;
+}
+
+#theme-distribution-chart {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}

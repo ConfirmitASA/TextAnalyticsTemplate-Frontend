@@ -34,6 +34,8 @@ import OSATWidget from "./frontPageWidget/osat-wiget"
 import ImpactAnalysisWidget from './frontPageWidget/impact-analysis-widget';
 import InfoIcon from "./infoIcon/info-icon";
 
+import ThemeDistributionChart from "./themeDistributionChart/themeDistributionChart";
+
 
 window.Reportal = window.Reportal || {};
 
@@ -52,5 +54,6 @@ ReportalBase.mixin(window.Reportal,{
   SignificantChangeWidget,
   OSATWidget,
   ImpactAnalysisWidget,
-  InfoIcon
+  InfoIcon,
+  ThemeDistributionChart
 });
