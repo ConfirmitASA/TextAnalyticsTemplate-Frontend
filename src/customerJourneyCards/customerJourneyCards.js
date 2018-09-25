@@ -64,8 +64,8 @@ export default class CustomerJourneyCards {
     this.cj_circleRadius = 55;
     this.cj_thickness = 5;
 
-    this.canvasWidth = 169;
-    this.canvasHeight = 154;
+    this.canvasWidth = 145;
+    this.canvasHeight = 130;
 
     this.translations = translations;
 
@@ -130,7 +130,7 @@ export default class CustomerJourneyCards {
     const cj_table_firstRow = this.cj_table.tHead.children[0];
 
     const card = document.createElement('article');
-    card.className = 'dashboard__widget dashboard__widget--small ta-cj-card';
+    card.className = 'dashboard__widget dashboard__widget--small r2i-TA-x-small ta-cj-card';
 
     const cardHeader = this.createCardHeader(row);
     card.appendChild(cardHeader);
@@ -206,8 +206,8 @@ export default class CustomerJourneyCards {
     const kpi = kpi_value;
     const target = kpi_target;
 
-    const radiusOuter = 82;
-    const radiusInner = 74;
+    const radiusOuter = 70;
+    const radiusInner = 62;
 
     const arcLength = 300 * pi / 180;
     const startAngle = 0 - arcLength / 2;
@@ -281,12 +281,12 @@ export default class CustomerJourneyCards {
     const vis = container.append("g");
 
     vis.append("text")
-      .attr("transform", "translate(" + _left + "," + _top + ")")
+      .attr("transform", "translate(" + _left + "," + (_top + 20) + ")")
       .attr("class", "target__text")
       .text(kpi_name);
 
     vis.append("text")
-      .attr("transform", "translate(" + _left + "," + (_top + 42) + ")")
+      .attr("transform", "translate(" + _left + "," + (_top + 62) + ")")
       .attr("class", "target__number")
       .text(isNaN(kpi_value) ? '-' : kpi_value + formatter);
 

@@ -12,14 +12,14 @@
 
 .cj-card__metric-name {
   font: 400 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
-  line-height: 40px;
+  line-height: 32px;
   margin-right: 4px;
 }
 
 .cj-card__metric-value {
   text-align: right;
   font: 400 1.071rem/1.26 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
-  line-height: 40px;
+  line-height: 32px;
   margin-left: 4px;
 }
 

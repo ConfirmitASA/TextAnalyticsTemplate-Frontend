@@ -3,7 +3,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-top: 1.714rem;
+  /*margin-top: 1.714rem;*/
   min-height: 20.143rem;
   width: 100%
 }
