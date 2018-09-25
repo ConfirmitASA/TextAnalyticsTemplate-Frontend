@@ -3,10 +3,6 @@
   height: 500px;
 }
 
-.tag:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
 
 .select2-container--default .select2-selection--multiple {
   border: 1px solid var(--divider-color) !important;
