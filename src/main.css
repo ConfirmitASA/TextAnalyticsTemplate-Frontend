@@ -93,6 +93,7 @@ The following imports of classes files are available:
 @import "trendChart/trendChart.css";
 
 @import "themeDistributionChart/themeDistributionChart.css";
+@import "respondentNumberWidget/respondentNumberWidget.css";
 
 /** Styles for export */
 @import "export.css";

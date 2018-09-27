@@ -1,0 +1,16 @@
+#respondent-number-widget {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ta-respondent-number__body {
+  min-height: inherit;
+}
+
+.ta-respondent-number__content {
+  display: flex
+}
+
+.ta-respondent-number__icon {
+  margin-right: 5%;
+}

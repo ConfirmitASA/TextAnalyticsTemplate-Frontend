@@ -35,6 +35,7 @@ import ImpactAnalysisWidget from './frontPageWidget/impact-analysis-widget';
 import InfoIcon from "./infoIcon/info-icon";
 
 import ThemeDistributionChart from "./themeDistributionChart/themeDistributionChart";
+import RespondentNumberWidget from "./respondentNumberWidget/respondentNumberWidget";
 
 
 window.Reportal = window.Reportal || {};
@@ -55,5 +56,6 @@ ReportalBase.mixin(window.Reportal,{
   OSATWidget,
   ImpactAnalysisWidget,
   InfoIcon,
-  ThemeDistributionChart
+  ThemeDistributionChart,
+  RespondentNumberWidget
 });
