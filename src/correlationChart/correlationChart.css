@@ -37,6 +37,23 @@
     height: 32px;
   }
 
+.reportal-table>tbody.correlation-list>tr>td:nth-child(1) {
+  min-width: 40px;
+}
+
+.reportal-table>tbody.correlation-list>tr>td:nth-child(2) {
+  min-width: 300px;
+  max-width: 0;
+}
+
+.reportal-table>tbody.correlation-list>tr>td:nth-child(2)>a {
+  white-space: pre-wrap;
+}
+
+.reportal-table>tbody.correlation-list>tr>td:nth-child(3) {
+  min-width: 100px;
+}
+
 .correlation-list{
   &>tr>td:first-child{
     text-align: center;
