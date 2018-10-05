@@ -206,6 +206,11 @@ TA FIXES
   height: 32px;
   line-height: 32px;
 }
+
+.filter-bar div, .filter-bar span, .filter-bar .btn {
+  margin-top: 5px;
+}
+
 .btn, button {
   height: 32px;
 }
