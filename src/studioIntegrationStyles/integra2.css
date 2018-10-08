@@ -574,6 +574,7 @@ html{
 }
 .r2i-filter-panel-container {
     padding: 1.143rem;
+    padding-bottom: 0;
 }
 .r2-icon--size-10px{
     height:.714rem;

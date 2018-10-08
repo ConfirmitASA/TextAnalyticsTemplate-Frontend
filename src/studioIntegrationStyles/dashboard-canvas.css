@@ -440,3 +440,9 @@
   height: 90%;
   overflow: hidden
 }
+
+@media screen and (min-width: 828px) {
+  .dashboard__main-wrapper_with-filter-panel {
+    min-height: calc(100% - 97px);
+  }
+}
