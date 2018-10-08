@@ -230,6 +230,10 @@
   width:100%;
 }
 
+.aggregatedTableWrapper {
+  margin-right: 10px;
+}
+
 
 /*Hierarchycal styles*/
 /*coloring for even columns from end of table to compensate for uneven td count because of block headers*/
