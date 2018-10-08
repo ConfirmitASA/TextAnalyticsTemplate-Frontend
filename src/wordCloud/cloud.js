@@ -1,25 +1,109 @@
 import cloud from 'd3-cloud';
 import * as d3 from 'd3';
-import {takeDataFromTable, takeExceptionsFromSelect} from './data';
 
 const fontSize = {
-    min: 13,
-    max: 40
+  min: 13,
+  max: 40
 };
 
-
 class WordCloud {
-  constructor({elementFromId, elementToId, exceptionsFromId, countId, sentimentId, clickFunc, colorConfig}) {
-    let data = takeDataFromTable({
+  constructor({elementFromId, elementToId, exceptionsFromId, countId, sentimentId, clickFunc, colorConfig, translations}) {
+    this.data = this.takeDataFromTable({
       elementId: elementFromId,
       countId,
       sentimentId
     });
+    this.elementFromId = elementFromId;
+    this.elementToId = elementToId;
+    this.exceptionsFromId = exceptionsFromId;
+    this.countId = countId;
+    this.sentimentId = sentimentId;
+    this.clickFunc = clickFunc;
+    this.colorConfig = colorConfig;
 
-    let exceptions = takeExceptionsFromSelect({
-      elementId: exceptionsFromId
+    this.takeDataFromTable = this.takeDataFromTable.bind(this);
+    this.takeExceptionsFromSelect = this.takeExceptionsFromSelect.bind(this);
+    this.setupWordCloud = this.setupWordCloud.bind(this);
+
+    if (this.data.length > 0) {
+      this.setupWordCloud();
+    } else {
+      const container = document.getElementById(elementToId);
+      container.innerHTML = `<label class="no-data-label">${translations['No data to display']}</label>`;
+      container.style.height = '';
+      container.style.marginBottom = '16px';
+      container.style.marginLeft = '8px';
+      container.style.height = 'inherit';
+    }
+  }
+
+  takeDataFromTable({elementId, countId, sentimentId}) {
+    let data = [];
+
+    let maxCount = -1;
+
+    let element = document.querySelector(`#${elementId} table`);
+    let tableBody = element.children[1];
+
+    for (let i = 0; i < tableBody.children.length; i++) {
+      let row = tableBody.children[i]; //row = tr
+      let element = {};
+
+      element.text = row.children[0].innerText;
+
+      element.count = parseInt(row.children[countId].innerText);
+      if (sentimentId !== undefined) {
+        element.sentiment = parseFloat(row.children[sentimentId].innerText);
+      }
+
+      //if row doesn't have any data
+      if (isNaN(element.count) || sentimentId !== undefined && isNaN(element.sentiment) || element.count === 0) {
+        continue;
+      }
+
+      if (maxCount < element.count) {
+        maxCount = element.count;
+      }
+
+      data.push(element);
+    }
+
+    data.forEach(element => {
+      element.ratio = element.count / maxCount;
+      element.text = element.text[0].toUpperCase() + element.text.slice(1).toLowerCase();
     });
-    data = data.filter(item => exceptions.indexOf(item.text.toUpperCase()) < 0);
+
+    return data;
+  };
+
+  takeExceptionsFromSelect({elementId}) {
+    const select = document.querySelector(`#${elementId} > select`);
+
+    if(!select) {
+      return [];
+    }
+
+    const selectedOptions = Array.from(select.children).filter(item => item.selected);
+    return selectedOptions.map(item => item.innerText);
+  };
+
+  setupWordCloud() {
+    let exceptions = this.takeExceptionsFromSelect({
+      elementId: this.exceptionsFromId
+    });
+    this.data = this.data.filter(item => exceptions.indexOf(item.text.toUpperCase()) < 0);
+    const {
+      elementFromId,
+      elementToId,
+      exceptionsFromId,
+      countId,
+      sentimentId,
+      clickFunc,
+      colorConfig,
+      data,
+      takeDataFromTable,
+      takeExceptionsFromSelect
+    } = this;
 
     let fill = d3.scaleOrdinal(d3.schemeCategory10);
     let size = d3.scaleLinear()
@@ -41,7 +125,8 @@ class WordCloud {
       let newExceptions = takeExceptionsFromSelect({
         elementId: exceptionsFromId
       });
-      data = newData.filter(item => newExceptions.indexOf(item.text.toUpperCase()) < 0);
+      this.data = newData.filter(item => newExceptions.indexOf(item.text.toUpperCase()) < 0);
+      const data = this.data;
 
       layout.stop().words([]).start();
       layout.stop().words(data).start();
