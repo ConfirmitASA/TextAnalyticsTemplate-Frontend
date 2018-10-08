@@ -134,8 +134,8 @@ export default class TrendChart {
                     break;
                 }
 
-                datePickerFrom.value = fromDate.toLocaleDateString().replace(/[^ -~]/g,'');
-                datePickerTo.value = toDate.toLocaleDateString().replace(/[^ -~]/g,'');
+                datePickerFrom.value = fromDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
+                datePickerTo.value = toDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
 
                 const selectValue = this.drilldownSelect
                   .querySelectorAll('option')[event.point.series.index + 1]

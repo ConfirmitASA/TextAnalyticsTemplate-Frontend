@@ -200,8 +200,8 @@ export default class ThemeDistributionChart {
                     break;
                 }
 
-                datePickerFrom.value = fromDate.toLocaleDateString();
-                datePickerTo.value = toDate.toLocaleDateString();
+                datePickerFrom.value = fromDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
+                datePickerTo.value = toDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
 
                 this.drilldownButton.click();
               }
