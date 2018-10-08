@@ -109,7 +109,7 @@ export default class RespondentNumberWidget {
 
     const numberContainer = document.createElement('div');
     numberContainer.className = 'target__number';
-    numberContainer.innerText = this.tilesInfo[key].number;
+    numberContainer.innerText = this.tilesInfo[key].number === "" ? 0 : this.tilesInfo[key].number;
 
     mainContent.appendChild(svgContainer);
     mainContent.appendChild(numberContainer);
