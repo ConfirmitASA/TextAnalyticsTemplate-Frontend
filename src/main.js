@@ -10,7 +10,22 @@ ArrayFrom();
 
 import CustomAdminMenu from './adminMenu/adminMenu';
 
+function fixAnimation() {
+  var originalDoPostBack = window.WebForm_DoPostBackWithOptions;
+
+  window.WebForm_DoPostBackWithOptions = function () {
+    if (!window.event)
+      window.event = {};
+
+
+    var results = originalDoPostBack.apply(this, arguments);
+    viewmode.showWaitIf();
+    return results;
+  };
+}
+
 window.addEventListener('load', function() {
+  fixAnimation();
   const customMenu = new CustomAdminMenu();
 });
 
