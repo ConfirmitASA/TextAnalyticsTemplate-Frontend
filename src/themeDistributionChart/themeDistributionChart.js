@@ -56,7 +56,15 @@ export default class ThemeDistributionChart {
     headers.forEach((header) => {
       header.colSpan = 1;
     });
-    window.dispatchEvent(new Event('resize'));
+
+    let event;
+    if(typeof(Event) === 'function') {
+      event = new Event('resize');
+    } else {
+      event = document.createEvent('Event');
+      event.initEvent('resize', true, true);
+    }
+    window.dispatchEvent(event);
   }
 
   findCurrentRow(rows) {
