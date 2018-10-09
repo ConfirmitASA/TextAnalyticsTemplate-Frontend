@@ -7,9 +7,17 @@
   cursor: pointer;
 }
 
+.ta-impact-analysis-widget__item--issues:hover {
+  text-decoration: underline;
+}
+
 .ta-impact-analysis-widget__item--strength {
   color:  var(--strength);
   cursor: pointer;
+}
+
+.ta-impact-analysis-widget__item--strength:hover {
+  text-decoration: underline;
 }
 
 .ta-impact-analysis-widget .co-st-r-widget-kpi .target__number {
