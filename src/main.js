@@ -9,6 +9,7 @@ import ArrayFrom from './polyfills/array-from';
 ArrayFrom();
 
 import CustomAdminMenu from './adminMenu/adminMenu';
+import FilterPanel from './filterPanel/filterPanel';
 
 function fixAnimation() {
   var originalDoPostBack = window.WebForm_DoPostBackWithOptions;
@@ -27,6 +28,7 @@ function fixAnimation() {
 window.addEventListener('load', function() {
   fixAnimation();
   const customMenu = new CustomAdminMenu();
+  const filterPanel = new FilterPanel();
 });
 
 import FixedHeader from './aggregatedTable/FixedHeader.js';
