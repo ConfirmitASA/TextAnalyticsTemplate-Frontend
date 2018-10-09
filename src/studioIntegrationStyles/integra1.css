@@ -965,6 +965,13 @@ html, body {
   align-self: center;
   padding: 0 !important;
   min-height: 48px;
+  align-items: center;
+}
+
+.vp-inner-item-div:after {
+  content:'';
+  min-height:inherit;
+  font-size:0;
 }
 
 .vp-drag-handle,
