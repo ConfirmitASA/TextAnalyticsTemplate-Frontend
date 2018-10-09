@@ -213,6 +213,7 @@ TA FIXES
 .report-filters-horizontal {
   position: absolute;
   right: 5px;
+  top: 0;
   padding: 0;
   padding-top: 15px;
 }
@@ -232,6 +233,7 @@ TA FIXES
 
 .dashboard__toolbar {
   height: initial;
+  position: relative;
 }
 
 .report-settings {
