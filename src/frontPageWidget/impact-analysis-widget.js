@@ -1,6 +1,7 @@
 export default class ImpactAnalysisWidget {
-  constructor({tableContainerId, cardContainerId, translations, areaId}) {
+  constructor({tableContainerId, drilldownId, cardContainerId, translations, areaId}) {
     this.table = document.getElementById(tableContainerId).querySelector('table');
+    this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
     this.cardContainer = document.getElementById(cardContainerId);
 
     this.area = {
@@ -153,10 +154,10 @@ export default class ImpactAnalysisWidget {
 
 
   createButtons(card) {
-    let button = document.createElement('div');
+    let button = document.createElement('button');
     button.className = "comd-button___studio";
     button.innerHTML = this.area.buttonText;
-    // button.onclick = () => this.drilldownButton.click();
+    button.onclick = () => this.drilldownButton.click();
 
     let buttonsGroup = document.createElement('div');
     buttonsGroup.className = 'r2i-buttons-group-right';
