@@ -170,6 +170,7 @@ TA FIXES
 
 .reportal-filterpanel .reportal-filterpanel-wrapper {
   width: 100%;
+  white-space: nowrap;
 }
 
 .reportal-filterpanel .reportal-select>span {
