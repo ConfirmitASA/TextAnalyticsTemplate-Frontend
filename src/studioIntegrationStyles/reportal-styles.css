@@ -306,3 +306,60 @@ TA FIXES
 .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
   min-width: 19.786rem;
 }
+
+/* Filter bar fixes in IE*/
+.report-filters-horizontal {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.vp-menu-item.vp-menu-addpresentation {
+  background-position-y: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.vp-show-export {
+  background-position-y: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.vp-item-menu {
+  min-width: inherit !important;
+}
+
+.toolbar__icon {
+  max-width: 2.857rem;
+}
+
+@keyframes animateSidebarDesktopShowFixed {
+  0% {
+    width: 0
+  }
+  to {
+    width: 28.571rem
+  }
+}
+
+@keyframes animateSidebarDesktopHideFixed {
+  0% {
+    width: 28.571rem
+  }
+  to {
+    width: 0
+  }
+}
+
+
+@media screen and (min-width: 600px) {
+  .dashboard__sidebar {
+    animation: animateSidebarDesktopShowFixed .5s ease;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .dashboard__sidebar--hide {
+    animation: animateSidebarDesktopHideFixed .5s ease
+  }
+}
