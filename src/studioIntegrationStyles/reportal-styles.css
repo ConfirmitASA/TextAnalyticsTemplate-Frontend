@@ -179,7 +179,7 @@ TA FIXES
 /* Filter panel breakline */
 .reportal-filterpanel .reportal-select:nth-child(5) {
   padding-top: 8px;
-  border-top: 1px solid #dedede;
+  border-top: 2px solid var(--button-main-color);
   margin-top: 16px;
 }
 
