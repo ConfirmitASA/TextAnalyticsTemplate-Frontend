@@ -176,6 +176,17 @@ TA FIXES
   width: 100%;
 }
 
+/* Filter panel breakline */
+.reportal-filterpanel .reportal-select:nth-child(5) {
+  padding-top: 8px;
+  border-top: 1px solid #dedede;
+  margin-top: 16px;
+}
+
+.reportal-select>span {
+  border-radius: 3px;
+}
+
 .reportal-filterpanel .reportal-select select,
 .reportal-filterpanel .reportal-select .dd-target-button,
 .reportal-filterpanel .reportal-datepicker select,
