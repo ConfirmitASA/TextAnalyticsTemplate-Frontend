@@ -1,5 +1,5 @@
 export default class OSATWidget {
-  constructor({tableContainerId, cardContainerId, drilldownId, translations, sentimentConfig = [
+  constructor({tableContainerId, cardContainerId, drilldownId, translations, period, sentimentConfig = [
     { sentiment: "positive", range: {min: 2, max: 5} },
     { sentiment: "neutral", range: {min: -1, max: 1} },
     { sentiment: "negative", range: {min: -5, max: -2} }
@@ -8,7 +8,9 @@ export default class OSATWidget {
     this.table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
+    this.period = period;
     this.translations = translations;
+    this.period = period;
     this.init();
   }
 
@@ -94,10 +96,10 @@ export default class OSATWidget {
     prevColumn.className = 'ta-osat-widget__previous-period';
     const prevTitle = document.createElement('div');
     prevTitle.className = 'ta-osat-widget__previous-title';
-    prevTitle.innerText = this.translations['osat widget previous period'];
+    prevTitle.innerText = this.translations['osat widget previous period'] + ' ' + this.translations[this.period];
     const prevValue = document.createElement('div');
     prevValue.className = 'ta-osat-widget__previous-value';
-    prevValue.innerText = this.previousValue.innerText;
+    prevValue.innerText = this.previousValue.innerText.trim() === "" ? "-" : this.previousValue.innerText;
 
     const prevValueNumber = parseFloat(this.previousValue.innerText);
 
@@ -117,10 +119,10 @@ export default class OSATWidget {
     currentColumn.className = 'ta-osat-widget__current-period';
     const currentTitle = document.createElement('div');
     currentTitle.className = 'ta-osat-widget__current-title';
-    currentTitle.innerText = this.translations['osat widget current period'];
+    currentTitle.innerText = this.translations['osat widget current period'] + ' ' + this.translations[this.period];
     const currentValue = document.createElement('div');
     currentValue.className = 'ta-osat-widget__current-value';
-    currentValue.innerText = this.currentValue.innerText;
+    currentValue.innerText = this.currentValue.innerText.trim() === "" ? "-" : this.currentValue.innerText;
 
     const currentValueNumber = parseFloat(this.previousValue.innerText);
 
