@@ -140,6 +140,10 @@ html{
 }*/
 
 /* Section Titles */
+.r2-title-widget {
+  width: 100%;
+}
+
 .r2-title-view  {
     -ms-flex-align:center;
     align-items:center;

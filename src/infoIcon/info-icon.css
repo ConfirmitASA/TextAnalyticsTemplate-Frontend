@@ -21,3 +21,10 @@
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, .175);
   z-index: 100;
 }
+
+@media only screen and (min-width: 0) and (max-width: 640px) {
+  .r2i-row .ta-info-icon {
+    margin-top: 1rem;
+    margin-right: 1rem;
+  }
+}

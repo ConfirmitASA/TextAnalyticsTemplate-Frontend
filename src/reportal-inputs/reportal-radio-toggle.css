@@ -35,3 +35,16 @@
   & [type=radio] + label:before,
   & [type=radio] + label:after { display: none; } /* override styled checkboxes */
 }
+
+.detailed-analysis__toggle {
+  position: absolute;
+  right: 3rem;
+  top: 1rem;
+}
+
+@media only screen and (min-width: 0) and (max-width: 640px) {
+  .detailed-analysis__toggle {
+    right: 4rem;
+    top: 2rem;
+  }
+}
