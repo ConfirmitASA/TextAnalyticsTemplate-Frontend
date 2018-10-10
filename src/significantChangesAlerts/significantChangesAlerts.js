@@ -17,7 +17,7 @@ export default class SignificantChangesAlerts {
 
   getDataFromTable() {
     let markedCells;
-    markedCells = [...this.table.querySelectorAll('body td.increasingC:last-child, tbody td.decreasingC:last-child, tbody td.increasingS:last-child, tbody td.decreasingS:last-child')];
+    markedCells = [...this.table.querySelectorAll('body td.increasingC:nth-last-child(2), tbody td.decreasingC:nth-last-child(2), tbody td.increasingS:nth-last-child(2), tbody td.decreasingS:nth-last-child(2)')];
     markedCells.forEach(cell => {
       let categoryText = "";
       let changesText = "";
