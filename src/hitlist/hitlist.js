@@ -5,7 +5,7 @@ var dateformat = require('dateformat');
 class Hitlist {
 
   constructor({
-                currentCategory = '', separator = ' ', hitlist, headers, hitlistData, dateTimeFormat, selectedWords, sentimentConfig =
+                currentCategory = '', separator = ' ', hitlist, headers, hitlistData, dateTimeFormat, selectedWords, translations, sentimentConfig =
       [
         {
           sentiment: "positive",
@@ -76,6 +76,7 @@ class Hitlist {
     this.currentCategory = currentCategory;
     this.dateTimeFormat = dateTimeFormat;
     this.selectedWords = selectedWords;
+    this.translations = translations;
     this.init();
   }
 
@@ -425,10 +426,7 @@ class Hitlist {
       infoText = document.createElement('div');
       infoText.className = infoTextClass;
       infoText.style.display = 'none';
-      infoText.innerText = 'All comments are shown here and you can select to filter on the theme, ' +
-        'sub category and attribute to view as well as the sentiment for that level of expression. ' +
-        'Sentiment is shown at both the attribute level and at the overall comment level.\n\n' +
-        'If you want to sort the comments page click on any column header';
+      infoText.innerText = this.translations['hitlist info text'];
     }
 
     let infoIconClass = 'ta-info-icon';
