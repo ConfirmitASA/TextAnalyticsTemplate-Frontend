@@ -426,7 +426,7 @@ class Hitlist {
       infoText = document.createElement('div');
       infoText.className = infoTextClass;
       infoText.style.display = 'none';
-      infoText.innerText = this.translations['hitlist info text'];
+      infoText.innerHTML = this.translations['hitlist info text'];
     }
 
     let infoIconClass = 'ta-info-icon';
