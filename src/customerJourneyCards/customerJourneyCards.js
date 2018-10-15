@@ -294,7 +294,7 @@ export default class CustomerJourneyCards {
     vis.append("text")
       .attr("transform", "translate(" + _left + "," + (_top + 62) + ")")
       .attr("class", "target__number")
-      .text(isNaN(kpi_value) ? '-' : kpi_value + formatter);
+      .text(isNaN(kpi_value) || kpi_value.trim().length <= 0 ? '-' : kpi_value + formatter);
 
     if(kpi_target !== 'off') {
       vis.append("text")
