@@ -69,6 +69,8 @@ export default class CustomerJourneyCards {
 
     this.translations = translations;
 
+    this.statisticsIDs = ['count', 'average', 'max', 'min', 'sum'];
+
     this.init();
   }
 
@@ -136,7 +138,11 @@ export default class CustomerJourneyCards {
     card.appendChild(cardHeader);
 
     obj.MetricIds.forEach(metricId => {
-      const metricName = cj_table_firstRow.children[metricId + 1].innerText;
+      var metricName = cj_table_firstRow.children[metricId + 1].innerText;
+      metricName = this.statisticsIDs.indexOf(metricName.toLowerCase()) >= 0
+        ? this.translations[metricName]
+        : metricName;
+
       const metricValue = row.children[metricId + 1].innerText;
 
       if (obj.KeyMetricId === metricId) {
