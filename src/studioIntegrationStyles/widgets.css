@@ -187,7 +187,7 @@
   position: relative;
 }
 
-.dashboard__widget:not(.ta-cj-card) {
+.dashboard__widget--large {
   padding: 16px;
 }
 
