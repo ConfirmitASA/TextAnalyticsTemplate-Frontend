@@ -105,6 +105,14 @@
 
 }
 
+#correlation-chart {
+  width: 100%;
+  height: 790px;
+}
+
+#correlation-tables-view {
+  width: 100%;
+}
 
 #correlation-chart.hidden,#correlation-tables-view.hidden,#quadrant-chart.hidden,#quadrant-table.hidden,#correlation-help-text.hidden{
   display: none !important;

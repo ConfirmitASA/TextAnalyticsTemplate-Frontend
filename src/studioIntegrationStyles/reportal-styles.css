@@ -272,6 +272,10 @@ TA FIXES
   padding-bottom: 60px;
 }
 
+.dashboard__widget .reportal-dropdown {
+  margin-left: 0;
+}
+
 
 /* IE11 Flex fixes */
 @media screen and (min-width: 40rem) {

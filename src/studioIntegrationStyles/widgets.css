@@ -184,7 +184,11 @@
   border-radius: 3px;
   box-shadow: 0 0 6px 0 var(--divider-color);
   overflow: auto;
-  position: relative
+  position: relative;
+}
+
+.dashboard__widget:not(.ta-cj-card) {
+  padding: 16px;
 }
 
 .widget__header {

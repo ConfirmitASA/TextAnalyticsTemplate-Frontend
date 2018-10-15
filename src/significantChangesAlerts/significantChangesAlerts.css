@@ -57,3 +57,7 @@
 .alert-card__increasing {
   color: var(--strength);
 }
+
+#alerts-container {
+  width: 100%;
+}
