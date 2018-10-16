@@ -54,6 +54,12 @@
 
   }
 
+.reportal-filterpanel-filterpage-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 .reportal-filterpanel-filterpage-button input {
   font-size: 14px;
 }
