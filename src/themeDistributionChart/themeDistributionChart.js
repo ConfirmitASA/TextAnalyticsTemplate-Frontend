@@ -58,7 +58,7 @@ export default class ThemeDistributionChart {
     });
 
     let event;
-    if(typeof(Event) === 'function') {
+    if (typeof(Event) === 'function') {
       event = new Event('resize');
     } else {
       event = document.createEvent('Event');
@@ -114,13 +114,12 @@ export default class ThemeDistributionChart {
         yAxis: 1
       })
       : false;
-    //this.data.push(this.GetRowValues(row, index) ? this.GetRowValues(row, index : );
   }
 
   setupChart() {
     let chartConfig = {
       chart: {
-        zoomType: 'xy'
+        zoomType: 'y'
       },
 
       legend: {
@@ -161,6 +160,7 @@ export default class ThemeDistributionChart {
 
       plotOptions: {
         series: {
+          cursor: 'pointer',
           label: {
             connectionAllowed: false
           },
@@ -208,8 +208,8 @@ export default class ThemeDistributionChart {
                     break;
                 }
 
-                datePickerFrom.value = fromDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
-                datePickerTo.value = toDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
+                datePickerFrom.value = fromDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g, '');
+                datePickerTo.value = toDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g, '');
 
                 this.drilldownButton.click();
               }

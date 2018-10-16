@@ -55,7 +55,7 @@ export default class TrendChart {
   setupChart() {
     let chartConfig = {
       chart: {
-        zoomType: 'xy'
+        zoomType: 'y'
       },
 
       legend: {
