@@ -100,6 +100,7 @@ class Hitlist {
       [].slice.call(clonedHeader).forEach((el, index) => {
         el.style.width = initialHeader[index].offsetWidth + 'px';
       });
+      clonedHeader.style = clonedHeader.style ? clonedHeader.style : {};
       clonedHeader.style.width = initialHeader.offsetWidth + 'px';
       /* END */
 
