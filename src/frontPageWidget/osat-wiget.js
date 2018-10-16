@@ -124,7 +124,7 @@ export default class OSATWidget {
     currentValue.className = 'ta-osat-widget__current-value';
     currentValue.innerText = this.currentValue.innerText.trim() === "" ? "-" : this.currentValue.innerText;
 
-    const currentValueNumber = parseFloat(this.previousValue.innerText);
+    const currentValueNumber = parseFloat(this.currentValue.innerText);
 
     for (let i = 0; i < this.sentimentConfig.length; i++) {
       if (currentValueNumber <= this.sentimentConfig[i].range.max &&
