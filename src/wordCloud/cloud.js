@@ -33,6 +33,7 @@ class WordCloud {
       container.style.height = '';
       container.style.marginBottom = '16px';
       container.style.marginLeft = '8px';
+      container.style.marginTop = '16px';
       container.style.height = 'inherit';
     }
   }
