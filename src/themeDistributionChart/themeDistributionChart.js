@@ -229,13 +229,13 @@ export default class ThemeDistributionChart {
       tooltip: {
         formatter: function () {
           return `<span style="color:${this.points[0].color}">\u25CF</span> ` +
-            `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y}<br/>` +
+            `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y.toFixed(2)}<br/>` +
             `<span style="color:${this.points[1].color}">\u25CF</span> ` +
             `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y}<br/>`;
         },
         shared: true,
         positioner: function (labelWidth, labelHeight, point) {
-          let tooltipX, tooltipY;
+          let tooltipX;
 
           if (point.plotX + labelWidth / 2 > this.chart.plotWidth) {
             tooltipX = point.plotX + this.chart.plotLeft - labelWidth;
