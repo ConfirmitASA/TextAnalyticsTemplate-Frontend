@@ -103,12 +103,12 @@ export default class ThemeDistributionChart {
     const dataValue = this.GetRowValues(row);
     dataValue ?
       this.data.push({
-        color: this.palette.chartColors[1],
+        color: this.palette.sentiment,
         name: this.translations['Sentiment'],
         data: dataValue.sentimentData,
         yAxis: 1
       },{
-        color: this.palette.chartColors[0],
+        color: this.palette.comments,
         name: this.translations['Comment volume'],
         data: dataValue.volumeData,
         type: 'column'
