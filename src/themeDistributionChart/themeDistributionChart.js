@@ -103,15 +103,15 @@ export default class ThemeDistributionChart {
     const dataValue = this.GetRowValues(row);
     dataValue ?
       this.data.push({
-        color: this.palette.chartColors[0],
-        name: this.translations['Comment volume'],
-        data: dataValue.volumeData,
-        type: 'column'
-      }, {
         color: this.palette.chartColors[1],
         name: this.translations['Sentiment'],
         data: dataValue.sentimentData,
         yAxis: 1
+      },{
+        color: this.palette.chartColors[0],
+        name: this.translations['Comment volume'],
+        data: dataValue.volumeData,
+        type: 'column'
       })
       : false;
   }
@@ -233,7 +233,25 @@ export default class ThemeDistributionChart {
             `<span style="color:${this.points[1].color}">\u25CF</span> ` +
             `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y}<br/>`;
         },
-        shared: true
+        shared: true,
+        positioner: function (labelWidth, labelHeight, point) {
+          let tooltipX, tooltipY;
+
+          if (point.plotX + labelWidth / 2 > this.chart.plotWidth) {
+            tooltipX = point.plotX + this.chart.plotLeft - labelWidth;
+          } else {
+            if (point.plotX - labelWidth / 2 < 0) {
+              tooltipX = point.plotX + this.chart.plotLeft;
+            } else {
+              tooltipX = point.plotX + this.chart.plotLeft - labelWidth / 2;
+            }
+          }
+
+          return {
+            x: tooltipX,
+            y: point.plotY
+          };
+        }
       }
     };
 
