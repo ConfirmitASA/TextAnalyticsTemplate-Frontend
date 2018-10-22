@@ -218,13 +218,25 @@ TA FIXES
   padding-top: 15px;
 }
 
-.filter-bar div {
+.filter-bar > div {
   height: 32px;
   line-height: 32px;
 }
 
-.filter-bar div, .filter-bar span, .filter-bar .btn {
+.filter-bar > div, .filter-bar > span, .filter-bar > .btn {
   margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-bar__delete-btn {
+  width: 20px;
+  height: 20px !important;
+  padding: 0 !important;
+  margin-left: 5px;
+}
+.filter-bar__delete-btn > svg {
+  padding: 1.5px;
 }
 
 .btn, button {
