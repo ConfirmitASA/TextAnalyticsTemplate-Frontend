@@ -2,10 +2,6 @@
   display: none;
 }
 
-#theme-distribution .aggregatedTableContainer > table > tbody > tr > td:nth-child(2n+3) {
-  display: none;
-}
-
 #drilldown-button-container {
   display: none;
 }

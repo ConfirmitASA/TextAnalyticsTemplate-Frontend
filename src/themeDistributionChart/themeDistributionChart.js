@@ -22,6 +22,8 @@ export default class ThemeDistributionChart {
     this.period = period;
 
     this.emptyValue = 'emptyv';
+    this.increasingClassName = "increasing";
+    this.decreasingClassName = "decreasing";
 
     this.init();
   }
@@ -70,22 +72,24 @@ export default class ThemeDistributionChart {
   findCurrentRow(rows) {
     let currentRow;
     let isCategoryFound = false, isSubCategoryFound = false;
-    rows.forEach(row => {
-      const td = row.querySelector("td:first-child");
+    for(let i = 0; i < rows.length; i++) {
+      const td = rows[i].querySelector("td:first-child");
       const text = td.innerText.trim();
-      const level = row.className[row.className.indexOf('level') + 5];
+      const level = rows[i].className[rows[i].className.indexOf('level') + 5];
+
       if (this.attribute && this.attribute !== this.emptyValue && isCategoryFound && isSubCategoryFound && text === this.attribute && level === "2") {
-        currentRow = row;
+        currentRow = rows[i];
+        break;
       }
       if (this.subCategory && this.subCategory !== this.emptyValue && isCategoryFound && !isSubCategoryFound && text === this.subCategory && level === "1") {
         isSubCategoryFound = true;
-        currentRow = row;
+        currentRow = rows[i];
       }
       if (this.category !== this.emptyValue && !isCategoryFound && text === this.category && level === "0") {
         isCategoryFound = true;
-        currentRow = row;
+        currentRow = rows[i];
       }
-    });
+    }
     return currentRow;
   }
 
@@ -103,12 +107,11 @@ export default class ThemeDistributionChart {
     const dataValue = this.GetRowValues(row);
     dataValue ?
       this.data.push({
-        color: this.palette.sentiment,
+        color: this.palette.NotSignificant,
         name: this.translations['Sentiment'],
         data: dataValue.sentimentData,
         yAxis: 1
-      },{
-        color: this.palette.comments,
+      }, {
         name: this.translations['Comment volume'],
         data: dataValue.volumeData,
         type: 'column'
@@ -262,19 +265,57 @@ export default class ThemeDistributionChart {
     return row.children.item(index).innerText;
   }
 
+  GetCellClass(row, index) {
+    return row.children.item(index).className;
+  }
+
   GetRowValues(row) {
     const GetCurrentRowCellValue = (cellIndex) => this.GetCellValue(row, cellIndex);
+    const GetCurrentRowCellClass = (cellIndex) => this.GetCellClass(row, cellIndex);
+
     const volumeData = [];
     const sentimentData = [];
+
     for (let i = 1; i < row.childElementCount; i += 2) {
+      let countCellClassName = GetCurrentRowCellClass(i);
+      let sentimentCellClassName = GetCurrentRowCellClass(i + 1);
+      let columnColor = this.palette.NotSignificant;
+      let sentimentMarker = {
+        symbol: "circle",
+        fillColor: this.palette.NotSignificant,
+        lineWidth: 0
+      };
+
+      if (countCellClassName.indexOf(this.increasingClassName) >= 0) {
+        columnColor = this.palette.Increasing;
+      }
+      if (countCellClassName.indexOf(this.decreasingClassName) >= 0) {
+        columnColor = this.palette.Decreasing;
+      }
+
+      if (sentimentCellClassName.indexOf(this.increasingClassName) >= 0) {
+        sentimentMarker.symbol = "triangle";
+        sentimentMarker.fillColor = this.palette.Increasing;
+      }
+      if (sentimentCellClassName.indexOf(this.decreasingClassName) >= 0) {
+        sentimentMarker.symbol = "triangle-down";
+        sentimentMarker.fillColor = this.palette.Decreasing;
+      }
+
       volumeData.push({
-        y: GetCurrentRowCellValue(i).replace(',', '') - 0
+        y: GetCurrentRowCellValue(i).replace(',', '') - 0,
+        color: columnColor
       });
       sentimentData.push({
-        y: GetCurrentRowCellValue(i + 1) - 0
+        y: GetCurrentRowCellValue(i + 1) - 0,
+        marker: sentimentMarker
       });
     }
-    return {volumeData: volumeData, sentimentData: sentimentData};
+
+    return {
+      volumeData: volumeData,
+      sentimentData: sentimentData
+    };
   }
 
   addInfoText() {
