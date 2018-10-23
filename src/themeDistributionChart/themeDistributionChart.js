@@ -256,7 +256,6 @@ export default class ThemeDistributionChart {
     };
 
     this.highchart = Highcharts.chart(this.container, chartConfig);
-    this.highchart.reflow();
   }
 
   GetCellValue(row, index) {
