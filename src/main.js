@@ -53,7 +53,7 @@ import InfoIcon from "./infoIcon/info-icon";
 
 import ThemeDistributionChart from "./themeDistributionChart/themeDistributionChart";
 import RespondentNumberWidget from "./respondentNumberWidget/respondentNumberWidget";
-
+import ThreeYearsTrendChart from "./threeYearsTrendChart/threeYearsTrendChart";
 
 window.Reportal = window.Reportal || {};
 
@@ -74,5 +74,6 @@ ReportalBase.mixin(window.Reportal,{
   ImpactAnalysisWidget,
   InfoIcon,
   ThemeDistributionChart,
-  RespondentNumberWidget
+  RespondentNumberWidget,
+  ThreeYearsTrendChart
 });
