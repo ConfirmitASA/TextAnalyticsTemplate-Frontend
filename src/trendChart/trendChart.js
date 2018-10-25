@@ -6,7 +6,7 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendChart {
-  constructor({chartContainer, tableContainer, drilldownButtonContainer, drilldownSelectContainer, palette, translations, period, showPercent, questionName}) {
+  constructor({chartContainer, tableContainer, drilldownButtonContainer, drilldownSelectContainer, palette, translations, period, showPercent, showByType}) {
     this.container = document.getElementById(chartContainer);
     this.table = document.getElementById(tableContainer);
     this.drilldownButton = document.getElementById(drilldownButtonContainer).querySelector('input');
@@ -19,6 +19,7 @@ export default class TrendChart {
     this.data = [];
     this.labels = [];
     this.period = period;
+    this.showByType = showByType;
     this.showPercent = showPercent;
     this.init();
   }
@@ -79,7 +80,7 @@ export default class TrendChart {
       yAxis: {
         title: {
           enabled: true,
-          text: this.translations['Overall Sentiment'] + (this.showPercent ? ", %" : "")
+          text: this.translations[this.showByType]
         },
         min: this.showPercent ? 0 : -5,
         max: this.showPercent ? 100 : 5
