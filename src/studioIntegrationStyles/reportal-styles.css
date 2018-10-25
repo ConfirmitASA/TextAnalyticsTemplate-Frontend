@@ -221,6 +221,10 @@ TA FIXES
 .filter-bar > div {
   height: 32px;
   line-height: 32px;
+
+//background-color: #d4d7db;
+//color: #444;
+//border-radius: 30px;
 }
 
 .filter-bar > div, .filter-bar > span, .filter-bar > .btn {

@@ -230,6 +230,13 @@
   width:100%;
 }
 
+.aggregatedTableContainer > table > thead > tr > td:not(:first-child) {
+  text-align: right;
+}
+#sentiment-table .aggregatedTableContainer > table > thead > tr > td:nth-child(2) {
+  text-align: left;
+}
+
 .aggregatedTableWrapper {
   margin-right: 10px;
 }
