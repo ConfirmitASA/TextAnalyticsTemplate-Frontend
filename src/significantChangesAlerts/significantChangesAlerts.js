@@ -1,12 +1,13 @@
 export default class SignificantChangesAlerts {
 
-  constructor({tableId, containerId, translations, separator, period}) {
+  constructor({tableId, containerId, translations, separator, period, drilldownPage}) {
     this.table = document.getElementById(tableId);
     this.container = document.getElementById(containerId);
     this.translations = translations;
     this.period = period;
     this.separator = (!!separator && separator !== "") ? separator : "|";
     this.alerts = [];
+    this.drilldownPage = drilldownPage;
     this.init();
   }
 
@@ -102,7 +103,7 @@ export default class SignificantChangesAlerts {
     buttonsGroup.className = 'r2i-buttons-group-right';
     let button = document.createElement('button');
     button.className = "comd-button___studio";
-    button.innerHTML = this.translations['Alert Button'];
+    button.innerHTML = this.translations['Alert Button To ' + this.drilldownPage];
     buttonsGroup.appendChild(button);
 
     alertCard.appendChild(alertHeader);
