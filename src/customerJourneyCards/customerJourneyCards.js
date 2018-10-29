@@ -54,7 +54,7 @@ export default class CustomerJourneyCards {
     this.CJ_options = CJ_options;
     this.cj_table = document.getElementById(tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
-    this.cardContainer.className = "cj-cards";
+    this.cardContainer.className = "r2i-row r2i-row--max-width cj-cards";
 
     const drilldownContainer = document.getElementById(drilldownId);
     this.drilldownSelect = drilldownContainer.querySelector('select');
