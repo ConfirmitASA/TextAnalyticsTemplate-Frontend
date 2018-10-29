@@ -71,7 +71,7 @@ export default class CorrelationChart {
 
       title: {
         text: this.questionName ? `${this.translations['Impact on']} ${this.questionName}` : this.translations['Correlation chart'],
-        margin: 21
+        margin: 30
       },
 
       subtitle: {
