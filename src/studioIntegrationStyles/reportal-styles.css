@@ -215,12 +215,16 @@ TA FIXES
   right: 5px;
   top: 0;
   padding: 0;
-  padding-top: 15px;
+  padding-top: 20px;
+}
+
+.filter-bar {
+  margin: 0 24px;
 }
 
 .filter-bar > div {
   height: 32px;
-  line-height: 32px;
+  line-height: 1rem;
 
 //background-color: #d4d7db;
 //color: #444;
@@ -250,6 +254,7 @@ TA FIXES
 .dashboard__toolbar {
   height: initial;
   position: relative;
+  padding: 16px 0;
 }
 
 .report-settings {
