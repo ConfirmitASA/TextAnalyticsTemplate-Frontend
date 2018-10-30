@@ -8,7 +8,7 @@ export default class ThemeDistributionTable {
   }
 
   init() {
-    this.rows = this.table.querySelectorAll('tr');
+    this.rows = [...this.table.querySelectorAll('tr')];
     this.rows.forEach((row,index) => {
         if (index === 0)
           this.overallRowCells = row.querySelectorAll('td');
