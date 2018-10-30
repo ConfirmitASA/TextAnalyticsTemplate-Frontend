@@ -40,11 +40,11 @@ export default class ThemeDistributionTable {
         let sigTestVolume = this.sigTestingVolume(currentCount, previousCount, currentTotal, previousTotal);
         let sigTestSentiment = this.sigTestingSentiment(currentCount, previousCount, currentAvg , previousAvg , currentStdev, previousStdev);
         if (sigTestVolume){
-          cells[i].classList.add(sigTestVolume);
+          cells[i].classList.add(sigTestVolume, "count");
           cells[i+2].classList.add(sigTestVolume);
         }
         if (sigTestSentiment ){
-          cells[i+1].classList.add(sigTestSentiment);
+          cells[i+1].classList.add(sigTestSentiment, "sentiment");
         }
       }
 

@@ -1,7 +1,7 @@
 export default class SignificantChangesAlerts {
 
-  constructor({tableId, containerId, translations, separator, period, drilldownButtonContainer, drilldownPage}) {
-    this.table = document.getElementById(tableId);
+  constructor({table, containerId, translations, separator, period, drilldownButtonContainer, drilldownPage}) {
+    this.table = table;
     this.container = document.getElementById(containerId);
     this.translations = translations;
     this.period = period;
@@ -19,24 +19,46 @@ export default class SignificantChangesAlerts {
 
   getDataFromTable() {
     let markedCells;
-    markedCells = [...this.table.querySelectorAll('body td.increasingC:nth-last-child(2), tbody td.decreasingC:nth-last-child(2), tbody td.increasingS:nth-last-child(2), tbody td.decreasingS:nth-last-child(2)')];
+    markedCells = [...this.table.querySelectorAll('tbody td.increasing.count:nth-last-child(8), tbody td.decreasing.count:nth-last-child(8), tbody td.increasing.sentiment:nth-last-child(7), tbody td.decreasing.sentiment:nth-last-child(7)')];
+
     markedCells.forEach(cell => {
       let categoryText = "";
       let changesText = "";
       let drilldownRef = cell.parentElement.firstElementChild.firstElementChild;
+
       cell.parentElement.firstElementChild.innerText.split(this.separator).forEach(categoryLevel => {
         categoryText += categoryLevel.trim() + '<br>';
       });
-      const changeTypesArray = [{class: 'increasingC', text: 'increased in Volume', r2class: 'target__number r2i-green-color'},
-        {class: 'increasingS', text: 'increased in Sentiment', r2class: 'target__number r2i-green-color'},
-        {class: 'decreasingC', text: 'decreased in Volume', r2class: 'target__number r2i-dark-red-color'},
-        {class: 'decreasingS', text: 'decreased in Sentiment', r2class: 'target__number r2i-dark-red-color'}];
+
+      const changeTypesArray = [{
+        changeTypeClass: 'increasing',
+        changedParameterClass: 'count',
+        text: 'increased in Volume',
+        r2class: 'target__number r2i-green-color'
+      }, {
+        changeTypeClass: 'increasing',
+        changedParameterClass: 'sentiment',
+        text: 'increased in Sentiment',
+        r2class: 'target__number r2i-green-color'
+      }, {
+        changeTypeClass: 'decreasing',
+        changedParameterClass: 'count',
+        text: 'decreased in Volume',
+        r2class: 'target__number r2i-dark-red-color'
+      }, {
+        changeTypeClass: 'decreasing',
+        changedParameterClass: 'sentiment',
+        text: 'decreased in Sentiment',
+        r2class: 'target__number r2i-dark-red-color'
+      }];
+
       changeTypesArray.forEach(classItem => {
-        if (cell.classList.contains(classItem.class)) {
+        if (cell.classList.contains(classItem.changeTypeClass) && cell.classList.contains(classItem.changedParameterClass)) {
           changesText += classItem.text + '\n';
           categoryText = "<span class = '" + classItem.r2class + "'>" + categoryText + "</span>";
         }
       });
+
       this.alerts.push({categoryText: categoryText, changesText: changesText, drilldownRef: drilldownRef});
     })
   }
@@ -113,7 +135,9 @@ export default class SignificantChangesAlerts {
 
     button.onclick = () => {
       alertItem.drilldownRef.click();
-      setTimeout(() => {this.drilldownButton.click()}, 100)
+      setTimeout(() => {
+        this.drilldownButton.click()
+      }, 100)
     };
 
     return alertCard;
