@@ -52,6 +52,7 @@ import ImpactAnalysisWidget from './frontPageWidget/impact-analysis-widget';
 import InfoIcon from "./infoIcon/info-icon";
 
 import ThemeDistributionChart from "./themeDistributionChart/themeDistributionChart";
+import ThemeDistributionTable from "./themeDistributionTable/themeDistributionTable";
 import RespondentNumberWidget from "./respondentNumberWidget/respondentNumberWidget";
 import ThreeYearsTrendChart from "./threeYearsTrendChart/threeYearsTrendChart";
 
@@ -74,6 +75,7 @@ ReportalBase.mixin(window.Reportal,{
   ImpactAnalysisWidget,
   InfoIcon,
   ThemeDistributionChart,
+  ThemeDistributionTable,
   RespondentNumberWidget,
   ThreeYearsTrendChart
 });
