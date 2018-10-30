@@ -13,3 +13,7 @@
   box-sizing: border-box;
   margin-top: 32px;
 }
+
+#theme-distribution-chart .highcharts-markers .highcharts-point {
+  fill-opacity: 1;
+}

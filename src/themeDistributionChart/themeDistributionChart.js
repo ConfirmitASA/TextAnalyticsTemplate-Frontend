@@ -237,24 +237,7 @@ export default class ThemeDistributionChart {
             `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y}<br/>`;
         },
         shared: true,
-        positioner: function (labelWidth, labelHeight, point) {
-          let tooltipX;
-
-          if (point.plotX + labelWidth / 2 > this.chart.plotWidth) {
-            tooltipX = point.plotX + this.chart.plotLeft - labelWidth;
-          } else {
-            if (point.plotX - labelWidth / 2 < 0) {
-              tooltipX = point.plotX + this.chart.plotLeft;
-            } else {
-              tooltipX = point.plotX + this.chart.plotLeft - labelWidth / 2;
-            }
-          }
-
-          return {
-            x: tooltipX,
-            y: point.plotY
-          };
-        }
+        outside: true
       }
     };
 
@@ -276,14 +259,13 @@ export default class ThemeDistributionChart {
     const volumeData = [];
     const sentimentData = [];
 
-    for (let i = 1; i < row.childElementCount; i += 2) {
+    for (let i = 1; i < row.childElementCount; i += 4) {
       let countCellClassName = GetCurrentRowCellClass(i);
       let sentimentCellClassName = GetCurrentRowCellClass(i + 1);
       let columnColor = this.palette.NotSignificant;
       let sentimentMarker = {
         symbol: "circle",
-        fillColor: this.palette.NotSignificant,
-        lineWidth: 0
+        fillColor: this.palette.NotSignificant
       };
 
       if (countCellClassName.indexOf(this.increasingClassName) >= 0) {
