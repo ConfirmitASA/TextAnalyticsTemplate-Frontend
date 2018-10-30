@@ -1,12 +1,13 @@
 export default class SignificantChangesAlerts {
 
-  constructor({tableId, containerId, translations, separator, period, drilldownPage}) {
+  constructor({tableId, containerId, translations, separator, period, drilldownButtonContainer, drilldownPage}) {
     this.table = document.getElementById(tableId);
     this.container = document.getElementById(containerId);
     this.translations = translations;
     this.period = period;
     this.separator = (!!separator && separator !== "") ? separator : "|";
     this.alerts = [];
+    this.drilldownButton = document.querySelector('#' + drilldownButtonContainer + ' input');
     this.drilldownPage = drilldownPage;
     this.init();
   }
@@ -112,6 +113,7 @@ export default class SignificantChangesAlerts {
 
     button.onclick = () => {
       alertItem.drilldownRef.click();
+      setTimeout(() => {this.drilldownButton.click()}, 100)
     };
 
     return alertCard;
