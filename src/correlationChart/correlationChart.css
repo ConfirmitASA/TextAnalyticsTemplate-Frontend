@@ -47,7 +47,7 @@
 }
 
 .reportal-table>tbody.correlation-list>tr>td:nth-child(2)>a {
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 
 .reportal-table>tbody.correlation-list>tr>td:nth-child(3) {
