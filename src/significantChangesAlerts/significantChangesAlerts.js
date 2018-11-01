@@ -1,6 +1,6 @@
 export default class SignificantChangesAlerts {
 
-  constructor({table, containerId, translations, separator, period, drilldownButtonContainer, drilldownPage}) {
+  constructor({table, containerId, translations, separator, period, drilldownButtonContainer, drilldownParameterContainer, drilldownPage}) {
     this.table = table;
     this.container = document.getElementById(containerId);
     this.translations = translations;
@@ -9,6 +9,7 @@ export default class SignificantChangesAlerts {
     this.alerts = [];
     this.drilldownButton = document.querySelector('#' + drilldownButtonContainer + ' input');
     this.drilldownPage = drilldownPage;
+    this.drilldownParameter = document.querySelector('#' + drilldownParameterContainer + ' select');
     this.init();
   }
 
@@ -24,7 +25,6 @@ export default class SignificantChangesAlerts {
     markedCells.forEach(cell => {
       let categoryText = "";
       let changesText = "";
-      let drilldownRef = cell.parentElement.firstElementChild.firstElementChild;
 
       cell.parentElement.firstElementChild.innerText.split(this.separator).forEach(categoryLevel => {
         categoryText += categoryLevel.trim() + '<br>';
@@ -59,7 +59,11 @@ export default class SignificantChangesAlerts {
         }
       });
 
-      this.alerts.push({categoryText: categoryText, changesText: changesText, drilldownRef: drilldownRef});
+      this.alerts.push({
+        categoryText: categoryText,
+        changesText: changesText,
+        hierarchyElement: this.getHierarchyElement(cell)
+      });
     })
   }
 
@@ -134,12 +138,85 @@ export default class SignificantChangesAlerts {
     alertCard.appendChild(buttonsGroup);
 
     button.onclick = () => {
-      alertItem.drilldownRef.click();
-      setTimeout(() => {
-        this.drilldownButton.click()
-      }, 100)
+      const options = [...this.drilldownParameter.options];
+      const currentOptionIndex = this.findCategoryOptionIndex(options, alertItem.hierarchyElement);
+      this.drilldownParameter.options[currentOptionIndex].selected = true;
+
+      this.drilldownButton.click();
     };
 
     return alertCard;
+  }
+
+  findCategoryOptionIndex(options, hierarchyElement) {
+    let isCategoryFound = false, isSubCategoryFound = false;
+    let optionIndex = 0;
+
+    for (let i = 0; i < options.length; i++) {
+      const text = options[i].innerText.trim();
+
+      if (hierarchyElement.attribute && isCategoryFound && isSubCategoryFound
+        && text === hierarchyElement.attribute) {
+        optionIndex = i;
+        break;
+      }
+
+      if (hierarchyElement.subCategory && isCategoryFound && !isSubCategoryFound
+        && text === hierarchyElement.subCategory) {
+        isSubCategoryFound = true;
+        optionIndex = i;
+        if(!hierarchyElement.attribute) {
+          break;
+        }
+      }
+
+      if (!isCategoryFound && text === hierarchyElement.category) {
+        isCategoryFound = true;
+        optionIndex = i;
+        if(!hierarchyElement.subCategory) {
+          break;
+        }
+      }
+    }
+
+    return optionIndex;
+  }
+
+  getHierarchyElement(cell) {
+    const row = cell.parentElement;
+    const rowLevel = row.className[row.className.indexOf("level") + 5];
+
+    const getRowText = (row) => row.querySelector("td:first-child").innerText.trim();
+
+    switch (rowLevel) {
+      case "0":
+        return {
+          category: getRowText(row)
+        };
+      case "1":
+        return {
+          category: getRowText(this.getAncestor(row, 0)),
+          subCategory: getRowText(row)
+        };
+      case "2":
+        const subCategory = this.getAncestor(row, 1);
+        return {
+          category: getRowText(this.getAncestor(subCategory, 0)),
+          subCategory: getRowText(subCategory),
+          attribute: getRowText(row)
+        };
+      default:
+        return {
+          category: getRowText(row)
+        };
+    }
+  }
+
+  getAncestor(row, ancestorLevel) {
+    let ancestor = row.previousSibling;
+    while (!ancestor || !ancestor.classList.contains("level" + ancestorLevel)) {
+     ancestor = ancestor.previousSibling;
+    }
+    return ancestor;
   }
 }
