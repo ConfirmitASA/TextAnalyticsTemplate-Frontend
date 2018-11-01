@@ -46,8 +46,7 @@
 }
 
 .flex.box.two-column{
-  width: auto;
-  min-width: 50%;
+  width: 50%;
   -ms-flex: auto;
   -webkit-flex: auto;
   flex:auto;

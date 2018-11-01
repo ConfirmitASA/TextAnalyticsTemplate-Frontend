@@ -42,7 +42,7 @@
 }
 
 .reportal-table>tbody.correlation-list>tr>td:nth-child(2) {
-  min-width: 200px;
+  width: 100%;
   max-width: 0;
 }
 
