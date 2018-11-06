@@ -21,7 +21,8 @@
 	.text_headerorange,
 	.text_header,
 	.company-logo,
-	.dashboard__toolbar {
+  .ta-info-icon,
+  #chart-tables-switcher {
 		display:none;
 	}
 
@@ -32,4 +33,25 @@
 	.display-none {
 		display:none;
 	}
+
+  .legend-wrapper {
+    margin-left: 150px;
+  }
+
+  .legend-wrapper .legend {
+    position: relative;
+  }
+
+  .legend-wrapper .legend:first-child {
+    bottom: -10px !important;
+  }
+
+  .legend-wrapper .legend:last-child {
+    bottom: -25px !important;
+  }
+
+  #sigTestingType {
+    justify-content: flex-start !important;
+    min-width: 700px;
+  }
 }

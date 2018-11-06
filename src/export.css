@@ -44,7 +44,7 @@
   }
 
   .report-filters-horizontal, .filter-button, .reportal-filterpanel {
-    display: none;
+    display: none !important;
   }
 
   .reportal-hierarchy-table:not(.reportal-heirarchy-flat-view) > tbody > tr.reportal-hidden-row > td:not([rowspan]) {

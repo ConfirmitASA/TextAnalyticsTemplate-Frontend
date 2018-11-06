@@ -1,7 +1,7 @@
 export default class ThemeDistributionTable {
-  constructor({tableContainerId, parameterContainerId}) {
+  constructor({tableContainerId, toggleStatus}) {
     this.table = document.querySelector('#' + tableContainerId + " table tbody");
-    this.sigTestType = document.querySelector('#' + parameterContainerId + ' select').value.slice(4);
+    this.sigTestType = toggleStatus;
     this.overallRowCells = [];
     this.rows = [];
     this.init();
@@ -50,7 +50,7 @@ export default class ThemeDistributionTable {
         }
       }
 
-      switch (this.sigTestType ) {
+      switch (this.sigTestType) {
         case "0" :
           cells[i+1].style.display = "none";
           cells[i+2].style.display = "none";
