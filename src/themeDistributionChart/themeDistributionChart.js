@@ -112,6 +112,7 @@ export default class ThemeDistributionChart {
         data: dataValue.sentimentData,
         yAxis: 1
       }, {
+        color: this.palette.NotSignificant,
         name: this.translations['Comment volume'],
         data: dataValue.volumeData,
         type: 'column'
@@ -231,7 +232,18 @@ export default class ThemeDistributionChart {
 
       tooltip: {
         formatter: function () {
-          return `<span style="color:${this.points[0].color}">\u25CF</span> ` +
+          let sentimentMarker;
+          switch(this.points[0].point.marker.symbol) {
+            case "triangle":
+              sentimentMarker = "\u25B2";
+              break;
+            case "triangle-down":
+              sentimentMarker = "\u25BC";
+              break;
+            default:
+              sentimentMarker = "\u25CF";
+          }
+          return `<span style="color:${this.points[0].point.marker.fillColor}">${sentimentMarker}</span> ` +
             `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y.toFixed(2)}<br/>` +
             `<span style="color:${this.points[1].color}">\u25CF</span> ` +
             `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y}<br/>`;
