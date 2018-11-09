@@ -1,7 +1,8 @@
 export default class ThemeDistributionTable {
-  constructor({tableContainerId, toggleStatus}) {
+  constructor({tableContainerId, toggleStatus, significantTestScore}) {
     this.table = document.querySelector('#' + tableContainerId + " table tbody");
     this.sigTestType = toggleStatus;
+    this.significantTestScore = parseFloat(significantTestScore);
     this.overallRowCells = [];
     this.rows = [];
     this.init();
@@ -87,9 +88,9 @@ export default class ThemeDistributionTable {
           ((prevCount - 1)*Math.pow(prevStdev, 2) + (curCount - 1)*Math.pow(curStdev, 2)) /
           (prevCount + curCount - 2)
         );
-      if (result < -1.96)
+      if (result < -this.significantTestScore)
         return 'decreasing';
-      else if (result > 1.96)
+      else if (result > this.significantTestScore)
         return 'increasing';
     }
     return;
@@ -104,9 +105,9 @@ export default class ThemeDistributionTable {
           (1/curTotal + 1/prevTotal )
         );
 
-      if (result < -1.96)
+      if (result < -this.significantTestScore)
         return 'decreasing';
-      else if (result > 1.96)
+      else if (result > this.significantTestScore)
         return 'increasing';
     }
     return;
