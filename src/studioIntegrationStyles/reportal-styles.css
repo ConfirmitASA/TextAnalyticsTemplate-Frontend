@@ -359,6 +359,10 @@ TA FIXES
   max-width: 2.857rem;
 }
 
+.toolbar__icon--filter * {
+  pointer-events: none;
+}
+
 @keyframes animateSidebarDesktopShowFixed {
   0% {
     width: 0
