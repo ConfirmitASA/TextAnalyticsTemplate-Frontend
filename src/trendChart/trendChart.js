@@ -97,46 +97,11 @@ export default class TrendChart {
                 const datePickers = document.querySelectorAll('.reportal-datepicker input');
                 const datePickerFrom = datePickers[0];
                 const datePickerTo = datePickers[1];
+                const week = parseInt(event.point.category.substr(2));
                 const datePeriodIndex = event.point.series.data.length - event.point.index - 1;
-                const now = new Date();
-                let fromDate, toDate;
-
-                switch (this.period) {
-                  case "w":
-                    // ISO 8601 states that week 1 is the week with january 4th in it
-                    const jan4 = new Date(now.getFullYear(), 0, 4);
-                    const week = parseInt(event.point.category.substr(2));
-                    const dayOfWeekIndex = (jan4.getDay() + 6) % 7;
-                    const firstDayIndex = (jan4.getDate() - dayOfWeekIndex);
-                    const firstDayOfFirstWeek = new Date(jan4.getFullYear(), jan4.getMonth(), firstDayIndex);
-
-                    fromDate = new Date(
-                      firstDayOfFirstWeek.getFullYear(),
-                      firstDayOfFirstWeek.getMonth(),
-                      firstDayOfFirstWeek.getDate() + (week - 1) * 7
-                    );
-
-                    toDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate() + 6);
-                    break;
-                  case "m":
-                    const month = now.getMonth() - datePeriodIndex;
-                    fromDate = new Date(now.getFullYear(), month, 1);
-                    toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 1, 0);
-                    break;
-                  case "q":
-                    const quarter = Math.floor((now.getMonth() / 3)) - datePeriodIndex;
-                    fromDate = new Date(now.getFullYear(), quarter * 3, 1);
-                    toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 3, 0);
-                    break;
-                  case "y":
-                    const year = now.getFullYear() - datePeriodIndex;
-                    fromDate = new Date(year, 0, 1);
-                    toDate = new Date(year + 1, 0, 0);
-                    break;
-                }
-
-                datePickerFrom.value = fromDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
-                datePickerTo.value = toDate.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
+                let { fromDate, toDate } = this.getStartAndEndDate(week, datePeriodIndex);
+                datePickerFrom.value = fromDate;
+                datePickerTo.value = toDate;
 
                 const selectValue = this.drilldownSelect
                   .querySelectorAll('option')[event.point.series.index + 1]
@@ -170,6 +135,50 @@ export default class TrendChart {
     };
 
     this.highchart = Highcharts.chart(this.container, chartConfig);
+  }
+
+  getStartAndEndDate(week = -1, datePeriodIndex = -1) {
+    const currentDate = new Date();
+    const fixDateValue = (data) => data.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
+    let fromDate, toDate;
+
+    switch (this.period) {
+      case "w":
+        // ISO 8601 states that week 1 is the week with january 4th in it
+        const jan4 = new Date(currentDate.getFullYear(), 0, 4);
+        const dayOfWeekIndex = (jan4.getDay() + 6) % 7;
+        const firstDayIndex = (jan4.getDate() - dayOfWeekIndex);
+        const firstDayOfFirstWeek = new Date(jan4.getFullYear(), jan4.getMonth(), firstDayIndex);
+
+        fromDate = new Date(
+          firstDayOfFirstWeek.getFullYear(),
+          firstDayOfFirstWeek.getMonth(),
+          firstDayOfFirstWeek.getDate() + (week - 1) * 7
+        );
+
+        toDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate() + 6);
+        break;
+      case "m":
+        const month = currentDate.getMonth() - datePeriodIndex;
+        fromDate = new Date(currentDate.getFullYear(), month, 1);
+        toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 1, 0);
+        break;
+      case "q":
+        const quarter = Math.floor((currentDate.getMonth() / 3)) - datePeriodIndex;
+        fromDate = new Date(currentDate.getFullYear(), quarter * 3, 1);
+        toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 3, 0);
+        break;
+      case "y":
+        const year = currentDate.getFullYear() - datePeriodIndex;
+        fromDate = new Date(year, 0, 1);
+        toDate = new Date(year + 1, 0, 0);
+        break;
+    }
+
+    fromDate = fixDateValue(fromDate);
+    toDate = fixDateValue(toDate);
+
+    return { fromDate, toDate };
   }
 
   GetCellValue(row, index) {
