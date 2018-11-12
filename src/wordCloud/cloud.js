@@ -80,7 +80,7 @@ class WordCloud {
   takeExceptionsFromSelect({elementId}) {
     const select = document.querySelector(`#${elementId} > select`);
 
-    if(!select) {
+    if (!select) {
       return [];
     }
 
@@ -132,7 +132,7 @@ class WordCloud {
       layout.stop().words([]).start();
       layout.stop().words(data).start();
 
-      let tags = Array.from(document.getElementsByClassName('tag'));
+      let tags = Array.from(document.getElementsByClassName('wordcloud-tag'));
       tags.forEach(element => {
         element.onclick = clickFunc;
       });
@@ -152,14 +152,11 @@ class WordCloud {
         .style('font-size', d => d.size + 'px');
 
       text.enter().append('text')
-        .attr('class', 'tag')
+        .attr('class', 'wordcloud-tag')
         .attr('text-anchor', 'middle')
         .style('font-size', d => d.size + 'px')
         .attr('transform', d => 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')')
         .style('font-size', d => d.size + 'px')
-        .style("opacity", 1e-6)
-        .transition()
-        .duration(1000)
         .style("opacity", 1)
         .style('fill', d => {
           if (colorConfig !== undefined && d.sentiment !== undefined) {
@@ -211,7 +208,7 @@ class WordCloud {
 
     layout.start();
 
-    let tags = Array.from(document.getElementsByClassName('tag'));
+    let tags = Array.from(document.getElementsByClassName('wordcloud-tag'));
     tags.forEach(element => {
       element.onclick = clickFunc;
     });
