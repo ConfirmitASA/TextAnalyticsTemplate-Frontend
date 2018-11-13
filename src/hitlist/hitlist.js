@@ -107,6 +107,12 @@ class Hitlist {
       var offset = this.source.querySelector('table:not(.ta-fixed)').parentNode.offsetTop;
       this.scrollTo(offset, 200);
     }
+
+    reportal.hideWait();
+
+    [].forEach.call(this.source.querySelectorAll('.hitlist-nav-button'), button => {
+      button.addEventListener('click', () => reportal.showWait());
+    })
   }
 
   /**
