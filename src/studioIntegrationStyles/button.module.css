@@ -300,7 +300,7 @@
     width: 100%
 }
 
-.comd-button--icon___studio:focus, .comd-button--icon___studio:hover {
+.comd-button--icon___studio:active, .comd-button--icon___studio:hover {
     border-radius: .143rem;
     outline: none;
     background-color: rgba(18, 24, 33, .06)
