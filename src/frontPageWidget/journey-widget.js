@@ -11,9 +11,7 @@ export default class JourneyWidget {
   init() {
     this.getDataFromTable();
     this.filterByNegativeKeyMetric();
-    if(this.CJ_objectToProcess.length > 0) {
-      this.createWidget();
-    }
+    this.createWidget();
   }
 
   getDataFromTable() {
@@ -135,6 +133,12 @@ export default class JourneyWidget {
     let wrapper = document.createElement('div');
 
     let text = "";
+    if (this.CJ_objectToProcess.length <= 0) {
+      const label = document.createElement('label');
+      label.innerText = this.translations['No data to display'];
+      mainContent.appendChild(label);
+      return mainContent;
+    }
 
     this.CJ_objectToProcess.forEach(obj => {
       obj.rows.forEach(row => {
