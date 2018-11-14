@@ -167,6 +167,9 @@ export default class ThemeDistributionChart {
       plotOptions: {
         series: {
           cursor: 'pointer',
+          marker: {
+            radius: 6
+          },
           label: {
             connectionAllowed: false
           },
@@ -279,7 +282,7 @@ export default class ThemeDistributionChart {
       let columnColor = this.palette.NotSignificant;
       let sentimentMarker = {
         symbol: "circle",
-        fillColor: this.palette.NotSignificant
+        fillColor: this.palette.SymbolNotSignificant
       };
 
       if (countCellClassName.indexOf(this.increasingClassName) >= 0) {
@@ -291,11 +294,11 @@ export default class ThemeDistributionChart {
 
       if (sentimentCellClassName.indexOf(this.increasingClassName) >= 0) {
         sentimentMarker.symbol = "triangle";
-        sentimentMarker.fillColor = this.palette.Increasing;
+        sentimentMarker.fillColor = this.palette.SymbolIncreasing;
       }
       if (sentimentCellClassName.indexOf(this.decreasingClassName) >= 0) {
         sentimentMarker.symbol = "triangle-down";
-        sentimentMarker.fillColor = this.palette.Decreasing;
+        sentimentMarker.fillColor = this.palette.SymbolDecreasing;
       }
 
       volumeData.push({
