@@ -20,7 +20,7 @@ export default class SignificantChangesAlerts {
 
   getDataFromTable() {
     let markedCells;
-    markedCells = [...this.table.querySelectorAll('tbody td.increasing.count:nth-last-child(8), tbody td.decreasing.count:nth-last-child(8), tbody td.increasing.sentiment:nth-last-child(7), tbody td.decreasing.sentiment:nth-last-child(7)')];
+    markedCells = [...this.table.querySelectorAll('tbody td.increasingC:nth-last-child(8), tbody td.decreasingC:nth-last-child(8), tbody td.increasingS:nth-last-child(7), tbody td.decreasingS:nth-last-child(7)')];
 
     markedCells.forEach(cell => {
       let categoryText = "";
@@ -31,29 +31,25 @@ export default class SignificantChangesAlerts {
       });
 
       const changeTypesArray = [{
-        changeTypeClass: 'increasing',
-        changedParameterClass: 'count',
+        changeTypeClass: 'increasingC',
         text: 'increased in Volume',
         r2class: 'target__number r2i-green-color'
       }, {
-        changeTypeClass: 'increasing',
-        changedParameterClass: 'sentiment',
+        changeTypeClass: 'increasingS',
         text: 'increased in Sentiment',
         r2class: 'target__number r2i-green-color'
       }, {
-        changeTypeClass: 'decreasing',
-        changedParameterClass: 'count',
+        changeTypeClass: 'decreasingC',
         text: 'decreased in Volume',
         r2class: 'target__number r2i-dark-red-color'
       }, {
-        changeTypeClass: 'decreasing',
-        changedParameterClass: 'sentiment',
+        changeTypeClass: 'decreasingS',
         text: 'decreased in Sentiment',
         r2class: 'target__number r2i-dark-red-color'
       }];
 
       changeTypesArray.forEach(classItem => {
-        if (cell.classList.contains(classItem.changeTypeClass) && cell.classList.contains(classItem.changedParameterClass)) {
+        if (cell.classList.contains(classItem.changeTypeClass)) {
           changesText += classItem.text + '\n';
           categoryText = "<span class = '" + classItem.r2class + "'>" + categoryText + "</span>";
         }
