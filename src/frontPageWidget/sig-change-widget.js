@@ -17,37 +17,19 @@ export default class SignificantChangeWidget {
     const classes = this.isSentiment ? '.decreasingS, .increasingS' : '.decreasingC, .increasingC';
 
     this.data = [].slice.call(this.table.querySelectorAll(classes))
-      .sort(
-        this.isSentiment ?
-          SignificantChangeWidget.sortBySentiment :
-          SignificantChangeWidget.sortByVolume
-      )
+      .sort(SignificantChangeWidget.sortByFunc)
       .slice(0, 3);
   }
 
-  static sortBySentiment(first, second) {
-    const firstDifference = Math.abs(
-      parseFloat(first.nextElementSibling.innerText) -
-      parseFloat(first.previousElementSibling.previousElementSibling.innerText)
-    );
-
-    const secondDifference = Math.abs(
-      parseFloat(second.nextElementSibling.innerText) -
-      parseFloat(second.previousElementSibling.previousElementSibling.innerText)
-    );
-
-    return secondDifference - firstDifference;
-  }
-
-  static sortByVolume(first, second) {
+  static sortByFunc(first, second) {
     const firstDifference = Math.abs(
       parseFloat(first.innerText) -
-      parseFloat(first.previousElementSibling.previousElementSibling.previousElementSibling.innerText)
+      parseFloat(first.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText)
     );
 
     const secondDifference = Math.abs(
       parseFloat(second.innerText) -
-      parseFloat(second.previousElementSibling.previousElementSibling.previousElementSibling.innerText)
+      parseFloat(second.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText)
     );
 
     return secondDifference - firstDifference;
