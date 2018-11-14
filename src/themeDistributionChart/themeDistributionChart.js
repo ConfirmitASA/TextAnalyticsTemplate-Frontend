@@ -110,12 +110,14 @@ export default class ThemeDistributionChart {
         color: this.palette.NotSignificant,
         name: this.translations['Sentiment'],
         data: dataValue.sentimentData,
-        yAxis: 1
+        yAxis: 1,
+        zIndex: 2
       }, {
         color: this.palette.NotSignificant,
         name: this.translations['Comment volume'],
         data: dataValue.volumeData,
-        type: 'column'
+        type: 'column',
+        zIndex: 1
       })
       : false;
   }
