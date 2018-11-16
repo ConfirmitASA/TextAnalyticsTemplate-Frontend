@@ -164,6 +164,7 @@ export default class CustomerJourneyCards {
     let cardTitle = document.createElement('h3');
     cardTitle.className = 'widget__title';
     cardTitle.innerText = row.children[0].innerText;
+    cardTitle.setAttribute('title', row.children[0].innerText);
     cardHeader.appendChild(cardTitle);
 
     return cardHeader;
@@ -296,7 +297,7 @@ export default class CustomerJourneyCards {
       .attr("class", "target__number")
       .text(isNaN(kpi_value) || kpi_value.trim().length <= 0 ? '-' : kpi_value + formatter);
 
-    if(kpi_target !== 'off') {
+    if (kpi_target !== 'off') {
       vis.append("text")
         .attr("transform", "translate(" + _left + "," + (_top + 70) + ")")
         .attr("class", "gap-to-target__text")
