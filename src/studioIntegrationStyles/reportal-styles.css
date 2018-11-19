@@ -226,9 +226,9 @@ TA FIXES
   height: 32px;
   line-height: 1rem;
 
-//background-color: #d4d7db;
-//color: #444;
-//border-radius: 30px;
+/*background-color: #d4d7db;
+color: #444;
+border-radius: 30px;*/
 }
 
 .filter-bar > div, .filter-bar > span, .filter-bar > .btn {
@@ -394,4 +394,13 @@ TA FIXES
   .dashboard__sidebar--hide {
     animation: animateSidebarDesktopHideFixed .5s ease
   }
+}
+
+.dashboard__widget--ta-hitlist {
+  position: static !important;
+  padding-right: 0;
+}
+
+.dashboard__widget--ta-hitlist > div:nth-last-of-type(1) > div:nth-of-type(1) {
+  border-right: 16px solid white;
 }

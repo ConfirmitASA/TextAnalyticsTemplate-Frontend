@@ -296,7 +296,7 @@
 }
 
 .reportal-hitlist-container .aggregatedTableContainer{
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 
@@ -323,8 +323,4 @@
 .reportal-hitlist-container .light-grey .hitlist th.yui3-datatable-sorted, .reportal-hitlist-container .light-grey .hitlist td.yui3-datatable-sorted{
   border-left: none !important;
   border-right: none !important;
-}
-
-.dashboard__widget--ta-hitlist {
-  position: static !important;
 }
