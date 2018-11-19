@@ -232,6 +232,7 @@
 
 .aggregatedTableContainer > table > thead > tr > td:not(:first-child) {
   text-align: right;
+  white-space: nowrap;
 }
 #sentiment-table .aggregatedTableContainer > table > thead > tr > td:nth-child(2) {
   text-align: left;
