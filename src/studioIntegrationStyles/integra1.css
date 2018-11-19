@@ -904,7 +904,7 @@ html, body {
   border-radius: 0 !important;
   background-color: transparent !important;
   width: auto !important;
-  padding-right: 8px !important;
+  padding-right: 16px !important;
   transition-delay: 0s;
   transition-duration: .25s !important;
   transition-timing-function: ease-in-out !important;

@@ -215,15 +215,22 @@ TA FIXES
   right: 5px;
   top: 0;
   padding: 0;
-  padding-top: 20px;
+  padding-top: 24px;
+  align-self: flex-start;
+  flex-wrap: nowrap;
 }
 
 .filter-bar {
   margin: 0 24px;
+  align-items: center;
+  min-width: 150px;
+  width: 100%;
 }
 
 .filter-bar > div {
-  height: 32px;
+  min-height: 32px;
+  height: auto;
+  padding: 5px 8px;
   line-height: 1rem;
 
 /*background-color: #d4d7db;
@@ -237,6 +244,14 @@ border-radius: 30px;*/
   align-items: center;
 }
 
+.filter-bar > div > span:first-child {
+  height: auto;
+  height: inherit;
+  line-height: 1rem;
+  width: calc(100% - 20px);
+  padding: 0;
+}
+
 .filter-bar__delete-btn {
   width: 20px;
   height: 20px !important;
@@ -245,6 +260,12 @@ border-radius: 30px;*/
 }
 .filter-bar__delete-btn > svg {
   padding: 1.5px;
+}
+
+.dashboard__toolbar-filter {
+  width: calc(100% - 120px);
+  flex-wrap: nowrap;
+  align-items: inherit;
 }
 
 .btn, button {

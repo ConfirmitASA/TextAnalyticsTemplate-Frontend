@@ -76,3 +76,7 @@
 div.vp-item-menu .yui3-menuitem-content {
   font-size: 12px !important;
 }
+
+.vp-collapsible .vp-container {
+  width: 210px;
+}
