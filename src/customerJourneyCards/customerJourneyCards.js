@@ -190,6 +190,7 @@ export default class CustomerJourneyCards {
       .append("svg")
       .attr("class", "gauge-metric")
       .attr("width", canvasWidth).attr("height", canvasHeight)
+      .style('overflow', 'visible')
       .append("g")
       .attr("class", "comd-portal-trigger");
 
