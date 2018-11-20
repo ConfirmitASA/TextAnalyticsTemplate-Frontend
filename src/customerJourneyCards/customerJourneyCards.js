@@ -65,7 +65,7 @@ export default class CustomerJourneyCards {
     this.cj_thickness = 5;
 
     this.canvasWidth = 145;
-    this.canvasHeight = 130;
+    this.canvasHeight = 150;
 
     this.translations = translations;
 
@@ -193,8 +193,16 @@ export default class CustomerJourneyCards {
       .append("g")
       .attr("class", "comd-portal-trigger");
 
-    this.addGaugeText(vis, metricName, metricValue, 'off');
+
+    const allLimits = Object.keys(cj_object.colors).reduce((result, color) => {
+      return [...result, ...cj_object.colors[color]];
+    }, []).sort((a, b) => a - b);
+
+    const minValue = allLimits[0];
+    const maxValue = allLimits[allLimits.length - 1];
+
     this.addGaugeChart(vis, cj_object, metricName, metricValue, 'off');
+    this.addGaugeText(vis, metricName, metricValue, 'off', minValue, maxValue);
 
     return widgetBody;
   }
@@ -278,11 +286,11 @@ export default class CustomerJourneyCards {
     }
   }
 
-  addGaugeText(container, kpi_name, kpi_value, kpi_target, formatter = "") {
+  addGaugeText(container, kpi_name, kpi_value, kpi_target, minValue, maxValue, formatter = "") {
     const canvasWidth = this.canvasWidth;
     const canvasHeight = this.canvasHeight;
 
-    const _top = canvasHeight - 104;
+    const _top = canvasHeight - 124;
     const _left = canvasWidth / 2;
 
     const vis = container.append("g");
@@ -296,6 +304,16 @@ export default class CustomerJourneyCards {
       .attr("transform", "translate(" + _left + "," + (_top + 62) + ")")
       .attr("class", "target__number")
       .text(isNaN(kpi_value) || kpi_value.trim().length <= 0 ? '-' : kpi_value + formatter);
+
+    vis.append("text")
+      .attr("transform", "translate(" + (_left - 30) + "," + (_top + 120) + ")")
+      .attr("class", "target__min-value")
+      .text(minValue);
+
+    vis.append("text")
+      .attr("transform", "translate(" + (_left + 30) + "," + (_top + 120) + ")")
+      .attr("class", "max-value")
+      .text(maxValue);
 
     if (kpi_target !== 'off') {
       vis.append("text")
