@@ -5,7 +5,7 @@ var dateformat = require('dateformat');
 class Hitlist {
 
   constructor({
-                currentCategory = '', separator = ' ', hitlist, headers, hitlistData, dateTimeFormat, selectedWords, translations, sentimentConfig =
+                currentCategory = '', separator = ' ', hitlist, headers, hitlistData, dateTimeFormat, selectedWords, infoText, sentimentConfig =
       [
         {
           sentiment: "positive",
@@ -76,7 +76,7 @@ class Hitlist {
     this.currentCategory = currentCategory;
     this.dateTimeFormat = dateTimeFormat;
     this.selectedWords = selectedWords;
-    this.translations = translations;
+    this.infoText = infoText;
     this.init();
   }
 
@@ -433,7 +433,7 @@ class Hitlist {
       infoText = document.createElement('div');
       infoText.className = infoTextClass;
       infoText.style.display = 'none';
-      infoText.innerHTML = this.translations['hitlist info text'];
+      infoText.innerHTML = this.infoText;
     }
 
     let infoIconClass = 'ta-info-icon';
