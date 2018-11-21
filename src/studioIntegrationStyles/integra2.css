@@ -113,12 +113,12 @@ html{
 
 @media screen and (min-width: 99.429rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small.r2i-widget.r2i-x-small {
-        width: calc(20% - 1.429rem);
-        flex: 0 1 calc(20% - 1.429rem);
+        width: calc(20% - 1.43rem);
+        flex: 0 1 calc(20% - 1.43rem);
     }
 }
 .r2i-widget.r2i-x-small .co-st-r-widget-kpi {
-    min-height: 10.143rem;
+    min-height: 10.14rem;
 }
 .dashboard__main-wrapper.view-mode .r2i-column .dashboard__widget {
     width: initial;
@@ -531,7 +531,7 @@ html{
 /* IE11 Flex fixes */
 @media screen and (min-width: 49rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small {
-        width: calc(50% - 1.429rem);
+        width: calc(50% - 1.43rem);
         -ms-flex: 0 1 auto;
         flex: 0 1 auto;
     }
@@ -539,7 +539,7 @@ html{
 
 @media screen and (min-width: 74.214rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small {
-        width: calc(33.3% - 1.429rem);
+        width: calc(33.3% - 1.43rem);
         -ms-flex: 0 1 auto;
         flex: 0 1 auto;
     }
@@ -547,7 +547,7 @@ html{
 
 @media screen and (min-width: 99.429rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small {
-        width: calc(25% - 1.429rem);
+        width: calc(25% - 1.43rem);
         -ms-flex: 0 1 auto;
         flex: 0 1 auto;
     }
@@ -555,7 +555,7 @@ html{
 
 @media screen and (min-width: 126.071rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small {
-        width:  calc(20% - 1.429rem);
+        width:  calc(20% - 1.43rem);
         -ms-flex: 0 1 auto;
         flex: 0 1 auto;
     }

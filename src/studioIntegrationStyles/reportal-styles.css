@@ -322,7 +322,7 @@ border-radius: 30px;*/
 /* IE11 Flex fixes */
 @media screen and (min-width: 40rem) {
   .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
-    width: calc(50% - 1.429rem);
+    width: calc(50% - 1.43rem);
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
   }
@@ -330,7 +330,7 @@ border-radius: 30px;*/
 
 @media screen and (min-width: 60rem) {
   .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
-    width: calc(33.3% - 1.429rem);
+    width: calc(33.3% - 1.43rem);
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
   }
@@ -338,7 +338,7 @@ border-radius: 30px;*/
 
 @media screen and (min-width: 80rem) {
   .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
-    width: calc(25% - 1.429rem);
+    width: calc(25% - 1.43rem);
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
   }
@@ -346,14 +346,14 @@ border-radius: 30px;*/
 
 @media screen and (min-width: 100rem) {
   .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
-    width:  calc(20% - 1.429rem);
+    width:  calc(20% - 1.43rem);
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
   }
 }
 
 .dashboard__main-wrapper.view-mode .r2i-TA-x-small {
-  min-width: 19.786rem;
+  min-width: 19.78rem;
 }
 
 /* Filter bar fixes in IE*/
