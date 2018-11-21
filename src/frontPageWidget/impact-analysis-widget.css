@@ -23,3 +23,7 @@
 .ta-impact-analysis-widget .co-st-r-widget-kpi .target__number {
   flex-direction: column;
 }
+
+.ta-impact-analysis-widget .target__number {
+  width: 100%;
+}
