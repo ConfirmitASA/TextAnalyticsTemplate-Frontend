@@ -6,7 +6,7 @@
   font-family: inherit !important;
 
 
-& .dd-target-button-arrow{
+  & .dd-target-button-arrow {
     top: calc(50% - 5px);
     float: right !important;
     border-color: transparent transparent transparent var(--secondary-text-color);
@@ -17,71 +17,82 @@
     width: 0 !important;
     position: relative;
     background: none !important;
-  right: 3px;
-
+    right: 3px;
   }
-&.dd-button-selected{
-   & .dd-target-button-arrow{
+
+  &.dd-button-selected{
+    & .dd-target-button-arrow{
        border-color:  var(--secondary-text-color) transparent transparent;
        border-width: 5px 5px 0;
        top: calc(50% - 2px);
        right: 1px;
- }
- }
-  & .dd-target-button-arrow, & .dd-target-button-text{
-     color: var(--secondary-text-color);
-     font-family: var(--font-family);
-    font-size: 16px;
-  font-weight: normal !important;
+    }
   }
 
-& .dd-target-button-text{
+  & .dd-target-button-arrow, & .dd-target-button-text{
+    color: var(--secondary-text-color);
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: normal !important;
+  }
+
+  & .dd-target-button-text{
     width: 105px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
 
-.dd-wrapper{
+.dd-wrapper {
   border-radius: var(--border-radius) !important;
   font-family: var(--font-family);
   border-color: var(--light-divider-color) !important;
+
   & .dd-header{
     border-color: var(--light-divider-color) !important;
-  background-color: var(--light-divider-color) !important;
-  & .dd-search-input{
-  border-color: var(--light-divider-color) !important;
-&:focus{
-  outline-color: var(--button-main-color) !important;
-}
+    background-color: var(--light-divider-color) !important;
+    padding: 8px 8px 0;
 
-}
-& .dd-items a{
-  border-color: var(--light-divider-color) !important;
+    & .dd-search-input{
+      border-color: var(--light-divider-color) !important;
 
-}
-  & .dd-item-text:focus{
-outline-color: var(--button-main-color) !important;
-}
+      &:focus{
+        outline-color: var(--button-main-color) !important;
+      }
+    }
 
-}
- & .dd-button-menu {
-     border-color: var(--light-divider-color) !important;
-& button {
-  background-color: var(--button-main-color);
-  font-family: var(--font-family);
-  font-size: 14px;
-  border-radius: var(--border-radius);
-  box-shadow: none;
-  background-image: none !important;
-  &:focus{
-    outline-color: var(--button-main-color);
+    & .dd-items a{
+      border-color: var(--light-divider-color) !important;
+    }
+
+    & .dd-item-text:focus{
+      outline-color: var(--button-main-color) !important;
+    }
   }
-  &:hover{
-    background-color: var(--button-hover-color);
-   }
 
-}
+  & .dd-button-menu {
+    border-color: var(--light-divider-color) !important;
 
-}
+    & button {
+      background-color: var(--button-main-color);
+      font-family: var(--font-family);
+      font-size: 14px;
+      border-radius: var(--border-radius);
+      box-shadow: none;
+      background-image: none !important;
+
+      &:focus{
+        outline-color: var(--button-main-color);
+      }
+
+      &:hover{
+        background-color: var(--button-hover-color);
+      }
+    }
+
+    & .dd-cancel {
+      line-height: 34px;
+    }
+  }
 }
