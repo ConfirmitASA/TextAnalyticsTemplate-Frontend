@@ -63,3 +63,12 @@
 .reportal-filterpanel-filterpage-button input {
   font-size: 14px;
 }
+
+/*filter-panel hierarchy fix*/
+.dashboard__sidebar, .reportal-filterpanel {
+  position: static;
+}
+.dd-drilldown {
+  width: 100%;
+  height: 100%;
+}

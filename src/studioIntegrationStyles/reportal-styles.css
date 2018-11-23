@@ -425,3 +425,11 @@ border-radius: 30px;*/
 .dashboard__widget--ta-hitlist > div:nth-last-of-type(1) > div:nth-of-type(1) {
   border-right: 16px solid white;
 }
+
+.dashboard__sidebar {
+  overflow: hidden;
+}
+
+.dashboard__sidebar .filter-panel > div {
+  padding: 0 !important;
+}
