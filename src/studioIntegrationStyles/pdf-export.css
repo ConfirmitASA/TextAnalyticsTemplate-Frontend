@@ -38,20 +38,36 @@
     margin-left: 150px;
   }
 
-  .legend-wrapper .legend {
-    position: relative;
-  }
-
-  .legend-wrapper .legend:first-child {
-    bottom: -10px !important;
-  }
-
-  .legend-wrapper .legend:last-child {
-    bottom: -25px !important;
-  }
-
   #sigTestingType {
     justify-content: flex-start !important;
-    min-width: 700px;
+    min-width: 100%;
+  }
+
+  /*TA fixes*/
+  .filter-bar > div > span:first-child {
+    width: 100% !important;
+  }
+  .dashboard__widget--large {
+    padding: 8px !important;
+    overflow: hidden;
+  }
+  .legend-wrapper .legend {
+    position: relative;
+    bottom: 5px;
+  }
+  #sigTestingLegend.legend-wrapper .legend:first-child {
+    bottom: -10px !important;
+  }
+  #sigTestingLegend.legend-wrapper .legend:last-child {
+    bottom: -25px !important;
+  }
+  .reportal-table>tbody>tr>td:not(:first-child) {
+    padding: 2px 4px !important;
+  }
+  .reportal-table>tbody>tr>td.cf_positive:after, .reportal-table>tbody>tr>td.cf_negative:after, .reportal-table>tbody>tr>td.cf_neutral:after {
+    margin: 0 0 -1px 4px !important;
+  }
+  #theme-distribution-chart {
+    overflow: hidden;
   }
 }
