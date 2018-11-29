@@ -107,8 +107,12 @@ export default class ImpactAnalysisWidget {
           const categoryContainer = row.firstElementChild.firstElementChild;
           const newItem = document.createElement('div');
           newItem.className = "ta-impact-analysis-widget__item--" + area.id;
-          newItem.innerText = (index + 1) + '. ' + categoryContainer.innerText;
-          newItem.onclick = () => categoryContainer.click();
+          if(categoryContainer) {
+            newItem.innerText = (index + 1) + '. ' + categoryContainer.innerText;
+            newItem.onclick = () => categoryContainer.click();
+          } else {
+            newItem.innerText = (index + 1) + '. ' + row.firstElementChild.innerText;
+          }
 
           mainContent.appendChild(newItem);
         });
