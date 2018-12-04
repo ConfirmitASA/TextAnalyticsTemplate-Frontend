@@ -324,6 +324,7 @@ export default class ThemeDistributionChart {
 
     this.container.style.position = 'relative';
     icon.infoIcon.style.top = '-32px';
-    icon.infoText.style.top = '8px';
+    icon.infoIcon.style.right = '16px';
+    icon.infoText.style.top = '-8px';
   }
 }
