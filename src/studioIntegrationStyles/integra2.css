@@ -349,13 +349,13 @@ html{
     padding: 0 1.714rem 1.714rem;
 }
 .r2i-button-previous {
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 /* Menu*/
 .yui3-menuitem.css-menu-topitem {
     border-bottom: .143rem solid transparent;
-    color: rgba(18, 24, 33, .87);
+    color: var(--header-text-color);
     font: 600 1rem/1.28 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
     outline: none;
     /*padding: 0 1.714rem;*/
@@ -365,7 +365,7 @@ html{
     cursor: pointer
 }
 .css-menu-toplabel {
-    color: rgba(18,24,33,.87);
+    color: var(--header-text-color);
     font: 400 1.143rem/1.25 Source Sans Pro,Arial,Helvetica,Geneva,sans-serif;
     text-decoration: none;
     text-transform: none;
@@ -400,7 +400,7 @@ html{
     font-weight: 400;
 }
 .dark-blue > div > ul > li > a:hover {
-    color: rgba(18, 24, 33, .87) !important;
+    color: var(--header-text-color) !important;
 }
 .reportal-horizontal-menu>.yui3-menu .css-menu-topitem {
     border-bottom: .143rem solid transparent !important;
@@ -410,10 +410,10 @@ html{
 .css-menu-selected.css-menu-topitem,
 .reportal-horizontal-menu>.yui3-menu .css-menu-child-selected.css-menu-topitem,
 .css-menu-topitem:hover {
-    border-bottom: .143rem solid #40c4ff !important;
+    border-bottom: .143rem solid var(--button-main-color) !important;
 }
 .dark-blue ul ul .yui3-menuitem-active a, .dark-blue ul ul .yui3-menu-label-active, .dark-blue ul ul .yui3-menu-label-menuvisible {
-    color: rgba(18, 24, 33, .87);
+    color: var(--header-text-color);
     font: 400 1.143rem/1.25 Source Sans Pro,Arial,Helvetica,Geneva,sans-serif;
 }
 .dark-blue .css-menu-sublabel.yui3-menu-label, .dark-blue .css-menu-subitem.yui3-menuitem {
@@ -428,16 +428,16 @@ html{
     border-left: 2px solid transparent;
 }
 .dark-blue > div > ul > li > a.yui3-menu-label-menuvisible {
-    color: rgba(18, 24, 33, .87) !important;
+    color: var(--header-text-color) !important;
     font: 400 1.143rem/1.25 Source Sans Pro,Arial,Helvetica,Geneva,sans-serif;
     border-left: 2px solid transparent;
 }
 .dark-blue .css-menu-topitem.css-menu-child-selected > a:link, .dark-blue .css-menu-topitem.css-menu-child-selected > a:visited {
-    color: rgba(18, 24, 33, .87);
+    color: var(--header-text-color);
     font: 400 1.143rem/1.25 Source Sans Pro,Arial,Helvetica,Geneva,sans-serif;
 }
 .css-menu-subitem a:link, .css-menu-subitem a:visited {
-    color: rgba(18, 24, 33, .87);
+    color: var(--header-text-color);
     font: 400 1.143rem/1.25 Source Sans Pro,Arial,Helvetica,Geneva,sans-serif;
 }
 .dark-blue .css-menu-subitem {
@@ -448,7 +448,7 @@ html{
 .dark-blue .css-menu-sublabel.yui3-menu-item-active,
 .dark-blue .css-menu-subitem.yui3-menuitem-active:hover,
 .dark-blue .css-menu-subitem.css-menu-selected {
-    border-left: 2px solid #40c4ff;
+    border-left: 2px solid var(--button-main-color);
 }
 
 /* Top menu fixes */
