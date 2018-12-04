@@ -55,6 +55,12 @@ export default class TrendChart {
         text: ''
       },
 
+      plotOptions: {
+        series: {
+          animation: false
+        }
+      },
+
       xAxis: {
         categories: this.categories
       },
