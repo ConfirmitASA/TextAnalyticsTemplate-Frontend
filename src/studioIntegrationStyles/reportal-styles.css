@@ -178,10 +178,8 @@ TA FIXES
 }
 
 /* Filter panel breakline */
-.reportal-filterpanel .reportal-select:nth-child(6) {
-  padding-top: 8px;
-  border-top: 2px solid var(--button-main-color);
-  margin-top: 16px;
+.reportal-filterpanel .reportal-select:nth-child(5) {
+  border-bottom: 2px solid var(--button-main-color);
 }
 
 .reportal-select>span {
