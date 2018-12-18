@@ -324,3 +324,36 @@
   border-left: none !important;
   border-right: none !important;
 }
+
+.hitlist-filter-item {
+  position: relative;
+}
+
+.hitlist-filter-info__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background: white;
+}
+
+.hitlist-filter-info__text {
+  position: absolute;
+  width: 95%;
+  right: 0;
+  top: 22px;
+  display: block;
+  z-index: 2;
+  white-space: normal;
+  line-height: 12px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+}

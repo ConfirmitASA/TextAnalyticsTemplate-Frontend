@@ -5,7 +5,7 @@ var dateformat = require('dateformat');
 class Hitlist {
 
   constructor({
-                currentCategory = '', separator = ' ', hitlist, headers, hitlistData, dateTimeFormat, selectedWords, infoText, sentimentConfig =
+                currentCategory = '', separator = ' ', hitlist, headers, dateTimeFormat, selectedWords, infoText, filterInfoText, sentimentConfig =
       [
         {
           sentiment: "positive",
@@ -69,7 +69,6 @@ class Hitlist {
               } = {}) {
     this.source = hitlist;
     this.headers = headers;
-    this.hitlistData = hitlistData;
     this.sentimentConfig = sentimentConfig;
     this.icons = icons;
     this.separator = separator;
@@ -77,6 +76,10 @@ class Hitlist {
     this.dateTimeFormat = dateTimeFormat;
     this.selectedWords = selectedWords;
     this.infoText = infoText;
+    this.filterInfoText = filterInfoText;
+
+    this.isFilterInfoIconAdded = false;
+
     this.init();
   }
 
@@ -88,6 +91,7 @@ class Hitlist {
     this.processMainColumn();
     this.addIconsForSentiment();
     this.addInfoText();
+    this.addFilterInfoIcon();
 
     if (!this.source.querySelector('.aggregatedTableContainer')) {
       this.fixedHeader = new FixedHeader({source: this.source.querySelector('table')});
@@ -461,6 +465,38 @@ class Hitlist {
     const filterContainer = container.querySelector('.hitlist-active-filters.reportal-clearfix');
     filterContainer.parentNode.insertBefore(infoIcon, filterContainer);
     container.appendChild(infoText);
+  }
+
+  addFilterInfoIcon() {
+    if(this.isFilterInfoIconAdded) {
+      return;
+    }
+    this.isFilterInfoIconAdded = true;
+
+    const filterInfoText = this.filterInfoText;
+
+    document.querySelector('.hitlist-dropdown-button').addEventListener('click', (function() {
+      setTimeout(function() {
+        let txtId = document.querySelector('.reportal-hitlist-verbatim ').getAttribute('data-yui3-col-id');
+        let input = document.getElementById(txtId + '_field');
+
+        if(input) {
+          const iconText = document.createElement('span');
+          iconText.innerHTML = filterInfoText;
+          iconText.setAttribute('class', 'hitlist-filter-info__text');
+          iconText.style.display = 'none';
+          input.parentNode.insertBefore(iconText, input);
+
+          const infoIcon = document.createElement('span');
+          infoIcon.innerText = '?';
+          infoIcon.setAttribute('class', 'hitlist-filter-info__button');
+          input.parentNode.insertBefore(infoIcon, input);
+
+          infoIcon.onmouseover = function() { iconText.style.display = ""; };
+          infoIcon.onmouseout = function() { iconText.style.display = "none"; }
+        }
+      }, 0);
+    }).bind(this));
   }
 }
 
