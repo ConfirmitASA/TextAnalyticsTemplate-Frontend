@@ -5,6 +5,10 @@ class FilterPanel {
     const filterBtnChevron = filterBtn.querySelectorAll('.toolbar__icon--filter--chevron ')[0];
     const filterCloseBtn = document.querySelectorAll('.filter__header .comd-button___studio')[0];
 
+    if (localStorage && localStorage['filter-panel-state'] === 'show') {
+      showSideBar();
+    }
+
     sideBar.addEventListener("animationend", chartResize);
 
     function chartResize() {
@@ -40,6 +44,10 @@ class FilterPanel {
       filterBtn.classList.remove('toolbar__icon--filter--open');
       filterBtn.classList.add('toolbar__icon--filter--closed');
       filterBtnChevron.style['display'] = 'none';
+
+      if(localStorage) {
+        localStorage['filter-panel-state'] = 'hide';
+      }
     }
 
     function showSideBar() {
@@ -49,6 +57,10 @@ class FilterPanel {
       filterBtn.classList.add('toolbar__icon--filter--open');
       filterBtn.classList.remove('toolbar__icon--filter--closed');
       filterBtnChevron.style['display'] = 'block';
+
+      if(localStorage) {
+        localStorage['filter-panel-state'] = 'show';
+      }
     }
 
     function handlerHide() {
