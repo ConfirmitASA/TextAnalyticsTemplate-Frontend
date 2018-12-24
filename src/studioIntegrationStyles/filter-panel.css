@@ -287,7 +287,7 @@
 .dashboard__sidebar {
     z-index: 1003;
     animation: animateSidebarMobileShow .5s ease;
-    background-color: var(--header-background-color);
+    background-color: var(--filter-panel-background-color);
     border-bottom: none;
     bottom: 0;
     color: var(--primary-text-color);
@@ -387,7 +387,7 @@
 .filter__header {
     -ms-flex-align: center;
     align-items: center;
-    background-color: var(--header-background-color);
+    background-color: var(--filter-panel-background-color);
     border-bottom: .071rem solid var(--divider-color);
     display: -ms-flexbox;
     display: flex;
@@ -551,7 +551,7 @@
 
 */
 .filter-options-panel {
-    background-color: var(--header-background-color);
+    background-color: var(--filter-panel-background-color);
     border-bottom: none;
     left: 0;
     list-style: none;
