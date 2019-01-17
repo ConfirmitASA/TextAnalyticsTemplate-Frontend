@@ -1604,7 +1604,7 @@ button.btn-primary:focus {
   border-radius: 3px;
   border-radius: 3px;
   position: relative;
-  z-index: 1;
+ /* z-index: 1;*/
   padding: 5px;;
 }
 @media screen and (min-width:0\0) {
