@@ -82,8 +82,8 @@ export default class TrendChart {
           enabled: true,
           text: this.translations[this.showByType]
         },
-        min: this.showPercent ? 0 : -5,
-        max: this.showPercent ? 100 : 5
+        min: this.showPercent ? 0 : 0,
+        max: this.showPercent ? 100 : 10
       },
 
       plotOptions: {
