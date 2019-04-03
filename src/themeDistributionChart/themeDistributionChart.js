@@ -158,7 +158,7 @@ export default class ThemeDistributionChart {
             enabled: true,
             text: this.translations['Sentiment']
           },
-          tickPositions: [-5, -2.5, 0, 2.5, 5],
+          tickPositions: [0, 2.5, 5, 7.5, 10],
           opposite: true,
           gridLineWidth: 0
         }

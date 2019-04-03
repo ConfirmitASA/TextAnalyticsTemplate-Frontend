@@ -36,7 +36,7 @@ export default class SignificantChangesAlerts {
         r2class: 'target__number r2i-green-color'
       }, {
         changeTypeClass: 'increasingS',
-        text: 'increased in Sentiment',
+        text: 'increased in Overall Satisfaction',
         r2class: 'target__number r2i-green-color'
       }, {
         changeTypeClass: 'decreasingC',
@@ -44,7 +44,7 @@ export default class SignificantChangesAlerts {
         r2class: 'target__number r2i-dark-red-color'
       }, {
         changeTypeClass: 'decreasingS',
-        text: 'decreased in Sentiment',
+        text: 'decreased in Overall Satisfaction',
         r2class: 'target__number r2i-dark-red-color'
       }];
 
