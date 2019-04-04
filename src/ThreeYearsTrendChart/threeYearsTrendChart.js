@@ -70,8 +70,8 @@ export default class TrendChart {
           enabled: true,
           text: this.translations['Overall Sentiment']
         },
-        min: -5,
-        max: 5
+        min: 0,
+        max: 10
       },
 
       navigation: {
