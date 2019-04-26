@@ -199,7 +199,7 @@ export default class CorrelationChart {
         printMaxWidth: 10000,
         buttons: {
           contextButton: {
-            y: -5
+            enabled: false
           }
         }
       }
