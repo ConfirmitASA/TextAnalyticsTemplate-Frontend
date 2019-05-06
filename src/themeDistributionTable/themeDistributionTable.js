@@ -81,7 +81,7 @@ export default class ThemeDistributionTable {
 
 
   sigTestingSentiment (curCount, prevCount, curAvg , prevAvg , curStdev, prevStdev){
-    if (curCount >= 10 && prevCount >=10)  {
+    if (curCount >= 30 && prevCount >= 30)  {
       let result = (curAvg -  prevAvg ) /
         Math.sqrt(
           (1/prevCount + 1/curCount) *
@@ -97,7 +97,7 @@ export default class ThemeDistributionTable {
   }
 
   sigTestingVolume(curCount, prevCount, curTotal, prevTotal){
-    if (curCount >= 5 && prevCount >=5)  {
+    if (curCount >= 30 && prevCount >= 30)  {
       let result = (curCount / curTotal  - prevCount / prevTotal ) /
         Math.sqrt(
           ( prevCount  + curCount )/( prevTotal + curTotal )*
