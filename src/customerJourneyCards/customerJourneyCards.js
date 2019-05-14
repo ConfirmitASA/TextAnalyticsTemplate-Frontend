@@ -148,6 +148,8 @@ export default class CustomerJourneyCards {
       if (obj.KeyMetricId === metricId) {
         const cardGauge = this.createGauge(obj, metricName, metricValue);
         card.insertBefore(cardGauge, cardHeader.nextElementSibling);
+        const cardLegend = this.createLegend(obj.colors);
+        card.insertBefore(cardLegend, cardGauge.nextElementSibling);
       } else {
         const cardRow = this.createCardRow(metricName, metricValue);
         card.appendChild(cardRow);
@@ -328,6 +330,51 @@ export default class CustomerJourneyCards {
         .attr("class", "gap-to-target__number")
         .text(isNaN(gap) ? '-' : gap + formatter);
     }
+  }
+
+  createLegend(colorOptions) {
+    const legendDiv = document.createElement('div');
+    legendDiv.className = "cj-legend";
+
+    Object.keys(colorOptions).forEach((key, index) => {
+      legendDiv.appendChild(this.createLegendRow(Object.keys(colorOptions), index, colorOptions[key]));
+    });
+
+    return legendDiv;
+  }
+
+  createLegendRow(colors, index, values) {
+    var rowName = this.translations["Negative"];
+    switch (index) {
+      case 1:
+        rowName = this.translations["Neutral"];
+        break;
+      case 2:
+        rowName = this.translations["Positive"];
+        break;
+      default:
+        rowName = this.translations["Negative"];
+    }
+
+    const legendRowDiv = document.createElement('div');
+
+    const vis = d3.select(legendRowDiv)
+      .append("svg")
+      .append("g")
+      .attr("transform", "translate(50,0)");
+
+    vis.append("circle")
+      .attr("fill", colors[index])
+      .attr("r", 5)
+      .attr("cx", 10)
+      .attr("cy", 10);
+
+    vis.append("text")
+      .text(`${rowName} (${values[0]} to ${values[1]})`)
+      .attr("x", 20)
+      .attr("y", 15);
+
+    return legendRowDiv;
   }
 
   createCardRow(metricName, metricValue) {

@@ -52,3 +52,12 @@
 .cj-cards .co-st-r-widget-kpi {
   min-height: inherit;
 }
+
+.cj-cards .cj-legend svg {
+  width: 100%;
+  height: 20px;
+}
+
+.cj-cards .cj-legend div {
+  padding: 0 16px;
+}
