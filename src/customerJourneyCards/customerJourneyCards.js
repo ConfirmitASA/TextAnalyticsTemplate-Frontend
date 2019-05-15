@@ -344,16 +344,12 @@ export default class CustomerJourneyCards {
   }
 
   createLegendRow(colors, index, values) {
-    var rowName = this.translations["Negative"];
     switch (index) {
       case 1:
-        rowName = this.translations["Neutral"];
         break;
       case 2:
-        rowName = this.translations["Positive"];
         break;
       default:
-        rowName = this.translations["Negative"];
     }
 
     const legendRowDiv = document.createElement('div');
@@ -363,11 +359,36 @@ export default class CustomerJourneyCards {
       .append("g")
       .attr("transform", "translate(50,0)");
 
-    vis.append("circle")
-      .attr("fill", colors[index])
-      .attr("r", 5)
-      .attr("cx", 10)
-      .attr("cy", 10);
+    var rowName = this.translations["Negative"];
+
+    switch (index) {
+      case 1:
+        rowName = this.translations["Neutral"];
+        vis.append("rect")
+          .attr("fill", colors[index])
+          .attr("transform", "rotate(45)")
+          .attr("width", 10)
+          .attr("height", 10)
+          .attr("x", 9)
+          .attr("y", -5);
+        break;
+      case 2:
+        rowName = this.translations["Positive"];
+        vis.append("circle")
+          .attr("fill", colors[index])
+          .attr("r", 5)
+          .attr("cx", 10)
+          .attr("cy", 10);
+        break;
+      default:
+        rowName = this.translations["Negative"];
+        vis.append("rect")
+          .attr("fill", colors[index])
+          .attr("width", 10)
+          .attr("height", 10)
+          .attr("x", 5)
+          .attr("y", 5);
+    }
 
     vis.append("text")
       .text(`${rowName} (${values[0]} to ${values[1]})`)
