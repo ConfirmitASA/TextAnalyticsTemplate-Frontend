@@ -6,7 +6,7 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendChart {
-  constructor({chartContainer, tableContainer, drilldownButtonContainer, drilldownSelectContainer, palette, translations, period, showPercent, showByType}) {
+  constructor({chartContainer, tableContainer, drilldownButtonContainer, drilldownSelectContainer, palette, translations, period, showPercent, showByType, showAutoScale}) {
     this.container = document.getElementById(chartContainer);
     this.table = document.getElementById(tableContainer);
     this.drilldownButton = document.getElementById(drilldownButtonContainer).querySelector('input');
@@ -20,6 +20,7 @@ export default class TrendChart {
     this.labels = [];
     this.period = period;
     this.showByType = showByType;
+    this.showAutoScale = showAutoScale;
     this.showPercent = showPercent;
     this.init();
   }
@@ -78,13 +79,13 @@ export default class TrendChart {
       },
 
       yAxis: {
-        title: {
-          enabled: true,
-          text: this.translations[this.showByType]
+          title: {
+            enabled: true,
+            text: this.translations[this.showByType]
+          },
+          min: this.showAutoScale ? undefined : (this.showPercent ? 0 : -5),
+          max: this.showAutoScale ? undefined : (this.showPercent ? 100 : 5)
         },
-        min: this.showPercent ? 0 : -5,
-        max: this.showPercent ? 100 : 5
-      },
 
       plotOptions: {
         series: {
@@ -99,7 +100,7 @@ export default class TrendChart {
                 const datePickerTo = datePickers[1];
                 const week = parseInt(event.point.category.substr(2));
                 const datePeriodIndex = event.point.series.data.length - event.point.index - 1;
-                let { fromDate, toDate } = this.getStartAndEndDate(week, datePeriodIndex);
+                let {fromDate, toDate} = this.getStartAndEndDate(week, datePeriodIndex);
                 datePickerFrom.value = fromDate;
                 datePickerTo.value = toDate;
 
@@ -125,11 +126,11 @@ export default class TrendChart {
 
       tooltip: {
         pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}' +
-        (this.showPercent ? '%' : '') +
-        '</b><br/>' +
-        '<span style="color:{point.color}">\u25CF</span> ' +
-        this.translations['# of Responses'] +
-        ': <b>{point.count}</b><br/>'
+          (this.showPercent ? '%' : '') +
+          '</b><br/>' +
+          '<span style="color:{point.color}">\u25CF</span> ' +
+          this.translations['# of Responses'] +
+          ': <b>{point.count}</b><br/>'
       }
 
     };
@@ -139,7 +140,7 @@ export default class TrendChart {
 
   getStartAndEndDate(week = -1, datePeriodIndex = -1) {
     const currentDate = new Date();
-    const fixDateValue = (data) => data.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g,'');
+    const fixDateValue = (data) => data.toLocaleDateString(DatePicker_config.cultureName).replace(/[^ -~]/g, '');
     let fromDate, toDate;
 
     switch (this.period) {
@@ -178,7 +179,7 @@ export default class TrendChart {
     fromDate = fixDateValue(fromDate);
     toDate = fixDateValue(toDate);
 
-    return { fromDate, toDate };
+    return {fromDate, toDate};
   }
 
   GetCellValue(row, index) {
