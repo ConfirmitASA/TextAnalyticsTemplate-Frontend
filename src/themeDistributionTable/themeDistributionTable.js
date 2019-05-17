@@ -28,11 +28,11 @@ export default class ThemeDistributionTable {
       currentAvg = parseFloat(cells[i+1].innerText.replace(',', ''));
       currentStdev = parseFloat(cells[i+3].innerText.replace(',', ''));
       currentTotal = parseFloat(this.overallRowCells[i].innerText.replace(',', ''));
-      sentimentStyle = this.sentimentFormatting(currentAvg, i);
+      //sentimentStyle = this.sentimentFormatting(currentAvg, i);
 
-      for (let j = 0; sentimentStyle && j < 4; j++)
+      /*for (let j = 0; sentimentStyle && j < 4; j++)
         if (sentimentStyle) cells[i + j].classList.add(sentimentStyle);
-
+      */
       if (i > 4){
         previousCount = parseFloat(cells[i-4].innerText.replace(',', ''));
         previousAvg = parseFloat(cells[i-3].innerText.replace(',', ''));
@@ -40,6 +40,7 @@ export default class ThemeDistributionTable {
         previousTotal = parseFloat(this.overallRowCells[i-4].innerText.replace(',', ''));
         let sigTestVolume = this.sigTestingVolume(currentCount, previousCount, currentTotal, previousTotal);
         let sigTestSentiment = this.sigTestingSentiment(currentCount, previousCount, currentAvg , previousAvg , currentStdev, previousStdev);
+        sigTestSentiment = false;
         if (sigTestVolume){
           cells[i].classList.add(sigTestVolume);
           cells[i].classList.add(sigTestVolume + "C");
@@ -73,8 +74,8 @@ export default class ThemeDistributionTable {
 
   sentimentFormatting(sentimentValue){
     let style;
-    if (sentimentValue < sentimentConfig[1].range.min) style = 'cf_negative';
-    else if ( sentimentValue  > sentimentConfig[1].range.max) style = 'cf_positive';
+    if (sentimentValue < sentimentConfig[1].range.min  + 6) style = 'cf_negative';
+    else if ( sentimentValue > sentimentConfig[1].range.max + 6) style = 'cf_positive';
     else if (!isNaN(sentimentValue)) style = 'cf_neutral';
     return style;
   }

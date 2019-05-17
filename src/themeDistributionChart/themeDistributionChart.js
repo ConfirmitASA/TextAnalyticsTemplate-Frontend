@@ -158,7 +158,7 @@ export default class ThemeDistributionChart {
             enabled: true,
             text: this.translations['Sentiment']
           },
-          tickPositions: [0, 2.5, 5, 7.5, 10],
+          tickPositions: [0, 25, 50, 75, 100],
           opposite: true,
           gridLineWidth: 0
         }
@@ -249,9 +249,9 @@ export default class ThemeDistributionChart {
               sentimentMarker = "\u25CF";
           }
           return `<span style="color:${this.points[0].point.marker.fillColor}">${sentimentMarker}</span> ` +
-            `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y.toFixed(2)}<br/>` +
+            `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y.toFixed(0)%}<br/>` +
             `<span style="color:${this.points[1].color}">\u25CF</span> ` +
-            `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y}<br/>`;
+            `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y.toFixed(0)}<br/>`;
         },
         shared: true,
         outside: true
@@ -306,7 +306,7 @@ export default class ThemeDistributionChart {
         color: columnColor
       });
       sentimentData.push({
-        y: GetCurrentRowCellValue(i + 1) - 0,
+        y: GetCurrentRowCellValue(i + 1).slice(0, -1) - 0,
         marker: sentimentMarker
       });
     }
