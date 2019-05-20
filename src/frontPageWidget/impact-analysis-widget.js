@@ -1,5 +1,5 @@
 export default class ImpactAnalysisWidget {
-  constructor({tableContainerId, drilldownId, cardContainerId, translations, areaId}) {
+  constructor({tableContainerId, drilldownId, cardContainerId, translations, areaId, levelName}) {
     this.table = document.getElementById(tableContainerId).querySelector('table');
     this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
     this.cardContainer = document.getElementById(cardContainerId);
@@ -8,7 +8,7 @@ export default class ImpactAnalysisWidget {
       id: areaId,
       headerText: translations["impact analysis widget header text " + areaId],
       infoText: translations['impact analysis widget info text ' + areaId],
-      title: translations['impact analysis widget title ' + areaId],
+      title: translations['impact analysis widget title ' + levelName + ' ' + areaId],
       buttonText: translations['impact analysis widget button'],
       noDataLabel: translations['No data to display'],
       rows: []
