@@ -21,12 +21,12 @@ export default class ThemeDistributionTable {
 
   rowFormatting(row) {
     let cells = row.querySelectorAll('td');
-    let currentCount , currentAvg, currentStdev, currentTotal, previousCount , previousAvg, previousStdev, previousTotal;
+    let currentCount , currentTopBoxCount, currentTotal, previousCount , previousTopBoxCount, previousTotal;
     let sentimentStyle;
     for(let i = 1; i < cells.length; i += 4){
       currentCount = parseFloat(cells[i].innerText.replace(',', ''));
-      currentAvg = parseFloat(cells[i+1].innerText.replace(',', ''));
-      currentStdev = parseFloat(cells[i+3].innerText.replace(',', ''));
+      //currentAvg = parseFloat(cells[i+1].innerText.replace(',', ''));
+      currentTopBoxCount = parseFloat(cells[i+3].innerText.replace(',', ''));
       currentTotal = parseFloat(this.overallRowCells[i].innerText.replace(',', ''));
       //sentimentStyle = this.sentimentFormatting(currentAvg, i);
 
@@ -35,12 +35,11 @@ export default class ThemeDistributionTable {
       */
       if (i > 4){
         previousCount = parseFloat(cells[i-4].innerText.replace(',', ''));
-        previousAvg = parseFloat(cells[i-3].innerText.replace(',', ''));
-        previousStdev = parseFloat(cells[i-1].innerText.replace(',', ''));
+        //previousAvg = parseFloat(cells[i-3].innerText.replace(',', ''));
+        previousTopBoxCount = parseFloat(cells[i-1].innerText.replace(',', ''));
         previousTotal = parseFloat(this.overallRowCells[i-4].innerText.replace(',', ''));
         let sigTestVolume = this.sigTestingVolume(currentCount, previousCount, currentTotal, previousTotal);
-        let sigTestSentiment = this.sigTestingSentiment(currentCount, previousCount, currentAvg , previousAvg , currentStdev, previousStdev);
-        sigTestSentiment = false;
+        let sigTestSentiment = this.sigTestingSentiment(currentCount, previousCount, currentTopBoxCount, previousTopBoxCount, i/4);
         if (sigTestVolume){
           cells[i].classList.add(sigTestVolume);
           cells[i].classList.add(sigTestVolume + "C");
@@ -81,13 +80,13 @@ export default class ThemeDistributionTable {
   }
 
 
-  sigTestingSentiment (curCount, prevCount, curAvg , prevAvg , curStdev, prevStdev){
+  sigTestingSentiment (curCount, prevCount, curTopBoxCount, prevTopBoxCount, index){
     if (curCount >= 30 && prevCount >= 30)  {
-      let result = (curAvg -  prevAvg ) /
+      let result = (curTopBoxCount/curCount -  prevTopBoxCount/prevCount ) /
         Math.sqrt(
           (1/prevCount + 1/curCount) *
-          ((prevCount - 1)*Math.pow(prevStdev, 2) + (curCount - 1)*Math.pow(curStdev, 2)) /
-          (prevCount + curCount - 2)
+          ((curTopBoxCount + prevTopBoxCount)/(curCount + prevCount))*
+          (1 - (curTopBoxCount + prevTopBoxCount)/(curCount + prevCount))
         );
       if (result < -this.significantTestScore)
         return 'decreasing';

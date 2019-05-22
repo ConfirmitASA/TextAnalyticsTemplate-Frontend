@@ -249,7 +249,7 @@ export default class ThemeDistributionChart {
               sentimentMarker = "\u25CF";
           }
           return `<span style="color:${this.points[0].point.marker.fillColor}">${sentimentMarker}</span> ` +
-            `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y.toFixed(0)%}<br/>` +
+            `${this.points[0].series.yAxis.axisTitle.textStr}: <b>${this.points[0].y.toFixed(0)}%<br/>` +
             `<span style="color:${this.points[1].color}">\u25CF</span> ` +
             `${this.points[1].series.yAxis.axisTitle.textStr}: <b>${this.points[1].y.toFixed(0)}<br/>`;
         },
