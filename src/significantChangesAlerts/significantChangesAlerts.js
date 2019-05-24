@@ -1,8 +1,9 @@
 export default class SignificantChangesAlerts {
 
-  constructor({table, containerId, translations, separator, period, drilldownButtonContainer, drilldownParameterContainer, drilldownPage}) {
+  constructor({table, containerId, viewByContainerId, translations, separator, period, drilldownButtonContainer, drilldownParameterContainer, drilldownPage}) {
     this.table = table;
     this.container = document.getElementById(containerId);
+    this.viewByContainer = document.getElementById(viewByContainerId);
     this.translations = translations;
     this.period = period;
     this.separator = (!!separator && separator !== "") ? separator : "|";
@@ -10,6 +11,13 @@ export default class SignificantChangesAlerts {
     this.drilldownButton = document.querySelector('#' + drilldownButtonContainer + ' input');
     this.drilldownPage = drilldownPage;
     this.drilldownParameter = document.querySelector('#' + drilldownParameterContainer + ' select');
+
+    this.viewByValue = this.translations['Volume'];
+    const viewByOptions = this.viewByContainer.querySelectorAll('option');
+    [].slice.call(viewByOptions).forEach(option => {
+      this.viewByValue = option.selected ? option.innerText : this.viewByValue;
+    });
+
     this.init();
   }
 
@@ -30,23 +38,25 @@ export default class SignificantChangesAlerts {
         categoryText += categoryLevel.trim() + '<br>';
       });
 
-      const changeTypesArray = [{
-        changeTypeClass: 'increasingC',
-        text: 'increased in Volume',
-        r2class: 'target__number r2i-green-color'
-      }, {
-        changeTypeClass: 'increasingS',
-        text: 'increased in Sentiment',
-        r2class: 'target__number r2i-green-color'
-      }, {
-        changeTypeClass: 'decreasingC',
-        text: 'decreased in Volume',
-        r2class: 'target__number r2i-dark-red-color'
-      }, {
-        changeTypeClass: 'decreasingS',
-        text: 'decreased in Sentiment',
-        r2class: 'target__number r2i-dark-red-color'
-      }];
+      const changeTypesArray = this.viewByValue === this.translations['Volume']
+        ? [{
+          changeTypeClass: 'increasingC',
+          text: 'increased in Volume',
+          r2class: 'target__number r2i-green-color'
+        }, {
+          changeTypeClass: 'decreasingC',
+          text: 'decreased in Volume',
+          r2class: 'target__number r2i-dark-red-color'
+        }]
+        : [{
+          changeTypeClass: 'increasingS',
+          text: 'increased in Sentiment',
+          r2class: 'target__number r2i-green-color'
+        }, {
+          changeTypeClass: 'decreasingS',
+          text: 'decreased in Sentiment',
+          r2class: 'target__number r2i-dark-red-color'
+        }];
 
       changeTypesArray.forEach(classItem => {
         if (cell.classList.contains(classItem.changeTypeClass)) {
@@ -55,11 +65,13 @@ export default class SignificantChangesAlerts {
         }
       });
 
-      this.alerts.push({
-        categoryText: categoryText,
-        changesText: changesText,
-        hierarchyElement: this.getHierarchyElement(cell)
-      });
+      if (changesText) {
+        this.alerts.push({
+          categoryText: categoryText,
+          changesText: changesText,
+          hierarchyElement: this.getHierarchyElement(cell)
+        });
+      }
     })
   }
 
@@ -86,6 +98,9 @@ export default class SignificantChangesAlerts {
       headerContainer.appendChild(headerTitleWidget);
       headerTitleWidget.appendChild(headerTitleView);
       headerTitleView.appendChild(headerTitleViewName);
+
+      let viewBySelect = this.viewByContainer.removeChild(this.viewByContainer.childNodes[1]);
+      headerTitleView.appendChild(viewBySelect);
     }
 
     this.container.appendChild(rowContainer);
