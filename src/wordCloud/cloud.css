@@ -3,6 +3,10 @@
   height: 500px;
 }
 
+.wordcloud-tag {
+  cursor: pointer;
+}
+
 
 .select2-container--default .select2-selection--multiple {
   border: 1px solid var(--divider-color) !important;

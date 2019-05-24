@@ -5,7 +5,7 @@ var dateformat = require('dateformat');
 class Hitlist {
 
   constructor({
-                currentCategory = '', separator = ' ', hitlist, headers, dateTimeFormat, selectedWords, infoText, filterInfoText, sentimentConfig =
+                currentCategory = '', separator = ' ', hitlist, headers, dateTimeFormat, selectedWCWord, selectedWordsContainerId, infoText, filterInfoText, sentimentConfig =
       [
         {
           sentiment: "positive",
@@ -74,7 +74,8 @@ class Hitlist {
     this.separator = separator;
     this.currentCategory = currentCategory;
     this.dateTimeFormat = dateTimeFormat;
-    this.selectedWords = selectedWords;
+    this.selectedWCWord = selectedWCWord;
+    this.selectedWordsContainerId = selectedWordsContainerId;
     this.infoText = infoText;
     this.filterInfoText = filterInfoText;
 
@@ -249,9 +250,19 @@ class Hitlist {
     [].slice.call(mainCells).forEach((cell, index) => {
       this.wrapComment(cell);
 
-      if (this.selectedWords) {
-        //if(false) {
-        this.highlightSelectedWords(cell, index);
+      if (this.selectedWordsContainerId) {
+        var selectedWordsContainer = document.querySelector("#" + this.selectedWordsContainerId + "_field");
+        var hitlistFilterSummaryElement = document.querySelector('.hitlist-active-filters .hitlist-filter-wrapper div[data-fieldid="' + this.selectedWordsContainerId + '"] .hitlist-filter-value');
+
+        if (selectedWordsContainer || hitlistFilterSummaryElement || this.selectedWCWord) {
+          var words = this.getSelectedWords(selectedWordsContainer
+            ? selectedWordsContainer.value + (this.selectedWCWord ? "|" + this.selectedWCWord : "")
+            : hitlistFilterSummaryElement
+              ? hitlistFilterSummaryElement.innerText.replace(" starts with ", "") + (this.selectedWCWord ? "|" + this.selectedWCWord : "")
+              : this.selectedWCWord
+          );
+          this.highlightSelectedWords(cell, index, words);
+        }
       }
 
       //this.addDateToComment(cell, index);
@@ -281,9 +292,15 @@ class Hitlist {
     cell.appendChild(comment)
   }
 
-  highlightSelectedWords(cell, index) {
-    cell.children[0].innerHTML = cell.children[0].innerText.replace(new RegExp('(' + this.selectedWords + ')', 'ig'), '<span class="wc-word-highlight">$1</span>');
+  getSelectedWords(selectedWordsContainerValue) {
+    var words = selectedWordsContainerValue.split("\*").join("|");
+    words = words[0] === "|" ? words.slice(1) : words;
+    words = words[words.length - 1] === "|" ? words.slice(0, -1) : words;
+    return words;
+  }
 
+  highlightSelectedWords(cell, index, words) {
+    cell.children[0].innerHTML = cell.children[0].innerText.replace(new RegExp('(' + words + ')', 'ig'), '<span class="wc-word-highlight">$1</span>');
   }
 
   addCategoriesToComment(cell, index) {
