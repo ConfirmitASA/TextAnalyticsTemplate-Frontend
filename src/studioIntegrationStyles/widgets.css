@@ -184,6 +184,7 @@
   border-radius: 3px;
   box-shadow: 0 0 6px 0 var(--divider-color);
   position: relative;
+  overflow: auto;
 }
 
 .dashboard__widget--large {
