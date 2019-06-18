@@ -50,6 +50,9 @@ export default class CorrelationView {
       document.querySelector(`#${this.buttonsContainer}>#chart-switcher`).classList.add('selected');
       document.querySelector(`#quadrant-table`).classList.add('hidden');
       document.querySelector(`#quadrant-chart`).classList.remove('hidden');
+
+      //this made to fix overflowing chart, but it may cause some performance problems
+      this.correlationChart = new CorrelationChart({container: this.chartContainer, table, palette, translations, questionName});
     });
   }
 }
