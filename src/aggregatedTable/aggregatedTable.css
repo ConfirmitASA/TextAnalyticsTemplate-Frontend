@@ -73,6 +73,7 @@
     &>.barchart{
         /*the barchart itself*/
         height:24px !important;
+        width: 83%;
        & td{
         border-left:0 !important;
         border-right: 0 !important;
