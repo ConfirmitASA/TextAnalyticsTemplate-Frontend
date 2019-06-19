@@ -536,7 +536,7 @@ html{
         flex: 0 1 auto;
     }
 }
-
+/*
 @media screen and (min-width: 74.214rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small {
         width: calc(33.3% - 1.43rem);
@@ -545,7 +545,8 @@ html{
     }
 }
 
-@media screen and (min-width: 99.429rem) {
+@media screen and (min-width: 99.429rem) {*/
+@media screen and (min-width: 74.214rem) {
     .dashboard__main-wrapper.view-mode .dashboard__widget--small {
         width: calc(25% - 1.43rem);
         -ms-flex: 0 1 auto;

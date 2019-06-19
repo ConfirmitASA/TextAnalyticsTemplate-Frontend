@@ -1,6 +1,6 @@
 .dashboard__main-wrapper.view-mode .dashboard__widget {
   margin: .714rem;
-  min-width: 23.786rem;
+  min-width: 18.786rem;
   width: 100%
 }
 
@@ -12,15 +12,16 @@
     margin-right: .714rem
   }
 }
-
+/*
 @media screen and (min-width: 74.214rem) {
   .dashboard__main-wrapper.view-mode .dashboard__widget--small {
     -ms-flex: 0 1 calc(33.3% - 1.429rem);
     flex: 0 1 calc(33.3% - 1.429rem)
   }
 }
-
-@media screen and (min-width: 99.429rem) {
+*/
+/*@media screen and (min-width: 99.429rem) {*/
+@media screen and (min-width: 74.214rem) {
   .dashboard__main-wrapper.view-mode .dashboard__widget--small {
     -ms-flex: 0 1 calc(25% - 1.429rem);
     flex: 0 1 calc(25% - 1.429rem)
