@@ -124,6 +124,9 @@ html{
     width: initial;
 }
 
+.dashboard__main-wrapper.view-mode .dashboard__widget.dashboard__widget--correlation {
+  overflow: visible;
+}
 /*  Home page styles */
 /*
 .r2i-widget .r2i-person-icon {
@@ -154,6 +157,10 @@ html{
     color: var(--primary-text-color);
     font: 400 2.143rem/1.27 Source Sans Pro,Arial,Helvetica,Geneva,sans-serif;
     margin-right:.929rem
+}
+
+#alerts-container .r2-title-view__name {
+  margin-right: 2.5rem;
 }
 
 /* Widget Styles */
