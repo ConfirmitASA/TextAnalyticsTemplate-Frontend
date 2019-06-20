@@ -29,20 +29,22 @@
      background-color: var(--light-primary-color);
      position:relative;
    }
-  &.reportal-barchart.reportal-barchart-header>thead>tr:last-child>td:last-child,
-  &.reportal-barchart.reportal-barchart-header>thead>tr:last-child>th:last-child{
+ /* &.reportal-barchart.reportal-barchart-header>thead>tr:last-child>td:last-child,
+  &.reportal-barchart.reportal-barchart-header>thead>tr:last-child>th:last-child{ *?
     /*dirty hack to move content of the header to the left*/
-     position:relative;
+/*     position:relative;
      left:-35px;
      width:200px;
      border-left:0;
   }
   &.reportal-barchart.reportal-barchart-header>thead>tr:last-child>td:nth-last-child(2),
   &.reportal-barchart.reportal-barchart-header>thead>tr:last-child>th:nth-last-child(2) {
+  */
      /*dirty hack to move content of the header to the left*/
-    color: transparent !important;
+/*    color: transparent !important;
     width:36px !important;
   }
+  */
   &.reportal-barchart>tbody>tr>td:nth-last-child(2),
   &.reportal-barchart>tbody>tr>th:nth-last-child(2) {
     text-align:right;

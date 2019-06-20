@@ -53,6 +53,14 @@
 
 }
 
+.top5 .flex.box.two-column:nth-child(odd) {
+  padding-right: 7px;
+}
+
+.top5 .flex.box.two-column:nth-child(even) {
+  padding-left: 7px;
+}
+
 .flex.box.two-column table{
   overflow: scroll
 }
