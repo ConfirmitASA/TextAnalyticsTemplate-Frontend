@@ -195,25 +195,6 @@
 
       }
     }
-  /*&>thead td.sortable:not(.hierarchy-search-visible){
-      cursor:pointer;
-      &.sorted.asc:after{
-        content: var(--icon-arrow-up);
-        padding-left:8px;
-      }
-      &.sorted.desc:after{
-        content: var(--icon-arrow-up);
-        transform:rotate(180deg);
-        padding-right:8px;
-      }
-      &:after{
-        display:inline-block;
-        bottom: -3px;
-        position: relative;
-        color: var(--primary-text-color);
-      }
-  }*/
-
 }
 
 /* fixed header table*/
@@ -234,8 +215,9 @@
   text-align: right;
   white-space: nowrap;
 }
-#sentiment-table .aggregatedTableContainer > table > thead > tr > td:nth-child(2) {
-  text-align: left;
+
+#salesforce-table table tr > td:first-child {
+  display: none;
 }
 
 .aggregatedTableWrapper {
