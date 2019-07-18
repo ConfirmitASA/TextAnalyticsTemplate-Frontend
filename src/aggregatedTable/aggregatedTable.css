@@ -240,6 +240,9 @@
 #sentiment-table .aggregatedTableContainer > table > thead > tr > td:nth-child(2) {
   text-align: left;
 }
+#salesforce-table table tr > td:first-child {
+  display: none;
+}
 
 .aggregatedTableWrapper {
   /*margin-right: 8px;*/
