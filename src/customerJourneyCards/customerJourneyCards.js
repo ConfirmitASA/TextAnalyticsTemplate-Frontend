@@ -163,10 +163,16 @@ export default class CustomerJourneyCards {
     let cardHeader = document.createElement('header');
     cardHeader.className = 'widget__header';
 
+    let title = row.children[0].innerText;
+    // custom task to rename (can't be renamed by recoding because it's used in other places)
+    if (title.toUpperCase() == "SOURCE") {
+      title = "Combined View";
+    }
+
     let cardTitle = document.createElement('h3');
     cardTitle.className = 'widget__title';
-    cardTitle.innerText = row.children[0].innerText;
-    cardTitle.setAttribute('title', row.children[0].innerText);
+    cardTitle.innerText = title;
+    cardTitle.setAttribute('title', title);
     cardHeader.appendChild(cardTitle);
 
     return cardHeader;
