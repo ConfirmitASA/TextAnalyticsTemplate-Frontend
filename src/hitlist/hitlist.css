@@ -357,3 +357,15 @@
   border: 1px solid #ccc;
   padding: 8px;
 }
+
+/* removes pointer from hitlist rows */
+.hitlist .yui3-datatable-table {
+ cursor: default !important;
+}
+
+/* show apartment number column only in export*/
+@media screen {
+  .hitlist table thead th[class*="apartment_number"], .hitlist table tbody td[class*="apartment_number"] {
+    display: none;
+  }
+}
