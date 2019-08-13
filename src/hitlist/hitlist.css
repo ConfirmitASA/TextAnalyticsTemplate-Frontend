@@ -362,10 +362,3 @@
 .hitlist .yui3-datatable-table {
  cursor: default !important;
 }
-
-/* show apartment number column only in export*/
-@media screen {
-  .hitlist table thead th[class*="apartment_number"], .hitlist table tbody td[class*="apartment_number"] {
-    display: none;
-  }
-}
