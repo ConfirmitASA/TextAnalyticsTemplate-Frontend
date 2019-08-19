@@ -52,7 +52,11 @@
   flex:auto;
 
 }
-
+@media screen and (max-width:768px) {
+  .flex.box.two-column {
+    width: 100%;
+  }
+}
 .top5 .flex.box.two-column:nth-child(odd) {
   padding-right: 7px;
 }
