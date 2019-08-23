@@ -52,7 +52,7 @@ function hackEventWithinDoPostBack() {
 export default class CustomerJourneyCards {
   constructor({tableContainerId, cardContainerId, drilldownId, CJ_options, translations}) {
     this.CJ_options = CJ_options;
-    this.cj_table = document.getElementById(tableContainerId).querySelector('table');
+    this.cj_table = document.querySelector('#' + cardContainerId + ' ~ #' + tableContainerId).querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     this.cardContainer.className = "r2i-row r2i-row--max-width cj-cards";
 
@@ -108,9 +108,12 @@ export default class CustomerJourneyCards {
   }
 
   createCards() {
-    this.CJ_objectToProcess.forEach(obj => {
-      obj.rows.forEach((row, index) => {
-        const card = this.createCard(obj, row);
+    this.CJ_objectToProcess.forEach((obj, index) => {
+      obj.rows.forEach(row => {
+        let pdfPageBreak = false;
+        if (((index + 1) % 4 == 0) || (index + 1 == this.CJ_objectToProcess.length && ((index + 1) % 4 > 2)))
+          pdfPageBreak = true;
+        const card = this.createCard(obj, row, pdfPageBreak);
         this.cardContainer.appendChild(card);
         // this.fixLongTitle(card);
 
@@ -128,12 +131,12 @@ export default class CustomerJourneyCards {
     // this.fixTitleHeight();
   }
 
-  createCard(obj, row) {
+  createCard(obj, row, pdfPageBreak) {
     const cj_table_firstRow = this.cj_table.tHead.children[0];
-
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-TA-x-small ta-cj-card';
-
+    if (pdfPageBreak)
+      card.className += ' page-break';
     const cardHeader = this.createCardHeader(row);
     card.appendChild(cardHeader);
 
