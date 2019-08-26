@@ -29,7 +29,6 @@ export default class ThemeDistributionChart {
   }
 
   init() {
-    this.hideOverallSentiment();
     this.fixMovingHeaders();
     this.getDataFromTable();
 
@@ -46,13 +45,13 @@ export default class ThemeDistributionChart {
     this.addInfoText();
   }
 
-  hideOverallSentiment() {
-    const overallSentimentRow = this.table.querySelector("tbody>tr:first-child");
-    overallSentimentRow.style.display = 'none';
-  }
-
   fixMovingHeaders() {
-    const secondTable = this.table.parentElement.querySelectorAll('table')[1];
+    const tables = this.table.parentElement.querySelectorAll('table');
+    if (tables.length <= 1) {
+      return;
+    }
+
+    const secondTable = tables[1];
     secondTable.style.width = this.table.style.width;
     const headers = [...secondTable.querySelectorAll("thead>tr")[0].querySelectorAll("td")].slice(1);
     headers.forEach((header) => {
