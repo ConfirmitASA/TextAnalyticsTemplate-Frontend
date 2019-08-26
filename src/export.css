@@ -58,7 +58,12 @@
   .reportal_hide_print {
     display: none;
   }
-
+  .top5 {
+    display: block!important;
+    visibility: visible!important;
+    page-break-after: avoid!important;
+    page-break-before: always;
+  }
   div.hitlist-tag-container span:first-child {
     width: auto;
     padding-right: 5px;

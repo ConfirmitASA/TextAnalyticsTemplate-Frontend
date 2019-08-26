@@ -95,7 +95,8 @@ export default class SignificantChangesAlerts {
     let alertItem = this.alerts[index];
     let alertCard = document.createElement('article');
     alertCard.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-TA-x-small';
-
+    if (((index + 1) % 6 == 0) && (index + 1 != this.alerts.length))
+      alertCard.className += " page-break";
     let alertHeader = document.createElement('header');
     alertHeader.className = 'widget__header';
     let alertTitle = document.createElement('h3');
