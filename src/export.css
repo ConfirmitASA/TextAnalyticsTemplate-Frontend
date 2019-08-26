@@ -26,6 +26,10 @@
     white-space: normal;
   }
 
+  .reportal-collapsed-row .reportal-collapse-button:before {
+    transform: rotate(0deg) !important;
+  }
+
   .reportal-table > tbody > tr > td {
     font-size: 9px;
   }

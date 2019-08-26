@@ -12,7 +12,7 @@ class AggregatedTable{
    * @param {Object} fixedHeader - config for {@link FixedHeader}. See {@link FixedHeader} docs for available object properties. If fixedHeader.source is not defined, it will automatically receive value from `table`
    * @param {Object} sorting - config for {@link SortTable}. See {@link SortTable} docs for available object properties. If sorting.source is not defined, it will automatically receive value from `table`. If sorting.data is not explicitly defined, it will automatically receive value from `hierarchy.data`
    * */
-  constructor({table, hierarchy, fixedHeader,sorting}={}){
+  constructor({table, hierarchy, fixedHeader, sorting}={}){
     this.hierarchy=this.sorting=null;
     this.source=table;
     if(hierarchy && typeof hierarchy == 'object'){
@@ -47,6 +47,7 @@ class AggregatedTable{
         this.addSearchBox(buttonWrapper);
       }
     }
+
     if(sorting){
       this.source.addEventListener('reportal-table-sort',()=>this.onSort());
       sorting.source = table;
@@ -70,6 +71,7 @@ class AggregatedTable{
         }
        });
     });
+
     this.focusFollows(); // for search field to setup following focus
   }
 

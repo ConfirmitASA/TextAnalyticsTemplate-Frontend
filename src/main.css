@@ -92,7 +92,9 @@ The following imports of classes files are available:
 @import "infoIcon/info-icon.css";
 @import "trendChart/trendChart.css";
 
+@import "themeDistributionTable/themeDistributionTable.css";
 @import "themeDistributionChart/themeDistributionChart.css";
+
 @import "respondentNumberWidget/respondentNumberWidget.css";
 
 /** Styles for export */
