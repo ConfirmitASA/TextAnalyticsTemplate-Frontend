@@ -87,7 +87,9 @@ export default class SignificantChangesAlerts {
       headerTitleWidget.appendChild(headerTitleView);
       headerTitleView.appendChild(headerTitleViewName);
     }
-
+    else {
+      this.container.classList.remove('page-break');
+    }
     this.container.appendChild(rowContainer);
   }
 

@@ -2,7 +2,6 @@
   display: none;
 }
 
-
 @media print {
   .pdfExportVisibleOnly {
     display: inline;
@@ -62,12 +61,17 @@
   .reportal_hide_print {
     display: none;
   }
-  .top5 {
+  div.reportal_hide_print.top5 {
     display: block!important;
     visibility: visible!important;
     page-break-after: avoid!important;
     page-break-before: always;
   }
+
+  div.reportal_hide_print.top5_hidden {
+    display: none!important;
+  }
+
   div.hitlist-tag-container span:first-child {
     width: auto;
     padding-right: 5px;
