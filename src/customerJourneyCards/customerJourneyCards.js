@@ -51,8 +51,9 @@ function hackEventWithinDoPostBack() {
 
 export default class CustomerJourneyCards {
   constructor({tableContainerId, cardContainerId, drilldownId, CJ_options, translations}) {
+    let cj_containers = document.querySelectorAll('#' + tableContainerId);
     this.CJ_options = CJ_options;
-    this.cj_table = document.querySelector('#' + cardContainerId + ' ~ #' + tableContainerId).querySelector('table');
+    this.cj_table = cj_containers[cj_containers.length-1].querySelector('table');
     this.cardContainer = document.getElementById(cardContainerId);
     this.cardContainer.className = "r2i-row r2i-row--max-width cj-cards";
 
