@@ -109,12 +109,9 @@ export default class CustomerJourneyCards {
   }
 
   createCards() {
-    this.CJ_objectToProcess.forEach((obj, index) => {
-      obj.rows.forEach(row => {
-        let pdfPageBreak = false;
-        if (((index + 1) % 4 == 0) || (index + 1 == this.CJ_objectToProcess.length && ((index + 1) % 4 > 2)))
-          pdfPageBreak = true;
-        const card = this.createCard(obj, row, pdfPageBreak);
+    this.CJ_objectToProcess.forEach(obj => {
+      obj.rows.forEach((row, index) => {
+        const card = this.createCard(obj, row);
         this.cardContainer.appendChild(card);
         // this.fixLongTitle(card);
 
@@ -128,16 +125,17 @@ export default class CustomerJourneyCards {
         }
       });
     });
-
+    document.querySelectorAll('.ta-cj-card').forEach((card, index) => {
+      if (((index + 1) % 4 == 0) || (index + 1 == this.CJ_objectToProcess.length && ((index + 1) % 4 > 2)))
+         card.classList+= " page-break";
+    });
     // this.fixTitleHeight();
   }
 
-  createCard(obj, row, pdfPageBreak) {
+  createCard(obj, row) {
     const cj_table_firstRow = this.cj_table.tHead.children[0];
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-TA-x-small ta-cj-card';
-    if (pdfPageBreak)
-      card.className += ' page-break';
     const cardHeader = this.createCardHeader(row);
     card.appendChild(cardHeader);
 
