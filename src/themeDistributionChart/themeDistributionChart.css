@@ -1,7 +1,3 @@
-#theme-distribution .aggregatedTableContainer > table > thead > tr:last-child {
-  display: none;
-}
-
 #drilldown-button-container {
   display: none;
 }

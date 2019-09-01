@@ -9,6 +9,7 @@ export default class ThemeDistributionTable {
   }
 
   init() {
+    this.hideOverallSentiment();
     this.rows = [...this.table.querySelectorAll('tr')];
     this.rows.forEach((row,index) => {
         if (index === 0)
@@ -17,6 +18,11 @@ export default class ThemeDistributionTable {
           this.rowFormatting(row);
         }
     });
+  }
+
+  hideOverallSentiment() {
+    const overallSentimentRow = this.table.querySelector("tbody>tr:first-child");
+    overallSentimentRow.style.display = 'none';
   }
 
   rowFormatting(row) {

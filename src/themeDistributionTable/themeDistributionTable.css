@@ -1,0 +1,3 @@
+#theme-distribution table > thead > tr:last-child {
+  display: none;
+}
