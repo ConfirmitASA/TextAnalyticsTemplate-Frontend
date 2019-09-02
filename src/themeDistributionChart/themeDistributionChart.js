@@ -21,7 +21,7 @@ export default class ThemeDistributionChart {
     this.labels = [];
     this.period = period;
 
-    this.emptyValue = 'emptyv';
+    this.emptyValue = translations['-select-'];
     this.increasingClassName = "increasing";
     this.decreasingClassName = "decreasing";
 
@@ -68,29 +68,6 @@ export default class ThemeDistributionChart {
     window.dispatchEvent(event);
   }
 
-  findCurrentRow(rows) {
-    let currentRow;
-    let isCategoryFound = false, isSubCategoryFound = false;
-    for(let i = 0; i < rows.length; i++) {
-      const td = rows[i].querySelector("td:first-child");
-      const text = td.innerText.trim();
-      const level = rows[i].className[rows[i].className.indexOf('level') + 5];
-
-      if (this.attribute && this.attribute !== this.emptyValue && isCategoryFound && isSubCategoryFound && text === this.attribute && level === "2") {
-        currentRow = rows[i];
-        break;
-      }
-      if (this.subCategory && this.subCategory !== this.emptyValue && isCategoryFound && !isSubCategoryFound && text === this.subCategory && level === "1") {
-        isSubCategoryFound = true;
-        currentRow = rows[i];
-      }
-      if (this.category !== this.emptyValue && !isCategoryFound && text === this.category && level === "0") {
-        isCategoryFound = true;
-        currentRow = rows[i];
-      }
-    }
-    return currentRow;
-  }
 
   getDataFromTable() {
     const rows = [...this.table.querySelectorAll("tbody>tr")];
@@ -100,8 +77,9 @@ export default class ThemeDistributionChart {
       this.labels.push(header.innerText);
     });
 
-    let row = this.findCurrentRow(rows);
-    row = !row ? rows[0] : row;
+   // To unhide filtered out categories in Theme distribution table look at version 6.0
+    let row = (this.category !== this.emptyValue) ? rows[1] : rows[0];
+
 
     const dataValue = this.GetRowValues(row);
     dataValue ?
