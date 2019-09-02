@@ -199,11 +199,6 @@ export default class TrendChart {
       this.indexOffset--;
     }
 
-    // custom task to rename (can't be renamed by recoding because it's used in other places)
-    if (name.toUpperCase() == "SOURCE") {
-      name = "Combined View";
-    }
-
     const data = [];
     for (let i = 1; i < row.childElementCount; i += 2) {
       data.push({
