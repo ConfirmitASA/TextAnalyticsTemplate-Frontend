@@ -38,6 +38,9 @@ export default class SignificantChangeWidget {
   createWidget() {
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-widget ta-sig-change-widget';
+    if (!this.isSentiment) {
+      card.classList.add('page-break');
+    }
     card.onclick = () => this.drilldownButton.click();
 
     this.createCardHeader(card);

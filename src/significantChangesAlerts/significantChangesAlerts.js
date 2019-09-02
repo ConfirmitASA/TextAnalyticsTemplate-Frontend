@@ -3,6 +3,8 @@ export default class SignificantChangesAlerts {
   constructor({table, containerId, translations, separator, period, drilldownButtonContainer, drilldownParameterContainer, drilldownPage}) {
     this.table = table;
     this.container = document.getElementById(containerId);
+    this.container.classList.add('page-break');
+    console.log('pdf export test');
     this.translations = translations;
     this.period = period;
     this.separator = (!!separator && separator !== "") ? separator : "|";
@@ -70,6 +72,7 @@ export default class SignificantChangesAlerts {
     for (let i = 0; i < this.alerts.length; i++)
       rowContainer.appendChild(this.createCard(i));
 
+    this.container.classList.add("page-break");
     if (this.alerts.length > 0) {
       let headerContainer = document.createElement('div');
       headerContainer.className = "r2i-row r2i-row--max-width";
@@ -79,7 +82,6 @@ export default class SignificantChangesAlerts {
       headerTitleView.className = "r2-title-view";
       let headerTitleViewName = document.createElement('div');
       headerTitleViewName.className = "r2-title-view__name";
-
       headerTitleViewName.innerText = this.translations['What has significantly changed last '] + this.translations[this.period];
 
       this.container.appendChild(headerContainer);

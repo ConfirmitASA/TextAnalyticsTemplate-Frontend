@@ -18,15 +18,16 @@ export default class CorrelationChart {
 
   init() {
     this.getDataFromTable();
+    let container = document.getElementById(this.container);
     if (this.data.length > 0) {
       this.setupChart();
     } else {
-      const container = document.getElementById(this.container);
       container.innerHTML = `<label class="no-data-label">${this.translations['No data to display']}</label>`;
       container.style.height = 'inherit';
       container.style.marginBottom = '16px';
       container.style.marginLeft = '8px';
     }
+    container.classList.add('page-break');
   }
 
   getDataFromTable() {

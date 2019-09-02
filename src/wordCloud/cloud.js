@@ -36,6 +36,9 @@ class WordCloud {
       container.style.marginTop = '16px';
       container.style.height = 'inherit';
     }
+
+    let allWidgets = document.querySelectorAll('article.dashboard__widget');
+    allWidgets[allWidgets.length - 1].classList.add('reportal_hide_print');
   }
 
   takeDataFromTable({elementId, countId, sentimentId}) {

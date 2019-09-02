@@ -18,6 +18,11 @@ export default class ThemeDistributionTable {
           this.rowFormatting(row);
         }
     });
+    let tableContainer = document.querySelector('#alerts-container ~ article.dashboard__widget');
+    if (tableContainer) {
+      tableContainer.classList.add('page-break');
+      console.log("pdf export test");
+    }
   }
 
   hideOverallSentiment() {
