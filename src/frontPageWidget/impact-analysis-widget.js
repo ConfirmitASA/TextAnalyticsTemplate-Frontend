@@ -30,7 +30,7 @@ export default class ImpactAnalysisWidget {
   createWidget() {
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-widget ta-impact-analysis-widget';
-    if (this.area.id === 'strength') {
+    if (this.area.id === 'strength' && !document.querySelector('#cards-container-first-row').classList.contains('page-break')) {
       card.classList.add('page-break');
      }
     // card.onclick = () => this.drilldownButton.click();
