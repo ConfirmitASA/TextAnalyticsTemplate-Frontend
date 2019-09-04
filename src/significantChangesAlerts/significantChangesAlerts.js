@@ -3,8 +3,7 @@ export default class SignificantChangesAlerts {
   constructor({table, containerId, translations, separator, period, drilldownButtonContainer, drilldownParameterContainer, drilldownPage}) {
     this.table = table;
     this.container = document.getElementById(containerId);
-    this.container.classList.add('page-break');
-    console.log('pdf export test');
+    this.container.style.cssText = "page-break-after: always";
     this.translations = translations;
     this.period = period;
     this.separator = (!!separator && separator !== "") ? separator : "|";

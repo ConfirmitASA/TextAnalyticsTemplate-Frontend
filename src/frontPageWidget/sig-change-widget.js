@@ -39,7 +39,7 @@ export default class SignificantChangeWidget {
     const card = document.createElement('article');
     card.className = 'dashboard__widget dashboard__widget--small r2i-widget r2i-x-smal ta-widget ta-sig-change-widget';
     if (!this.isSentiment && !document.querySelector('#cards-container-first-row').classList.contains('page-break')) {
-      card.classList.add('page-break');
+      card.style.cssText = "page-break-after: always";
     }
     card.onclick = () => this.drilldownButton.click();
 
