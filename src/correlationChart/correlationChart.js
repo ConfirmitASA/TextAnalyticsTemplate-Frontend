@@ -5,13 +5,14 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class CorrelationChart {
-  constructor({container, table, palette, translations, questionName}) {
+  constructor({container, table, palette, translations, questionName, textSeparator}) {
     this.container = container;
     this.table = table;
     this.palette = palette;
     this.translations = translations;
     this.questionName = questionName;
-    console.log(translations["Priority Issues"]);
+    this.flatNameDelimiter = textSeparator;
+
     this.data = [];
     this.init();
   }
@@ -269,7 +270,7 @@ export default class CorrelationChart {
   GetRowValues(row, index) {
     const GetCurrentRowCellValue = (cellIndex) => this.GetCellValue(row, cellIndex);
     const paletteColorIndex = index >= this.palette.chartColors.length ? (index - this.palette.chartColors.length * parseInt(index / this.palette.chartColors.length)) : index;
-    const name = GetCurrentRowCellValue(0);
+    const name = GetCurrentRowCellValue(0).split(this.flatNameDelimiter).reverse()[0].trim();
     const x = +GetCurrentRowCellValue(1);
     const y = +GetCurrentRowCellValue(2);
     const z = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));

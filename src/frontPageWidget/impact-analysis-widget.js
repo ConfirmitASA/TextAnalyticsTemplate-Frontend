@@ -1,7 +1,8 @@
 export default class ImpactAnalysisWidget {
-  constructor({tableContainerId, drilldownId, cardContainerId, translations, areaId, levelName}) {
+  constructor({tableContainerId, drilldownId, textSeparator, cardContainerId, translations, areaId, levelName}) {
     this.table = document.getElementById(tableContainerId).querySelector('table');
     this.drilldownButton = document.getElementById(drilldownId).querySelector('input');
+    this.flatNameDelimiter = textSeparator;
     this.cardContainer = document.getElementById(cardContainerId);
 
     this.area = {
@@ -108,10 +109,10 @@ export default class ImpactAnalysisWidget {
           const newItem = document.createElement('div');
           newItem.className = "ta-impact-analysis-widget__item--" + area.id;
           if(categoryContainer) {
-            newItem.innerText = (index + 1) + '. ' + categoryContainer.innerText;
+            newItem.innerText = (index + 1) + '. ' + categoryContainer.innerText.split(this.flatNameDelimiter).reverse()[0].trim();
             newItem.onclick = () => categoryContainer.click();
           } else {
-            newItem.innerText = (index + 1) + '. ' + row.firstElementChild.innerText;
+            newItem.innerText = (index + 1) + '. ' + row.firstElementChild.innerText.split(this.flatNameDelimiter).reverse()[0].trim();
           }
 
           mainContent.appendChild(newItem);
