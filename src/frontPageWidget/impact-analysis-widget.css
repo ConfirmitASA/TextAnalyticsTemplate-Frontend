@@ -1,6 +1,7 @@
 .ta-impact-analysis-widget {
   cursor: default;
   word-break: break-word;
+  word-wrap: break-word;
 }
 
 .ta-impact-analysis-widget__item--issues {
