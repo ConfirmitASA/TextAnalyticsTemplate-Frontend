@@ -274,7 +274,7 @@ class HierarchyBase extends ReportalBase {
       );
       if(tdBlocks.length>0){
         for(let i=0;i<tdBlocks.length;i++){
-          let block = blocks[i];
+          let block = blocks[i].replace('&amp;apos;', "'").replace('\\&quot;', '"');
           arr[block] = {data:[], name:block, cell:tdBlocks[i]};
           arr.push(arr[block].data);
           this.parseHierarchy({array: arr[block].data, block:arr[block], rows, clearLinks});
