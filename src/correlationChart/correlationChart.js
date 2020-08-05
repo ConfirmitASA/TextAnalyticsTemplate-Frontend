@@ -33,7 +33,7 @@ export default class CorrelationChart {
     let rows = [...this.table.querySelectorAll("tbody>tr")];
 
     rows.forEach((row, index) => {
-      index === 0 ? this.xAxis = +this.GetCellValue(row, 1) : this.data.push(this.GetRowValues(row, index));
+      /*index === 0 ? this.xAxis = +this.GetCellValue(row, 1) : */ this.data.push(this.GetRowValues(row, index));
     })
   }
 
