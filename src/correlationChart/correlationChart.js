@@ -29,11 +29,22 @@ export default class CorrelationChart {
     }
   }
 
+  getXAxisValue(rows) {
+    let sum = 0;
+
+    for(let i=0; i< rows.length; i++) {
+      sum += Number(this.GetCellValue(rows[i], 1));
+    }
+
+    this.xAxis = rows.length>0 ? sum/rows.length : 0;
+  }
+
   getDataFromTable() {
     let rows = [...this.table.querySelectorAll("tbody>tr")];
+    this.getXAxisValue(rows);
 
     rows.forEach((row, index) => {
-      /*index === 0 ? this.xAxis = +this.GetCellValue(row, 1) : */ this.data.push(this.GetRowValues(row, index));
+       this.data.push(this.GetRowValues(row, index));
     })
   }
 
@@ -151,6 +162,8 @@ export default class CorrelationChart {
       plotOptions: {
         bubble: {
           allowPointSelect: true,
+          //minSize: 10,
+          //maxSize: 100,
           point: {
             events: {
               select: function (e) {
@@ -191,7 +204,9 @@ export default class CorrelationChart {
             animation: false
           }
         },
-        sizeByAbsoluteValue: true
+        sizeBy: 'area',
+        sizeByAbsoluteValue: false,
+        zThreshold: 0
       }],
 
       exporting: {

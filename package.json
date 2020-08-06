@@ -24,7 +24,7 @@
     "css-loader": "^0.23.1",
     "docdash": "^0.4.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "jsdoc": "^3.4.0",
+    "jsdoc": "^3.6.5",
     "postcss": "^5.0.21",
     "postcss-apply": "^0.8.0",
     "postcss-cssnext": "github:confirmitasa/postcss-cssnext",

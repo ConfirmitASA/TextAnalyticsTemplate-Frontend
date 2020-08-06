@@ -1,4 +1,4 @@
-var styleBundle = require('./main.css');
+//var styleBundle = require('./main.css');
 // import Highcharts from 'highcharts';
 // window.Highcharts = Highcharts;
 // import 'highcharts-exporting';
