@@ -29,22 +29,28 @@ export default class CorrelationChart {
     }
   }
 
-  getXAxisValue(rows) {
-    let sum = 0;
+  getXAxisValue(row) {
+    return this.xAxis = +this.GetCellValue(row, 1);
+  }
 
-    for(let i=0; i< rows.length; i++) {
-      sum += Number(this.GetCellValue(rows[i], 1));
-    }
+  getMinimumZValue() {
 
-    this.xAxis = rows.length>0 ? sum/rows.length : 0;
+    let td_z = this.table.querySelectorAll('tbody > tr > td:nth-child(4)');
+    td_z = Array.prototype.slice.call(td_z);
+
+    this.minZValue =  td_z.map( z => z.innerText.replace(/,/g, ""))
+      .reduce((min, z) => (min == null ? z : (min > z ? z : min)), null);
   }
 
   getDataFromTable() {
     let rows = [...this.table.querySelectorAll("tbody>tr")];
-    this.getXAxisValue(rows);
+    this.getXAxisValue(rows[0]);
+    this.getMinimumZValue();
 
     rows.forEach((row, index) => {
-       this.data.push(this.GetRowValues(row, index));
+      if(index>0) {
+        this.data.push(this.GetRowValues(row, index));
+      }
     })
   }
 
@@ -120,8 +126,8 @@ export default class CorrelationChart {
       },
 
       yAxis: {
-        max: maxYValue + 0.5,
-        min: -maxYValue - 0.5,
+        max: maxYValue + 1,
+        min: -maxYValue - 1,
         startOnTick: false,
         endOnTick: false,
         title: {
@@ -154,7 +160,7 @@ export default class CorrelationChart {
         pointFormat: `<tr><th colspan="2"><h3 onclick="{point.click}">{point.name}</h3></th></tr>
         <tr><th>${this.translations['Average Category Sentiment']}:</th><td>{point.x}</td></tr>
         <tr><th>${this.questionName ? `${this.translations['Correlation with']} ${this.questionName}` : this.translations['Correlation with NPS']}:</th><td>{point.y}</td></tr>
-        <tr><th>${this.translations['Answer Count'] || 'Answer Count'}:</th><td>{point.z}</td></tr>`,
+        <tr><th>${this.translations['Answer Count'] || 'Answer Count'}:</th><td>{point.z_actual}</td></tr>`,
         footerFormat: '</table>',
         followPointer: true
       },
@@ -162,8 +168,6 @@ export default class CorrelationChart {
       plotOptions: {
         bubble: {
           allowPointSelect: true,
-          //minSize: 10,
-          //maxSize: 100,
           point: {
             events: {
               select: function (e) {
@@ -205,8 +209,7 @@ export default class CorrelationChart {
           }
         },
         sizeBy: 'area',
-        sizeByAbsoluteValue: false,
-        zThreshold: 0
+        sizeByAbsoluteValue: false
       }],
 
       exporting: {
@@ -287,13 +290,14 @@ export default class CorrelationChart {
     const name = GetCurrentRowCellValue(0);
     const x = +GetCurrentRowCellValue(1);
     const y = +GetCurrentRowCellValue(2);
-    const z = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));
+    const z_actual = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));
+    const z = (z_actual/this.minZValue).toFixed(0);
     const color = this.palette.chartColors[paletteColorIndex];
-    const click = () => {
-      this.CellClick(row)
-    };
+    //const click = () => {
+    //  this.CellClick(row)
+    //};
 
-    return {x, y, z, name, color, click};
+    return {x, y, z, z_actual, name, color/*, click */};
   }
 
   GetChartAreasMetaData(chart) {
