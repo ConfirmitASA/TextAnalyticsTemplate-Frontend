@@ -368,7 +368,7 @@ export default class CorrelationChartSixAreas {
         ]
       },
       {
-        title: translations["Maintain"],
+        title: translations["Monitor"],
         color: "#cccccc",
         coordinates: [
           yFirst,
