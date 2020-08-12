@@ -25,7 +25,7 @@ module.exports = {
   output: {
     path: "./dist",
 
-    filename: "bundle-v0.6.1.js"
+    filename: "bundle-v0.6.1_erie.js"
   },
   devtool: "eval-source-map",
   module: {
