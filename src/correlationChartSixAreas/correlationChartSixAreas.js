@@ -251,7 +251,7 @@ export default class CorrelationChartSixAreas {
 
         texts[index] = texts[index] ||
           chart.renderer.text(title).css({
-            color: "#ffffff",
+            color: "#797979",
             zIndex: 10,
             fontSize: 16,
             fontWeight: "bold"
@@ -328,7 +328,7 @@ export default class CorrelationChartSixAreas {
 
     const areas = [
       {
-        title: "Unfavorable",
+        title: translations["Unfavorable"],
         color: "#fffe86" ,
         coordinates: [
           plotLeft,
@@ -338,7 +338,7 @@ export default class CorrelationChartSixAreas {
         ]
       },
       {
-        title: "Positive",
+        title: translations["Positive"],
         color: "#d8ff9c",
         coordinates: [
           yFirst,
@@ -358,7 +358,7 @@ export default class CorrelationChartSixAreas {
         ]
       },
       {
-        title: "Improve",
+        title: translations["Improve"],
         color: "#ffa94c",
         coordinates: [
           plotLeft,
@@ -368,7 +368,7 @@ export default class CorrelationChartSixAreas {
         ]
       },
       {
-        title: "Monitor",
+        title: translations["Maintain"],
         color: "#cccccc",
         coordinates: [
           yFirst,
