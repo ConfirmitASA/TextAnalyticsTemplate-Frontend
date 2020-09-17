@@ -5,6 +5,7 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class CorrelationChart {
+
   constructor({container, table, palette, translations, questionName}) {
     this.container = container;
     this.table = table;
@@ -29,29 +30,25 @@ export default class CorrelationChart {
     }
   }
 
-  getXAxisValue(row) {
-    return this.xAxis = +this.GetCellValue(row, 1);
-  }
-
-  getMinimumZValue() {
-
-    let td_z = this.table.querySelectorAll('tbody > tr > td:nth-child(4)');
-    td_z = Array.prototype.slice.call(td_z);
-
-    this.minZValue =  td_z.map( z => z.innerText.replace(/,/g, ""))
-      .reduce((min, z) => (min == null ? z : (min > z ? z : min)), null);
-  }
-
   getDataFromTable() {
     let rows = [...this.table.querySelectorAll("tbody>tr")];
-    this.getXAxisValue(rows[0]);
-    this.getMinimumZValue();
-
+    this.getMinMaxZValues();
     rows.forEach((row, index) => {
-      if(index>0) {
-        this.data.push(this.GetRowValues(row, index));
-      }
+      index === 0 ? this.xAxis = +this.GetCellValue(row, 1) : this.data.push(this.GetRowValues(row, index));
     })
+  }
+
+  getMinMaxZValues() {
+    let td_z = this.table.querySelectorAll('tbody > tr > td:nth-last-child(2)');
+    td_z = Array.prototype.slice.call(td_z, 1);
+
+    this.minZValue =  td_z.map( z => parseInt(z.innerText.replace(/,/g, "")))
+      .reduce((min, z) => ( min == null ? z : (min > z ? z : min)), null);
+
+    this.maxZValue =  td_z.map( z => parseInt(z.innerText.replace(/,/g, "")))
+      .reduce((max, z) => (max == null ? z : (max < z ? z : max)), null);
+
+    this.cDiff = (this.maxZValue - this.minZValue)/this.minZValue;
   }
 
   setupChart() {
@@ -67,7 +64,7 @@ export default class CorrelationChart {
 
     const maxXValue = getMaximumProperty(this.data, "x", this.xAxis);
     const maxYValue = getMaximumProperty(this.data, "y");
-      // Math.abs(this.data.reduce((max, current) => Math.abs(current.y) > Math.abs(max.y) ? current : max).y);
+    // Math.abs(this.data.reduce((max, current) => Math.abs(current.y) > Math.abs(max.y) ? current : max).y);
 
 
     let chartConfig = {
@@ -100,7 +97,7 @@ export default class CorrelationChart {
         min: this.xAxis - maxXValue - 0.5,
         gridLineWidth: 1,
         title: {
-          text: this.translations['Average Category Sentiment'],
+          text: this.translations['Average'],
           margin: 40
         },
         labels: {
@@ -119,15 +116,15 @@ export default class CorrelationChart {
             style: {
               fontStyle: 'italic'
             },
-            text: this.translations['Average Overall Sentiment']
+            text: this.translations['Overall']
           },
           zIndex: 3
         }]
       },
 
       yAxis: {
-        max: maxYValue + 1,
-        min: -maxYValue - 1,
+        max: maxYValue + 0.5,
+        min: -maxYValue - 0.5,
         startOnTick: false,
         endOnTick: false,
         title: {
@@ -158,9 +155,8 @@ export default class CorrelationChart {
         useHTML: true,
         headerFormat: '<table>',
         pointFormat: `<tr><th colspan="2"><h3 onclick="{point.click}">{point.name}</h3></th></tr>
-        <tr><th>${this.translations['Average Category Sentiment']}:</th><td>{point.x}</td></tr>
-        <tr><th>${this.questionName ? `${this.translations['Correlation with']} ${this.questionName}` : this.translations['Correlation with NPS']}:</th><td>{point.y}</td></tr>
-        <tr><th>${this.translations['Answer Count'] || 'Answer Count'}:</th><td>{point.z_actual}</td></tr>`,
+        <tr><th>${this.translations['Average']}:</th><td>{point.x}</td></tr>
+        <tr><th>${this.questionName ? `${this.translations['Correlation with']} ${this.questionName}` : this.translations['Correlation with NPS']}:</th><td>{point.y}</td></tr>`,
         footerFormat: '</table>',
         followPointer: true
       },
@@ -208,8 +204,7 @@ export default class CorrelationChart {
             animation: false
           }
         },
-        sizeBy: 'area',
-        sizeByAbsoluteValue: false
+        sizeByAbsoluteValue: true
       }],
 
       exporting: {
@@ -290,14 +285,17 @@ export default class CorrelationChart {
     const name = GetCurrentRowCellValue(0);
     const x = +GetCurrentRowCellValue(1);
     const y = +GetCurrentRowCellValue(2);
-    const z_actual = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));
-    const z = (z_actual/this.minZValue).toFixed(0);
+    const count = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));
+    let z = count;
+    if (this.cDiff < 0.5) {
+      z = (count/this.minZValue).toFixed(0)
+    }
     const color = this.palette.chartColors[paletteColorIndex];
-    //const click = () => {
-    //  this.CellClick(row)
-    //};
+    const click = () => {
+      this.CellClick(row)
+    };
 
-    return {x, y, z, z_actual, name, color/*, click */};
+    return {x, y, z, count, name, color, click};
   }
 
   GetChartAreasMetaData(chart) {

@@ -15,21 +15,21 @@ export default class CorrelationView {
     this.correlationChart = new CorrelationChart({container: this.chartContainer, table, palette, translations, questionName});
     this.correlationTable = new CorrelationTable({container: this.tableContainer, table, palette, translations});
 
-    if (localStorage && localStorage['switcher-state'] === 'table') {
+    /*if (localStorage && localStorage['switcher-state'] === 'table') {
       document.querySelector(`#${this.chartContainer}`).classList.add('hidden');
       document.querySelector(`#${this.buttonsContainer}>#table-switcher`).classList.add('selected');
       document.querySelector(`#quadrant-chart`).classList.add('hidden');
-    } else {
+    } else {*/
       document.querySelector(`#${this.tableContainer}`).classList.add('hidden');
       document.querySelector(`#${this.buttonsContainer}>#chart-switcher`).classList.add('selected');
       document.querySelector(`#quadrant-table`).classList.add('hidden');
-    }
+    //}
 
 
     document.querySelector(`#${this.buttonsContainer}>#table-switcher`).addEventListener('click', () => {
-      if (localStorage) {
+      /*if (localStorage) {
         localStorage['switcher-state'] = 'table';
-      }
+      }*/
 
       document.querySelector(`#${this.tableContainer}`).classList.remove('hidden');
       document.querySelector(`#${this.chartContainer}`).classList.add('hidden');
@@ -40,9 +40,9 @@ export default class CorrelationView {
     });
 
     document.querySelector(`#${this.buttonsContainer}>#chart-switcher`).addEventListener('click', () => {
-      if (localStorage) {
+      /*if (localStorage) {
         localStorage['switcher-state'] = 'chart';
-      }
+      }*/
 
       document.querySelector(`#${this.tableContainer}`).classList.add('hidden');
       document.querySelector(`#${this.chartContainer}`).classList.remove('hidden');

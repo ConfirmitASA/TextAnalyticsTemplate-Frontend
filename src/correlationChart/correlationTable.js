@@ -46,15 +46,15 @@ export default class CorrelationTable {
       categoryCell.innerText = categoryContainer.innerText;
     }
 
-    const counts = document.createElement('td');
-    const countsDiv = document.createElement('div');
-    const countsValue = row.children[row.children.length - 2].innerText;
-    countsDiv.innerText = countsValue;
-    counts.appendChild(countsDiv);
+    //const counts = document.createElement('td');
+    //const countsDiv = document.createElement('div');
+    //const countsValue = row.children[row.children.length - 2].innerText;
+    //countsDiv.innerText = countsValue;
+    //counts.appendChild(countsDiv);
 
     tr.appendChild(order);
     tr.appendChild(categoryCell);
-    tr.appendChild(counts);
+    //tr.appendChild(counts);
 
     return tr
   }
