@@ -6,7 +6,7 @@ require('../lib/highcharts-more')(Highcharts);
 
 export default class CorrelationChart {
 
-  constructor({container, table, palette, translations, questionName}) {
+  constructor({container, table, palette, translations, questionName, correlationAxis}) {
     this.container = container;
     this.table = table;
     this.palette = palette;
@@ -14,6 +14,7 @@ export default class CorrelationChart {
     this.questionName = questionName;
     console.log(translations["Priority Issues"]);
     this.data = [];
+    this.correlationAxis = correlationAxis;
     this.init();
   }
 
@@ -62,10 +63,30 @@ export default class CorrelationChart {
       )
     );
 
-    const maxXValue = getMaximumProperty(this.data, "x", this.xAxis);
-    const maxYValue = getMaximumProperty(this.data, "y");
-    // Math.abs(this.data.reduce((max, current) => Math.abs(current.y) > Math.abs(max.y) ? current : max).y);
+    const getMinimumProperty = (data, propertyName, zero = 0) => (
+      Math.abs(
+        data.reduce(
+          (min, current) => Math.abs(current[propertyName] - zero) < Math.abs(min[propertyName] - zero) ? current : min
+        )[propertyName] - zero
+      )
+    );
 
+    const maxXValue = getMaximumProperty(this.data, "x", this.xAxis);
+
+    let maxYValue;
+    let minYValue;
+    let zeroYValue;
+
+    if(this.correlationAxis.Type.toLowerCase() === 'manual') {
+      maxYValue = parseFloat(this.correlationAxis.TopLimit);
+      minYValue = parseFloat(this.correlationAxis.BottomLimit);
+      zeroYValue = parseFloat(this.correlationAxis.ZeroLine);
+    } else {
+      maxYValue = 1;
+      let averageMinYValue = getMinimumProperty(this.data, "y");
+      minYValue = averageMinYValue < -0.3 ? averageMinYValue : -0.3;
+      zeroYValue = (maxYValue + minYValue) / 2;
+    }
 
     let chartConfig = {
 
@@ -123,14 +144,15 @@ export default class CorrelationChart {
       },
 
       yAxis: {
-        max: maxYValue + 0.5,
-        min: -maxYValue - 0.5,
+        max: maxYValue + 0.1,
+        min: minYValue - 0.1,
         startOnTick: false,
         endOnTick: false,
         title: {
           text: this.questionName ? `${this.translations['Correlation with']} ${this.questionName}` : this.translations['Correlation with NPS']
         },
         labels: {
+          enabled: false,
           format: '{value}'
         },
         maxPadding: 0.2,
@@ -138,7 +160,7 @@ export default class CorrelationChart {
           color: 'black',
           dashStyle: 'dot',
           width: 2,
-          value: 0,
+          value: zeroYValue,
           label: {
             align: 'right',
             x: -10,
@@ -155,8 +177,7 @@ export default class CorrelationChart {
         useHTML: true,
         headerFormat: '<table>',
         pointFormat: `<tr><th colspan="2"><h3 onclick="{point.click}">{point.name}</h3></th></tr>
-        <tr><th>${this.translations['Average']}:</th><td>{point.x}</td></tr>
-        <tr><th>${this.questionName ? `${this.translations['Correlation with']} ${this.questionName}` : this.translations['Correlation with NPS']}:</th><td>{point.y}</td></tr>`,
+        <tr><th>${this.translations['Average']}:</th><td>{point.x}</td></tr>`,
         footerFormat: '</table>',
         followPointer: true
       },
