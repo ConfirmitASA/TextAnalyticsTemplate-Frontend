@@ -114,15 +114,16 @@ export default class CorrelationChart {
       },
 
       xAxis: {
-        max: this.xAxis + maxXValue + 0.5,
-        min: this.xAxis - maxXValue - 0.5,
+        max: this.xAxis + maxXValue + 1,
+        min: this.xAxis - maxXValue - 1,
         gridLineWidth: 1,
+        tickInterval: 1,
         title: {
           text: this.translations['Average'],
           margin: 40
         },
         labels: {
-          format: '{value}',
+          format: '{value:.0f}',
           y: -5
         },
         tickWidth: 0,
