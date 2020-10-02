@@ -41,6 +41,7 @@ import TAHierarchyTable from  './aggregatedTable/TAHierarchyTable.js';
 //import DefaultConfig from './hitlist/hitlist.js';
 //import Hitlist from './hitlist/hitlist.js';
 import CorrelationView from './correlationChart/correlationview.js';
+import TrendBarChart from "./leadersExport/trendBarChart";
 // import WordCloud from './wordCloud/cloud.js';
 // import TrendChart from './trendChart/trendChart.js';
 // import CustomerJourneyCards from './customerJourneyCards/customerJourneyCards.js';
@@ -64,7 +65,8 @@ ReportalBase.mixin(window.Reportal,{
   // Hitlist,
   // TAHierarchyTable,
   // SortModule,
-  CorrelationView//,
+  CorrelationView,
+  TrendBarChart
   // WordCloud,
   // TrendChart,
   // CustomerJourneyCards,
