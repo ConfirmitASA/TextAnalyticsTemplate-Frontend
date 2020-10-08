@@ -5,18 +5,21 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendBarChart {
-  constructor({chartContainer, questionCategories, trendCategories, scoreData, translations}) {
+  constructor({chartContainer, translations, table}) {
     this.chartContainer = chartContainer;
     this.translations = translations;
+    this.table = table;
 
-    this.questionCategories = questionCategories;
-    this.trendCategories = trendCategories;
-    this.scoreData = scoreData;
+    this.questionCategories = [];
+    this.trendCategories = [];
+    this.scoreData = [];
 
     this.init();
   }
 
   init() {
+    this.collectData();
+
     if (this.scoreData.length > 0) {
       this.setUpChart();
     } else {
@@ -28,12 +31,23 @@ export default class TrendBarChart {
     }
   }
 
+  collectData() {
+    let rows = [...this.table.querySelectorAll("tbody>tr")];
+
+    rows.forEach((row) => {
+      let cols = [...row.querySelectorAll("td")];
+
+      this.questionCategories.push(cols[0].innerText);
+      this.scoreData.push(parseInt(cols[1].innerText));
+      this.trendCategories.push(parseInt(cols[3].innerText) > 0 ? '+' + cols[3].innerText : cols[3].innerText);
+    });
+  }
+
   setUpChart() {
     let chartConfig = {
       chart: {
         type: 'bar',
         height: 600,
-        //width: 900,
         backgroundColor: '#FAF9F7'
       },
       title: {
