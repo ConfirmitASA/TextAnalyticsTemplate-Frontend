@@ -5,13 +5,13 @@ require('../lib/exporting')(Highcharts);
 require('../lib/highcharts-more')(Highcharts);
 
 export default class TrendColumnChart {
-  constructor({chartContainer, title, table, tableSection, translations}) {
+  constructor({chartContainer, table, tableSection, translations}) {
     this.chartContainer = chartContainer;
     this.translations = translations;
     this.questionCategories = [];
-    this.title = title;
     this.table = table;
     this.tableSection = tableSection;
+    this.title = this.tableSection.qName;
     this.seriesData = [];
     this.colors = ['#87C7BA', '#FCC74F', '#FF8569', '#4CB0D3', '#6B9994', '#B08759', '#40897A', '#C38803', '#D82800', '#226F8A', '#A6C2BF', '#FDD272'];
 
@@ -105,6 +105,7 @@ export default class TrendColumnChart {
         title: {
           text: ''
         },
+        max: 100,
         gridLineColor: '#EEDACD',
         labels: {
           format: '{value:.0f}',

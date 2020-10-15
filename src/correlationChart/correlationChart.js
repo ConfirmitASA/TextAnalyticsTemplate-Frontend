@@ -114,8 +114,8 @@ export default class CorrelationChart {
       },
 
       xAxis: {
-        max: this.xAxis + maxXValue + 1,
-        min: this.xAxis - maxXValue - 1,
+        max: this.xAxis + maxXValue + 5,
+        min: this.xAxis - maxXValue - 5,
         gridLineWidth: 1,
         tickInterval: 1,
         title: {
@@ -145,8 +145,8 @@ export default class CorrelationChart {
       },
 
       yAxis: {
-        max: maxYValue + 0.1,
-        min: minYValue - 0.1,
+        max: maxYValue + 0.2,
+        min: minYValue - 0.2,
         startOnTick: false,
         endOnTick: false,
         title: {
