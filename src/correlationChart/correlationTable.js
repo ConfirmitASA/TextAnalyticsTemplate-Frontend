@@ -52,7 +52,7 @@ export default class CorrelationTable {
     //countsDiv.innerText = countsValue;
     //counts.appendChild(countsDiv);
 
-    tr.appendChild(order);
+    //tr.appendChild(order);
     tr.appendChild(categoryCell);
     //tr.appendChild(counts);
 

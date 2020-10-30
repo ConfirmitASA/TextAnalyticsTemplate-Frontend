@@ -35,7 +35,9 @@ export default class CorrelationChart {
     let rows = [...this.table.querySelectorAll("tbody>tr")];
     this.getMinMaxZValues();
     rows.forEach((row, index) => {
-      index === 0 ? this.xAxis = +this.GetCellValue(row, 1) : this.data.push(this.GetRowValues(row, index));
+      index === 0 ? this.xAxis = +(parseFloat(this.GetCellValue(row, 1).replace(/,/g, "."))) : this.data.push(this.GetRowValues(row, index));
+
+
     })
   }
 
@@ -114,8 +116,8 @@ export default class CorrelationChart {
       },
 
       xAxis: {
-        max: this.xAxis + maxXValue + 5,
-        min: this.xAxis - maxXValue - 5,
+        max: 100 < this.xAxis + maxXValue + 5 ? 105 : this.xAxis + maxXValue + 5,
+        min: -100 > this.xAxis - maxXValue - 5 ? -105: this.xAxis - maxXValue - 5,
         gridLineWidth: 1,
         tickInterval: 1,
         title: {
@@ -196,6 +198,7 @@ export default class CorrelationChart {
           dataLabels: {
             enabled: true,
             format: '{point.name}',
+            allowOverlap: true,
             color: '#3F454C',
             style: {
               "color": "#3F454C",
@@ -294,7 +297,8 @@ export default class CorrelationChart {
 
 
   GetCellValue(row, index) {
-    return row.children.item(index).innerText
+    var temp = row.children.item(index).innerText;
+    return row.children.item(index).innerText;
   }
 
   CellClick(row) {
@@ -305,8 +309,8 @@ export default class CorrelationChart {
     const GetCurrentRowCellValue = (cellIndex) => this.GetCellValue(row, cellIndex);
     const paletteColorIndex = index >= this.palette.chartColors.length ? (index - this.palette.chartColors.length * parseInt(index / this.palette.chartColors.length)) : index;
     const name = GetCurrentRowCellValue(0);
-    const x = +GetCurrentRowCellValue(1);
-    const y = +GetCurrentRowCellValue(2);
+    const x = +(parseFloat(GetCurrentRowCellValue(1).replace(/,/g, ".")));
+    const y = +(parseFloat(GetCurrentRowCellValue(2).replace(/,/g, ".")));
     const count = +(GetCurrentRowCellValue(row.children.length - 2).replace(/,/g, ""));
     let z = count;
     if (this.cDiff < 0.5) {
