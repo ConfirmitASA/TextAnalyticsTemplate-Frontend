@@ -60,27 +60,25 @@ export default class CorrelationTable {
   }
 
   init() {
-    const rows = [...this.table.querySelectorAll("tbody>tr")];
+    let isAnythingShown = false;
 
-    if (rows.length > 0) {
-      let isAnythingShown = false;
-      this.areas.forEach((area, index) => {
-        area.rows = rows.filter((row, index) => (index > 0 && row.children[1].classList.contains(`cf_${area.id}`)));
-        area.rows.forEach((row, index) => document.getElementById(area.id).children[0].appendChild(this.createRow(row, index + 1)));
-        if (area.rows.length === 0) {
-          document.querySelector(`.correlation-header--${area.id}`).classList.add("hidden");
-        } else {
-          isAnythingShown = true;
-        }
-      });
+    if(!!this.table) {
+      const rows = [...this.table.querySelectorAll("tbody>tr")];
 
-      if (!isAnythingShown) {
-        const container = document.getElementById(this.container);
-        container.innerHTML = `<label class="no-data-label">${this.translations['No data to display']}</label>`;
-        container.style.marginBottom = '16px';
-        container.style.marginLeft = '8px';
+      if (rows.length > 0) {
+        this.areas.forEach((area, index) => {
+          area.rows = rows.filter((row, index) => (index > 0 && row.children[1].classList.contains(`cf_${area.id}`)));
+          area.rows.forEach((row, index) => document.getElementById(area.id).children[0].appendChild(this.createRow(row, index + 1)));
+          if (area.rows.length === 0) {
+            document.querySelector(`.correlation-header--${area.id}`).classList.add("hidden");
+          } else {
+            isAnythingShown = true;
+          }
+        });
       }
-    } else {
+    }
+
+    if (!isAnythingShown) {
       const container = document.getElementById(this.container);
       container.innerHTML = `<label class="no-data-label">${this.translations['No data to display']}</label>`;
       container.style.marginBottom = '16px';

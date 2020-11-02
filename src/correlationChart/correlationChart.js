@@ -32,13 +32,14 @@ export default class CorrelationChart {
   }
 
   getDataFromTable() {
-    let rows = [...this.table.querySelectorAll("tbody>tr")];
-    this.getMinMaxZValues();
-    rows.forEach((row, index) => {
-      index === 0 ? this.xAxis = +(parseFloat(this.GetCellValue(row, 1).replace(/,/g, "."))) : this.data.push(this.GetRowValues(row, index));
+    if(!!this.table) {
+      let rows = [...this.table.querySelectorAll("tbody>tr")];
+      this.getMinMaxZValues();
 
-
-    })
+      rows.forEach((row, index) => {
+        index === 0 ? this.xAxis = +(parseFloat(this.GetCellValue(row, 1).replace(/,/g, "."))) : this.data.push(this.GetRowValues(row, index));
+      })
+    }
   }
 
   getMinMaxZValues() {
