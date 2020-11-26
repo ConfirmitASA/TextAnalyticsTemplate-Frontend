@@ -5,6 +5,14 @@
   & td[class*=_chc]:last-child{width:200px}
 }
 
+.detailed-analysis-table-with-sig-test{
+& td[class*=_dc]:last-child{
+    border-bottom: 1px solid #e1e4e9 !important;
+    vertical-align: middle !important;
+    padding-bottom: 2px !important;
+  }
+}
+
 .no-data-label {
   color: var(--secondary-text-color);
 }
