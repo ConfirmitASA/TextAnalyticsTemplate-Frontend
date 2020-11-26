@@ -92,8 +92,8 @@ export default class CorrelationChart {
       },
 
       xAxis: {
-        max: this.xAxis + maxXValue + 0.5,
-        min: this.xAxis - maxXValue - 0.5,
+        max: 5 + 0.5,
+        min: -5 - 0.5,
         gridLineWidth: 1,
         title: {
           text: this.translations['Average Category Sentiment'],
