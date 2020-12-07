@@ -1,0 +1,20 @@
+#sig-sentiment-table .reportal-hierarchy-table tr.firstInBlock>td:nth-child(2) {
+  white-space: normal;
+  background: #f0f2f5;
+  vertical-align: top;
+  width: 30px;
+  padding: 8px !important;
+}
+
+#sig-sentiment-table .reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {
+  border-top: 3px #ccc double !important;
+}
+
+#sig-sentiment-table .reportal-table>tbody>tr>td.sig_test_comments, .reportal-table>tbody>tr>td.sig_test_avg {
+  width: 200px;
+  text-align: center;
+}
+
+#sig-sentiment-total-table {
+  display: none;
+}

@@ -56,6 +56,8 @@ import ThemeDistributionTable from "./themeDistributionTable/themeDistributionTa
 import RespondentNumberWidget from "./respondentNumberWidget/respondentNumberWidget";
 import ThreeYearsTrendChart from "./threeYearsTrendChart/threeYearsTrendChart";
 
+import SigTestingTable from "./sigTestingTable/sigTestingTable";
+
 window.Reportal = window.Reportal || {};
 
 ReportalBase.mixin(window.Reportal,{
@@ -77,5 +79,6 @@ ReportalBase.mixin(window.Reportal,{
   ThemeDistributionChart,
   ThemeDistributionTable,
   RespondentNumberWidget,
-  ThreeYearsTrendChart
+  ThreeYearsTrendChart,
+  SigTestingTable
 });

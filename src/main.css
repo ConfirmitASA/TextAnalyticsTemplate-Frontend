@@ -101,3 +101,5 @@ The following imports of classes files are available:
 @import "export.css";
 
 @import "studioIntegrationStyles/reportal-styles.css";
+
+@import "sigTestingTable/sigTestingTable.css";
