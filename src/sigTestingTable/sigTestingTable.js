@@ -129,12 +129,12 @@ export default class SigTestingTable {
       const firstInBlockShift = row.classList.contains("firstInBlock") ? 1 : 0;
 
       let avgNewCell = document.createElement("td");
-      avgNewCell.classList.add("t5_rhc");
+      avgNewCell.classList.add("t5_dc");
       avgNewCell.classList.add("sig_test_avg");
       row.insertBefore(avgNewCell, row.children[childBeforeIndexForAverage + firstInBlockShift]);
 
       let commentsNewCell = document.createElement("td");
-      commentsNewCell.classList.add("t5_rhc");
+      commentsNewCell.classList.add("t5_dc");
       commentsNewCell.classList.add("sig_test_comments");
       row.insertBefore(commentsNewCell, row.children[childBeforeIndexForComments + firstInBlockShift]);
     }

@@ -6,12 +6,24 @@
   padding: 8px !important;
 }
 
+#sig-sentiment-table .reportal-hierarchy-table tr.firstInBlock:first-child > td:nth-child(2) {
+  padding-top: 12px !important;
+}
+
 #sig-sentiment-table .reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {
   border-top: 3px #ccc double !important;
 }
 
+#sig-sentiment-table .aggregatedTableContainer > table > thead > tr > td:not(:first-child) {
+  text-align: center;
+}
+
 #sig-sentiment-table .reportal-table>tbody>tr>td.sig_test_comments, .reportal-table>tbody>tr>td.sig_test_avg {
   width: 200px;
+  text-align: center;
+}
+
+#sig-sentiment-table .reportal-table>tbody>tr>td[class*="_dc"] {
   text-align: center;
 }
 
