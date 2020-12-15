@@ -12,7 +12,7 @@ export default class SigTestingTable {
 
   init() {
     this.hideStdevColumn();
-    if (!this.table.querySelector(".firstInBlock") || this.distribution === "1") {
+    if (this.distribution === "1") {
       this.hideCountColumn();
     }
     if (this.table.querySelector(".firstInBlock")) {
